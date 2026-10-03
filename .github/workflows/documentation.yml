@@ -1,0 +1,38 @@
+name: Documentation validation
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm run check
+      - name: Get exact implementation baseline
+        uses: actions/checkout@v5
+        with:
+          repository: Agents-Foundry/employee-agent-platform
+          ref: 9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4
+          path: .sources/platform
+          persist-credentials: false
+      - run: npm run check:source
+      - name: Retain validation evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: documentation-validation
+          path: .validation/*-report.json
+          if-no-files-found: ignore

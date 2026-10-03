@@ -1,0 +1,149 @@
+{
+  "payload": {
+    "apiVersion": "agents-foundry/v2",
+    "kind": "AgentManifest",
+    "metadata": {
+      "manifestId": "10000000-0000-4000-8000-000000000001",
+      "agentId": "agent_example_qa",
+      "organizationId": "org_example",
+      "employeeId": "employee_example",
+      "issuedAt": "2026-10-03T09:00:00Z",
+      "blueprint": {
+        "id": "engineering.qa-engineer",
+        "version": "1.2.0",
+        "digest": "ce90dbef57e464f8b275ba404e05a829e765d5d850e73a5dfad024bac639f5a3"
+      },
+      "installationId": "10000000-0000-4000-8000-000000000002"
+    },
+    "identity": {
+      "name": "Example QA Employee",
+      "role": "qa-engineer",
+      "department": "Engineering"
+    },
+    "persona": {
+      "profile": "qa-engineer-default"
+    },
+    "runtime": {
+      "profile": "standard-agent",
+      "isolation": "sandboxed"
+    },
+    "model": {
+      "profile": "qa-default",
+      "provider": "anthropic",
+      "model": "example-model-id",
+      "credentialMode": "ORGANIZATION_MANAGED"
+    },
+    "skills": [
+      {
+        "id": "story-analysis",
+        "version": "1.0.0"
+      },
+      {
+        "id": "risk-based-test-planning",
+        "version": "1.0.0"
+      },
+      {
+        "id": "regression-analysis",
+        "version": "1.0.0"
+      },
+      {
+        "id": "defect-reporting",
+        "version": "1.0.0"
+      }
+    ],
+    "tools": [
+      "repository",
+      "issue-tracker",
+      "browser",
+      "artifact"
+    ],
+    "connectors": [
+      {
+        "id": "jira",
+        "capabilities": [
+          "issueTracker.read",
+          "issueTracker.write"
+        ]
+      },
+      {
+        "id": "github",
+        "capabilities": [
+          "sourceControl.read"
+        ]
+      }
+    ],
+    "mcp": [
+      "playwright"
+    ],
+    "memory": {
+      "profile": "project-employee-memory"
+    },
+    "knowledge": {
+      "sources": [
+        "assigned-repositories",
+        "issue-tracker-project"
+      ]
+    },
+    "policies": {
+      "profile": "qa-standard",
+      "policyVersion": "foundation-approval-v1",
+      "capabilities": [
+        {
+          "action": "repository.read",
+          "outcome": "ALLOW"
+        },
+        {
+          "action": "jira.read",
+          "outcome": "ALLOW"
+        },
+        {
+          "action": "qa.plan",
+          "outcome": "ALLOW"
+        },
+        {
+          "action": "qa.execute_playwright",
+          "outcome": "REQUIRE_APPROVAL"
+        },
+        {
+          "action": "jira.issue.create",
+          "outcome": "REQUIRE_APPROVAL"
+        },
+        {
+          "action": "repository.pull_request.create",
+          "outcome": "REQUIRE_APPROVAL"
+        },
+        {
+          "action": "production.deploy",
+          "outcome": "DENY"
+        }
+      ]
+    },
+    "workflows": [
+      "validate-story",
+      "sanity-test",
+      "regression-test",
+      "post-release-validation"
+    ],
+    "evaluations": {
+      "suite": "qa-engineer-v1"
+    },
+    "configuration": {
+      "projectName": "Example checkout",
+      "repositoryUrl": "https://github.com/example-org/example-app",
+      "qaUrl": "https://qa.example.com",
+      "issueTracker": [
+        "Jira"
+      ],
+      "sourceControl": [
+        "GitHub"
+      ],
+      "testingTechnologies": [
+        "Playwright"
+      ]
+    },
+    "conversationSync": "REQUIRED"
+  },
+  "algorithm": "Ed25519",
+  "keyId": "13cbd0cddb7cab97c2ecb5854ca4a2246dd302510393abbd1fe0b06d60f0973b",
+  "signature": "jiRA0tbZt3EmEXhjtRmu+DDTZVcSCd4APmSmEbqfGGTCx2t/Ui+AA08k6YY3RTVJaxpZTMsM0T7wbYKTxE6cDQ=="
+}

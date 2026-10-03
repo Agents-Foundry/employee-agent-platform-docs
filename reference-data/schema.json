@@ -1,0 +1,3739 @@
+{
+  "commit": "9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4",
+  "migrations": [
+    "apps/control-plane-api/src/db/migrations/0001-baseline.ts",
+    "apps/control-plane-api/src/db/migrations/0002-model-spending.ts",
+    "apps/control-plane-api/src/db/migrations/0003-model-prices.ts",
+    "apps/control-plane-api/src/db/migrations/0004-model-budget-alerts.ts",
+    "apps/control-plane-api/src/db/migrations/0005-alert-webhooks.ts",
+    "apps/control-plane-api/src/db/migrations/0006-model-quality-results.ts",
+    "apps/control-plane-api/src/db/migrations/0007-tenant-domain-notifications.ts",
+    "apps/control-plane-api/src/db/migrations/0008-native-column-types.ts",
+    "apps/control-plane-api/src/db/migrations/0009-catalog-version-notifications.ts",
+    "apps/control-plane-api/src/db/migrations/0010-catalog-bundle-schema.ts",
+    "apps/control-plane-api/src/db/migrations/0011-repository-credentials.ts",
+    "apps/control-plane-api/src/db/migrations/0012-run-recovery.ts",
+    "apps/control-plane-api/src/db/migrations/0013-artifact-objects.ts",
+    "apps/control-plane-api/src/db/migrations/0014-model-credentials.ts",
+    "apps/control-plane-api/src/db/migrations/0015-action-reconciliation.ts"
+  ],
+  "tables": {
+    "organizations": {
+      "file": "apps/control-plane-api/src/db/migrations/0001-baseline.ts",
+      "columns": [
+        {
+          "name": "id",
+          "type": "text",
+          "definition": "PRIMARY KEY"
+        },
+        {
+          "name": "name",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "slug",
+          "type": "text",
+          "definition": "NOT NULL UNIQUE"
+        },
+        {
+          "name": "legal_name",
+          "type": "text",
+          "definition": "NOT NULL DEFAULT ''"
+        },
+        {
+          "name": "code",
+          "type": "text",
+          "definition": ""
+        },
+        {
+          "name": "website",
+          "type": "text",
+          "definition": "NOT NULL DEFAULT ''"
+        },
+        {
+          "name": "industry",
+          "type": "text",
+          "definition": "NOT NULL DEFAULT ''"
+        },
+        {
+          "name": "country",
+          "type": "text",
+          "definition": "NOT NULL DEFAULT ''"
+        },
+        {
+          "name": "timezone",
+          "type": "text",
+          "definition": "NOT NULL DEFAULT 'UTC'"
+        },
+        {
+          "name": "locale",
+          "type": "text",
+          "definition": "NOT NULL DEFAULT 'en'"
+        },
+        {
+          "name": "status",
+          "type": "text",
+          "definition": "NOT NULL DEFAULT 'active' CHECK(status IN ('active','suspended','disabled'))"
+        },
+        {
+          "name": "version",
+          "type": "bigint",
+          "definition": "NOT NULL DEFAULT 1"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "definition": ""
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "definition": ""
+        },
+        {
+          "name": "updated_by",
+          "type": "text",
+          "definition": ""
+        }
+      ],
+      "constraints": []
+    },
+    "users": {
+      "file": "apps/control-plane-api/src/db/migrations/0001-baseline.ts",
+      "columns": [
+        {
+          "name": "id",
+          "type": "text",
+          "definition": "PRIMARY KEY"
+        },
+        {
+          "name": "email",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "display_name",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "status",
+          "type": "text",
+          "definition": "NOT NULL DEFAULT 'active' CHECK(status IN ('active','disabled'))"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        }
+      ],
+      "constraints": []
+    },
+    "employees": {
+      "file": "apps/control-plane-api/src/db/migrations/0001-baseline.ts",
+      "columns": [
+        {
+          "name": "id",
+          "type": "text",
+          "definition": "PRIMARY KEY"
+        },
+        {
+          "name": "organization_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES organizations(id)"
+        },
+        {
+          "name": "display_name",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "email",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "role",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "team",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "user_id",
+          "type": "text",
+          "definition": "REFERENCES users(id)"
+        },
+        {
+          "name": "employee_number",
+          "type": "text",
+          "definition": ""
+        },
+        {
+          "name": "employment_type",
+          "type": "text",
+          "definition": "NOT NULL DEFAULT 'employee' CHECK(employment_type IN ('employee','contractor','external'))"
+        },
+        {
+          "name": "employment_status",
+          "type": "text",
+          "definition": "NOT NULL DEFAULT 'active' CHECK(employment_status IN ('active','inactive'))"
+        },
+        {
+          "name": "version",
+          "type": "bigint",
+          "definition": "NOT NULL DEFAULT 1"
+        }
+      ],
+      "constraints": []
+    },
+    "organization_memberships": {
+      "file": "apps/control-plane-api/src/db/migrations/0001-baseline.ts",
+      "columns": [
+        {
+          "name": "id",
+          "type": "text",
+          "definition": "PRIMARY KEY"
+        },
+        {
+          "name": "organization_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES organizations(id)"
+        },
+        {
+          "name": "user_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES users(id)"
+        },
+        {
+          "name": "employee_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "security_role",
+          "type": "text",
+          "definition": "NOT NULL CHECK(security_role IN ('ADMIN','EMPLOYEE'))"
+        },
+        {
+          "name": "membership_status",
+          "type": "text",
+          "definition": "NOT NULL CHECK(membership_status IN ('pending','active','suspended'))"
+        },
+        {
+          "name": "version",
+          "type": "bigint",
+          "definition": "NOT NULL DEFAULT 1"
+        },
+        {
+          "name": "joined_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "invited_by",
+          "type": "text",
+          "definition": ""
+        }
+      ],
+      "constraints": [
+        "UNIQUE(organization_id,user_id)",
+        "UNIQUE(organization_id,employee_id)",
+        "FOREIGN KEY(organization_id,employee_id,user_id) REFERENCES employees(organization_id,id,user_id)"
+      ]
+    },
+    "identities": {
+      "file": "apps/control-plane-api/src/db/migrations/0001-baseline.ts",
+      "columns": [
+        {
+          "name": "issuer",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "subject",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "employee_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES employees(id)"
+        },
+        {
+          "name": "enabled",
+          "type": "bigint",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "user_id",
+          "type": "text",
+          "definition": "REFERENCES users(id)"
+        }
+      ],
+      "constraints": [
+        "PRIMARY KEY (issuer, subject)"
+      ]
+    },
+    "login_transactions": {
+      "file": "apps/control-plane-api/src/db/migrations/0001-baseline.ts",
+      "columns": [
+        {
+          "name": "hash",
+          "type": "text",
+          "definition": "PRIMARY KEY"
+        },
+        {
+          "name": "body",
+          "type": "jsonb",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "expires_at",
+          "type": "bigint",
+          "definition": "NOT NULL"
+        }
+      ],
+      "constraints": []
+    },
+    "password_credentials": {
+      "file": "apps/control-plane-api/src/db/migrations/0001-baseline.ts",
+      "columns": [
+        {
+          "name": "issuer",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "subject",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "hash",
+          "type": "text",
+          "definition": "NOT NULL"
+        }
+      ],
+      "constraints": [
+        "PRIMARY KEY (issuer, subject)",
+        "FOREIGN KEY (issuer, subject) REFERENCES identities(issuer, subject)"
+      ]
+    },
+    "account_password_credentials": {
+      "file": "apps/control-plane-api/src/db/migrations/0001-baseline.ts",
+      "columns": [
+        {
+          "name": "user_id",
+          "type": "text",
+          "definition": "PRIMARY KEY REFERENCES users(id)"
+        },
+        {
+          "name": "hash",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        }
+      ],
+      "constraints": []
+    },
+    "auth_sessions": {
+      "file": "apps/control-plane-api/src/db/migrations/0001-baseline.ts",
+      "columns": [
+        {
+          "name": "hash",
+          "type": "text",
+          "definition": "PRIMARY KEY"
+        },
+        {
+          "name": "issuer",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "subject",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "expires_at",
+          "type": "bigint",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "user_id",
+          "type": "text",
+          "definition": "REFERENCES users(id)"
+        },
+        {
+          "name": "organization_id",
+          "type": "text",
+          "definition": "REFERENCES organizations(id)"
+        }
+      ],
+      "constraints": []
+    },
+    "invitations": {
+      "file": "apps/control-plane-api/src/db/migrations/0001-baseline.ts",
+      "columns": [
+        {
+          "name": "hash",
+          "type": "text",
+          "definition": "PRIMARY KEY"
+        },
+        {
+          "name": "employee_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES employees(id)"
+        },
+        {
+          "name": "expires_at",
+          "type": "bigint",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "consumed",
+          "type": "bigint",
+          "definition": "NOT NULL"
+        }
+      ],
+      "constraints": []
+    },
+    "password_resets": {
+      "file": "apps/control-plane-api/src/db/migrations/0001-baseline.ts",
+      "columns": [
+        {
+          "name": "hash",
+          "type": "text",
+          "definition": "PRIMARY KEY"
+        },
+        {
+          "name": "employee_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES employees(id)"
+        },
+        {
+          "name": "expires_at",
+          "type": "bigint",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "consumed",
+          "type": "bigint",
+          "definition": "NOT NULL"
+        }
+      ],
+      "constraints": []
+    },
+    "account_link_invitations": {
+      "file": "apps/control-plane-api/src/db/migrations/0001-baseline.ts",
+      "columns": [
+        {
+          "name": "hash",
+          "type": "text",
+          "definition": "PRIMARY KEY"
+        },
+        {
+          "name": "organization_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES organizations(id)"
+        },
+        {
+          "name": "employee_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "user_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES users(id)"
+        },
+        {
+          "name": "expires_at",
+          "type": "bigint",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "consumed",
+          "type": "bigint",
+          "definition": "NOT NULL DEFAULT 0 CHECK(consumed IN (0,1))"
+        },
+        {
+          "name": "invited_by",
+          "type": "text",
+          "definition": ""
+        }
+      ],
+      "constraints": [
+        "FOREIGN KEY(organization_id,employee_id,user_id) REFERENCES employees(organization_id,id,user_id)",
+        "FOREIGN KEY(organization_id,invited_by) REFERENCES employees(organization_id,id)"
+      ]
+    },
+    "catalog_blueprint_versions": {
+      "file": "apps/control-plane-api/src/db/migrations/0001-baseline.ts",
+      "columns": [
+        {
+          "name": "blueprint_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "version",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "digest",
+          "type": "text",
+          "definition": "NOT NULL CHECK(length(digest)=64)"
+        },
+        {
+          "name": "content",
+          "type": "text",
+          "definition": "NOT NULL CHECK(af_json_valid(content))"
+        },
+        {
+          "name": "registered_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "bundle_schema",
+          "type": "text",
+          "definition": "NOT NULL DEFAULT 'agents-foundry.catalog-bundle/v1'\n CHECK (bundle_schema ~ '^[a-z0-9.-]{1,100}/v[0-9]{1,6}$')"
+        }
+      ],
+      "constraints": [
+        "PRIMARY KEY(blueprint_id,version)"
+      ]
+    },
+    "organization_agent_installations": {
+      "file": "apps/control-plane-api/src/db/migrations/0001-baseline.ts",
+      "columns": [
+        {
+          "name": "id",
+          "type": "text",
+          "definition": "PRIMARY KEY"
+        },
+        {
+          "name": "organization_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES organizations(id)"
+        },
+        {
+          "name": "name",
+          "type": "text",
+          "definition": "NOT NULL CHECK(length(name) BETWEEN 1 AND 120)"
+        },
+        {
+          "name": "blueprint_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "blueprint_version",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "configuration",
+          "type": "jsonb",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "status",
+          "type": "text",
+          "definition": "NOT NULL CHECK(status IN ('ACTIVE','RETIRED'))"
+        },
+        {
+          "name": "version",
+          "type": "bigint",
+          "definition": "NOT NULL DEFAULT 1 CHECK(version>0)"
+        },
+        {
+          "name": "created_by",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "updated_by",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        }
+      ],
+      "constraints": [
+        "UNIQUE(organization_id,id)",
+        "FOREIGN KEY(blueprint_id,blueprint_version) REFERENCES catalog_blueprint_versions(blueprint_id,version)",
+        "FOREIGN KEY(organization_id,created_by) REFERENCES employees(organization_id,id)",
+        "FOREIGN KEY(organization_id,updated_by) REFERENCES employees(organization_id,id)"
+      ]
+    },
+    "agents": {
+      "file": "apps/control-plane-api/src/db/migrations/0001-baseline.ts",
+      "columns": [
+        {
+          "name": "id",
+          "type": "text",
+          "definition": "PRIMARY KEY"
+        },
+        {
+          "name": "organization_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES organizations(id)"
+        },
+        {
+          "name": "name",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "department",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "team",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "status",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "capabilities",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "installation_id",
+          "type": "text",
+          "definition": ""
+        },
+        {
+          "name": "seq",
+          "type": "bigint",
+          "definition": "GENERATED ALWAYS AS IDENTITY UNIQUE"
+        }
+      ],
+      "constraints": []
+    },
+    "agent_manifests": {
+      "file": "apps/control-plane-api/src/db/migrations/0001-baseline.ts",
+      "columns": [
+        {
+          "name": "agent_id",
+          "type": "text",
+          "definition": "PRIMARY KEY REFERENCES agents(id)"
+        },
+        {
+          "name": "organization_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES organizations(id)"
+        },
+        {
+          "name": "employee_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES employees(id)"
+        },
+        {
+          "name": "body",
+          "type": "text",
+          "definition": "NOT NULL"
+        }
+      ],
+      "constraints": []
+    },
+    "agent_assignments": {
+      "file": "apps/control-plane-api/src/db/migrations/0001-baseline.ts",
+      "columns": [
+        {
+          "name": "agent_id",
+          "type": "text",
+          "definition": "PRIMARY KEY"
+        },
+        {
+          "name": "organization_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES organizations(id)"
+        },
+        {
+          "name": "created_by",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        }
+      ],
+      "constraints": [
+        "FOREIGN KEY (organization_id, agent_id) REFERENCES agents(organization_id, id)",
+        "FOREIGN KEY (organization_id, created_by) REFERENCES employees(organization_id, id)"
+      ]
+    },
+    "admin_agent_batches": {
+      "file": "apps/control-plane-api/src/db/migrations/0001-baseline.ts",
+      "columns": [
+        {
+          "name": "organization_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES organizations(id)"
+        },
+        {
+          "name": "request_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "body_hash",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "result",
+          "type": "jsonb",
+          "definition": "NOT NULL"
+        }
+      ],
+      "constraints": [
+        "PRIMARY KEY (organization_id, request_id)"
+      ]
+    },
+    "provisioning_requests": {
+      "file": "apps/control-plane-api/src/db/migrations/0001-baseline.ts",
+      "columns": [
+        {
+          "name": "id",
+          "type": "text",
+          "definition": "PRIMARY KEY"
+        },
+        {
+          "name": "organization_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES organizations(id)"
+        },
+        {
+          "name": "employee_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES employees(id)"
+        },
+        {
+          "name": "body",
+          "type": "jsonb",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "seq",
+          "type": "bigint",
+          "definition": "GENERATED ALWAYS AS IDENTITY UNIQUE"
+        }
+      ],
+      "constraints": []
+    },
+    "conversations": {
+      "file": "apps/control-plane-api/src/db/migrations/0001-baseline.ts",
+      "columns": [
+        {
+          "name": "id",
+          "type": "text",
+          "definition": "PRIMARY KEY"
+        },
+        {
+          "name": "organization_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES organizations(id)"
+        },
+        {
+          "name": "employee_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES employees(id)"
+        },
+        {
+          "name": "agent_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES agents(id)"
+        },
+        {
+          "name": "title",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        }
+      ],
+      "constraints": []
+    },
+    "messages": {
+      "file": "apps/control-plane-api/src/db/migrations/0001-baseline.ts",
+      "columns": [
+        {
+          "name": "id",
+          "type": "text",
+          "definition": "PRIMARY KEY"
+        },
+        {
+          "name": "organization_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES organizations(id)"
+        },
+        {
+          "name": "conversation_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "author",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "content",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "seq",
+          "type": "bigint",
+          "definition": "GENERATED ALWAYS AS IDENTITY UNIQUE"
+        }
+      ],
+      "constraints": [
+        "FOREIGN KEY (organization_id, conversation_id) REFERENCES conversations(organization_id, id)"
+      ]
+    },
+    "approvals": {
+      "file": "apps/control-plane-api/src/db/migrations/0001-baseline.ts",
+      "columns": [
+        {
+          "name": "id",
+          "type": "text",
+          "definition": "PRIMARY KEY"
+        },
+        {
+          "name": "organization_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES organizations(id)"
+        },
+        {
+          "name": "requested_by",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "action",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "resource_type",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "resource_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "risk",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "summary",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "status",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "decided_by",
+          "type": "text",
+          "definition": ""
+        },
+        {
+          "name": "decided_at",
+          "type": "timestamptz",
+          "definition": ""
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "run_id",
+          "type": "text",
+          "definition": ""
+        },
+        {
+          "name": "step_id",
+          "type": "text",
+          "definition": ""
+        },
+        {
+          "name": "expires_at",
+          "type": "timestamptz",
+          "definition": ""
+        },
+        {
+          "name": "seq",
+          "type": "bigint",
+          "definition": "GENERATED ALWAYS AS IDENTITY UNIQUE"
+        }
+      ],
+      "constraints": []
+    },
+    "qa_runs": {
+      "file": "apps/control-plane-api/src/db/migrations/0001-baseline.ts",
+      "columns": [
+        {
+          "name": "id",
+          "type": "text",
+          "definition": "PRIMARY KEY"
+        },
+        {
+          "name": "organization_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "employee_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "conversation_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES conversations(id)"
+        },
+        {
+          "name": "story_key",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "target_url",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "status",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "plan",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "approval_id",
+          "type": "text",
+          "definition": "NOT NULL UNIQUE REFERENCES approvals(id)"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        }
+      ],
+      "constraints": []
+    },
+    "llm_key_bindings": {
+      "file": "apps/control-plane-api/src/db/migrations/0001-baseline.ts",
+      "columns": [
+        {
+          "name": "id",
+          "type": "text",
+          "definition": "PRIMARY KEY"
+        },
+        {
+          "name": "organization_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "employee_id",
+          "type": "text",
+          "definition": ""
+        },
+        {
+          "name": "provider",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "key_source",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "secret_ref",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        }
+      ],
+      "constraints": [
+        "CHECK (length(secret_ref) > 0)"
+      ]
+    },
+    "audit_events": {
+      "file": "apps/control-plane-api/src/db/migrations/0001-baseline.ts",
+      "columns": [
+        {
+          "name": "id",
+          "type": "text",
+          "definition": "PRIMARY KEY"
+        },
+        {
+          "name": "organization_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "actor_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "event_type",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "resource_type",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "resource_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "metadata",
+          "type": "jsonb",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "seq",
+          "type": "bigint",
+          "definition": "GENERATED ALWAYS AS IDENTITY UNIQUE"
+        }
+      ],
+      "constraints": []
+    },
+    "organizational_units": {
+      "file": "apps/control-plane-api/src/db/migrations/0001-baseline.ts",
+      "columns": [
+        {
+          "name": "id",
+          "type": "text",
+          "definition": "PRIMARY KEY"
+        },
+        {
+          "name": "organization_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES organizations(id)"
+        },
+        {
+          "name": "parent_id",
+          "type": "text",
+          "definition": ""
+        },
+        {
+          "name": "name",
+          "type": "text",
+          "definition": "NOT NULL CHECK(length(trim(name)) BETWEEN 1 AND 160)"
+        },
+        {
+          "name": "code",
+          "type": "text",
+          "definition": "NOT NULL CHECK(length(code) BETWEEN 1 AND 40)"
+        },
+        {
+          "name": "unit_type",
+          "type": "text",
+          "definition": "NOT NULL CHECK(unit_type IN ('business_unit','division','department','sub_department','team','squad','pod','chapter','guild','other'))"
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "definition": "NOT NULL DEFAULT ''"
+        },
+        {
+          "name": "status",
+          "type": "text",
+          "definition": "NOT NULL DEFAULT 'active' CHECK(status IN ('active','archived'))"
+        },
+        {
+          "name": "version",
+          "type": "bigint",
+          "definition": "NOT NULL DEFAULT 1"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "created_by",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "updated_by",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "head_position_id",
+          "type": "text",
+          "definition": ""
+        }
+      ],
+      "constraints": [
+        "UNIQUE(organization_id,id)",
+        "UNIQUE(organization_id,code)",
+        "FOREIGN KEY(organization_id,parent_id) REFERENCES organizational_units(organization_id,id)",
+        "FOREIGN KEY(organization_id,created_by) REFERENCES employees(organization_id,id)",
+        "FOREIGN KEY(organization_id,updated_by) REFERENCES employees(organization_id,id)",
+        "CHECK(parent_id IS NULL OR parent_id <> id)"
+      ]
+    },
+    "organization_change_events": {
+      "file": "apps/control-plane-api/src/db/migrations/0001-baseline.ts",
+      "columns": [
+        {
+          "name": "id",
+          "type": "text",
+          "definition": "PRIMARY KEY"
+        },
+        {
+          "name": "organization_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES organizations(id)"
+        },
+        {
+          "name": "actor_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "action",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "resource_type",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "resource_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "before_json",
+          "type": "jsonb",
+          "definition": ""
+        },
+        {
+          "name": "after_json",
+          "type": "jsonb",
+          "definition": ""
+        },
+        {
+          "name": "request_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        }
+      ],
+      "constraints": [
+        "FOREIGN KEY(organization_id,actor_id) REFERENCES employees(organization_id,id)"
+      ]
+    },
+    "job_families": {
+      "file": "apps/control-plane-api/src/db/migrations/0001-baseline.ts",
+      "columns": [
+        {
+          "name": "id",
+          "type": "text",
+          "definition": "PRIMARY KEY"
+        },
+        {
+          "name": "organization_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES organizations(id)"
+        },
+        {
+          "name": "name",
+          "type": "text",
+          "definition": "NOT NULL CHECK(length(trim(name)) BETWEEN 1 AND 160)"
+        },
+        {
+          "name": "code",
+          "type": "text",
+          "definition": "NOT NULL CHECK(length(code) BETWEEN 1 AND 40)"
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "definition": "NOT NULL DEFAULT ''"
+        },
+        {
+          "name": "status",
+          "type": "text",
+          "definition": "NOT NULL DEFAULT 'active' CHECK(status IN ('active','archived'))"
+        },
+        {
+          "name": "version",
+          "type": "bigint",
+          "definition": "NOT NULL DEFAULT 1"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "created_by",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "updated_by",
+          "type": "text",
+          "definition": "NOT NULL"
+        }
+      ],
+      "constraints": [
+        "UNIQUE(organization_id,id)",
+        "UNIQUE(organization_id,code)",
+        "FOREIGN KEY(organization_id,created_by) REFERENCES employees(organization_id,id)",
+        "FOREIGN KEY(organization_id,updated_by) REFERENCES employees(organization_id,id)"
+      ]
+    },
+    "job_disciplines": {
+      "file": "apps/control-plane-api/src/db/migrations/0001-baseline.ts",
+      "columns": [
+        {
+          "name": "job_family_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "id",
+          "type": "text",
+          "definition": "PRIMARY KEY"
+        },
+        {
+          "name": "organization_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES organizations(id)"
+        },
+        {
+          "name": "name",
+          "type": "text",
+          "definition": "NOT NULL CHECK(length(trim(name)) BETWEEN 1 AND 160)"
+        },
+        {
+          "name": "code",
+          "type": "text",
+          "definition": "NOT NULL CHECK(length(code) BETWEEN 1 AND 40)"
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "definition": "NOT NULL DEFAULT ''"
+        },
+        {
+          "name": "status",
+          "type": "text",
+          "definition": "NOT NULL DEFAULT 'active' CHECK(status IN ('active','archived'))"
+        },
+        {
+          "name": "version",
+          "type": "bigint",
+          "definition": "NOT NULL DEFAULT 1"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "created_by",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "updated_by",
+          "type": "text",
+          "definition": "NOT NULL"
+        }
+      ],
+      "constraints": [
+        "UNIQUE(organization_id,id)",
+        "UNIQUE(organization_id,code)",
+        "FOREIGN KEY(organization_id,created_by) REFERENCES employees(organization_id,id)",
+        "FOREIGN KEY(organization_id,updated_by) REFERENCES employees(organization_id,id)",
+        "FOREIGN KEY(organization_id,job_family_id) REFERENCES job_families(organization_id,id)"
+      ]
+    },
+    "roles": {
+      "file": "apps/control-plane-api/src/db/migrations/0001-baseline.ts",
+      "columns": [
+        {
+          "name": "job_family_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "discipline_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "id",
+          "type": "text",
+          "definition": "PRIMARY KEY"
+        },
+        {
+          "name": "organization_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES organizations(id)"
+        },
+        {
+          "name": "name",
+          "type": "text",
+          "definition": "NOT NULL CHECK(length(trim(name)) BETWEEN 1 AND 160)"
+        },
+        {
+          "name": "code",
+          "type": "text",
+          "definition": "NOT NULL CHECK(length(code) BETWEEN 1 AND 40)"
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "definition": "NOT NULL DEFAULT ''"
+        },
+        {
+          "name": "status",
+          "type": "text",
+          "definition": "NOT NULL DEFAULT 'active' CHECK(status IN ('active','archived'))"
+        },
+        {
+          "name": "version",
+          "type": "bigint",
+          "definition": "NOT NULL DEFAULT 1"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "created_by",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "updated_by",
+          "type": "text",
+          "definition": "NOT NULL"
+        }
+      ],
+      "constraints": [
+        "UNIQUE(organization_id,id)",
+        "UNIQUE(organization_id,code)",
+        "FOREIGN KEY(organization_id,created_by) REFERENCES employees(organization_id,id)",
+        "FOREIGN KEY(organization_id,updated_by) REFERENCES employees(organization_id,id)",
+        "FOREIGN KEY(organization_id,job_family_id) REFERENCES job_families(organization_id,id)",
+        "FOREIGN KEY(organization_id,discipline_id) REFERENCES job_disciplines(organization_id,id)"
+      ]
+    },
+    "job_levels": {
+      "file": "apps/control-plane-api/src/db/migrations/0001-baseline.ts",
+      "columns": [
+        {
+          "name": "rank",
+          "type": "bigint",
+          "definition": "NOT NULL CHECK(rank>=0)"
+        },
+        {
+          "name": "id",
+          "type": "text",
+          "definition": "PRIMARY KEY"
+        },
+        {
+          "name": "organization_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES organizations(id)"
+        },
+        {
+          "name": "name",
+          "type": "text",
+          "definition": "NOT NULL CHECK(length(trim(name)) BETWEEN 1 AND 160)"
+        },
+        {
+          "name": "code",
+          "type": "text",
+          "definition": "NOT NULL CHECK(length(code) BETWEEN 1 AND 40)"
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "definition": "NOT NULL DEFAULT ''"
+        },
+        {
+          "name": "status",
+          "type": "text",
+          "definition": "NOT NULL DEFAULT 'active' CHECK(status IN ('active','archived'))"
+        },
+        {
+          "name": "version",
+          "type": "bigint",
+          "definition": "NOT NULL DEFAULT 1"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "created_by",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "updated_by",
+          "type": "text",
+          "definition": "NOT NULL"
+        }
+      ],
+      "constraints": [
+        "UNIQUE(organization_id,id)",
+        "UNIQUE(organization_id,code)",
+        "FOREIGN KEY(organization_id,created_by) REFERENCES employees(organization_id,id)",
+        "FOREIGN KEY(organization_id,updated_by) REFERENCES employees(organization_id,id)"
+      ]
+    },
+    "positions": {
+      "file": "apps/control-plane-api/src/db/migrations/0001-baseline.ts",
+      "columns": [
+        {
+          "name": "organizational_unit_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "role_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "job_level_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "reports_to_position_id",
+          "type": "text",
+          "definition": ""
+        },
+        {
+          "name": "id",
+          "type": "text",
+          "definition": "PRIMARY KEY"
+        },
+        {
+          "name": "organization_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES organizations(id)"
+        },
+        {
+          "name": "name",
+          "type": "text",
+          "definition": "NOT NULL CHECK(length(trim(name)) BETWEEN 1 AND 160)"
+        },
+        {
+          "name": "code",
+          "type": "text",
+          "definition": "NOT NULL CHECK(length(code) BETWEEN 1 AND 40)"
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "definition": "NOT NULL DEFAULT ''"
+        },
+        {
+          "name": "status",
+          "type": "text",
+          "definition": "NOT NULL DEFAULT 'active' CHECK(status IN ('active','archived'))"
+        },
+        {
+          "name": "version",
+          "type": "bigint",
+          "definition": "NOT NULL DEFAULT 1"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "created_by",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "updated_by",
+          "type": "text",
+          "definition": "NOT NULL"
+        }
+      ],
+      "constraints": [
+        "UNIQUE(organization_id,id)",
+        "UNIQUE(organization_id,code)",
+        "FOREIGN KEY(organization_id,created_by) REFERENCES employees(organization_id,id)",
+        "FOREIGN KEY(organization_id,updated_by) REFERENCES employees(organization_id,id)",
+        "FOREIGN KEY(organization_id,organizational_unit_id) REFERENCES organizational_units(organization_id,id)",
+        "FOREIGN KEY(organization_id,role_id) REFERENCES roles(organization_id,id)",
+        "FOREIGN KEY(organization_id,job_level_id) REFERENCES job_levels(organization_id,id)",
+        "FOREIGN KEY(organization_id,reports_to_position_id) REFERENCES positions(organization_id,id)",
+        "CHECK(reports_to_position_id IS NULL OR reports_to_position_id<>id)"
+      ]
+    },
+    "organizational_unit_memberships": {
+      "file": "apps/control-plane-api/src/db/migrations/0001-baseline.ts",
+      "columns": [
+        {
+          "name": "id",
+          "type": "text",
+          "definition": "PRIMARY KEY"
+        },
+        {
+          "name": "organization_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES organizations(id)"
+        },
+        {
+          "name": "organizational_unit_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "employee_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "membership_type",
+          "type": "text",
+          "definition": "NOT NULL CHECK(membership_type IN ('member','lead','manager','owner','contributor'))"
+        },
+        {
+          "name": "is_primary",
+          "type": "bigint",
+          "definition": "NOT NULL DEFAULT 0 CHECK(is_primary IN (0,1))"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "created_by",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "started_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "ended_at",
+          "type": "timestamptz",
+          "definition": ""
+        },
+        {
+          "name": "version",
+          "type": "bigint",
+          "definition": "NOT NULL DEFAULT 1"
+        }
+      ],
+      "constraints": [
+        "FOREIGN KEY(organization_id,organizational_unit_id) REFERENCES organizational_units(organization_id,id)",
+        "FOREIGN KEY(organization_id,employee_id) REFERENCES employees(organization_id,id)",
+        "FOREIGN KEY(organization_id,created_by) REFERENCES employees(organization_id,id)",
+        "CHECK(ended_at IS NULL OR ended_at>=started_at)"
+      ]
+    },
+    "organization_domains": {
+      "file": "apps/control-plane-api/src/db/migrations/0001-baseline.ts",
+      "columns": [
+        {
+          "name": "id",
+          "type": "text",
+          "definition": "PRIMARY KEY"
+        },
+        {
+          "name": "organization_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES organizations(id)"
+        },
+        {
+          "name": "domain",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "domain_type",
+          "type": "text",
+          "definition": "NOT NULL CHECK(domain_type IN ('custom_domain','platform_subdomain','internal'))"
+        },
+        {
+          "name": "is_primary",
+          "type": "bigint",
+          "definition": "NOT NULL DEFAULT 0 CHECK(is_primary IN (0,1))"
+        },
+        {
+          "name": "verification_status",
+          "type": "text",
+          "definition": "NOT NULL DEFAULT 'pending' CHECK(verification_status IN ('pending','verified','disabled'))"
+        },
+        {
+          "name": "verification_token",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "verified_at",
+          "type": "timestamptz",
+          "definition": ""
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "created_by",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "version",
+          "type": "bigint",
+          "definition": "NOT NULL DEFAULT 1"
+        }
+      ],
+      "constraints": [
+        "FOREIGN KEY(organization_id,created_by) REFERENCES employees(organization_id,id)",
+        "CHECK(is_primary=0 OR verification_status='verified')"
+      ]
+    },
+    "employee_position_assignments": {
+      "file": "apps/control-plane-api/src/db/migrations/0001-baseline.ts",
+      "columns": [
+        {
+          "name": "id",
+          "type": "text",
+          "definition": "PRIMARY KEY"
+        },
+        {
+          "name": "organization_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES organizations(id)"
+        },
+        {
+          "name": "employee_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "position_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "started_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "ended_at",
+          "type": "timestamptz",
+          "definition": ""
+        },
+        {
+          "name": "created_by",
+          "type": "text",
+          "definition": "NOT NULL"
+        }
+      ],
+      "constraints": [
+        "FOREIGN KEY(organization_id,employee_id) REFERENCES employees(organization_id,id)",
+        "FOREIGN KEY(organization_id,position_id) REFERENCES positions(organization_id,id)",
+        "FOREIGN KEY(organization_id,created_by) REFERENCES employees(organization_id,id)"
+      ]
+    },
+    "agent_threads": {
+      "file": "apps/control-plane-api/src/db/migrations/0001-baseline.ts",
+      "columns": [
+        {
+          "name": "id",
+          "type": "text",
+          "definition": "PRIMARY KEY"
+        },
+        {
+          "name": "organization_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES organizations(id)"
+        },
+        {
+          "name": "employee_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "agent_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "conversation_id",
+          "type": "text",
+          "definition": ""
+        },
+        {
+          "name": "title",
+          "type": "text",
+          "definition": "NOT NULL CHECK(length(title) BETWEEN 1 AND 200)"
+        },
+        {
+          "name": "status",
+          "type": "text",
+          "definition": "NOT NULL CHECK(status IN ('ACTIVE','ARCHIVED'))"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "seq",
+          "type": "bigint",
+          "definition": "GENERATED ALWAYS AS IDENTITY UNIQUE"
+        }
+      ],
+      "constraints": [
+        "UNIQUE(organization_id,id)",
+        "FOREIGN KEY(organization_id,employee_id) REFERENCES employees(organization_id,id)",
+        "FOREIGN KEY(organization_id,agent_id) REFERENCES agents(organization_id,id)",
+        "FOREIGN KEY(organization_id,conversation_id) REFERENCES conversations(organization_id,id)"
+      ]
+    },
+    "agent_runs": {
+      "file": "apps/control-plane-api/src/db/migrations/0001-baseline.ts",
+      "columns": [
+        {
+          "name": "id",
+          "type": "text",
+          "definition": "PRIMARY KEY"
+        },
+        {
+          "name": "organization_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES organizations(id)"
+        },
+        {
+          "name": "thread_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "employee_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "agent_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "manifest_id",
+          "type": "text",
+          "definition": ""
+        },
+        {
+          "name": "manifest_api_version",
+          "type": "text",
+          "definition": "CHECK(manifest_api_version IN ('agents-foundry/v1','agents-foundry/v2'))"
+        },
+        {
+          "name": "manifest_key_id",
+          "type": "text",
+          "definition": ""
+        },
+        {
+          "name": "task",
+          "type": "jsonb",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "runtime_profile",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "status",
+          "type": "text",
+          "definition": "NOT NULL CHECK(status IN ('QUEUED','RUNNING','WAITING_FOR_APPROVAL','COMPLETED','FAILED','CANCELLED'))"
+        },
+        {
+          "name": "status_reason",
+          "type": "text",
+          "definition": ""
+        },
+        {
+          "name": "legacy_qa_run_id",
+          "type": "text",
+          "definition": "UNIQUE REFERENCES qa_runs(id)"
+        },
+        {
+          "name": "runtime_sequence",
+          "type": "bigint",
+          "definition": "NOT NULL DEFAULT 0 CHECK(runtime_sequence>=0)"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "started_at",
+          "type": "timestamptz",
+          "definition": ""
+        },
+        {
+          "name": "completed_at",
+          "type": "timestamptz",
+          "definition": ""
+        },
+        {
+          "name": "seq",
+          "type": "bigint",
+          "definition": "GENERATED ALWAYS AS IDENTITY UNIQUE"
+        }
+      ],
+      "constraints": [
+        "UNIQUE(organization_id,id)",
+        "FOREIGN KEY(organization_id,thread_id) REFERENCES agent_threads(organization_id,id)",
+        "FOREIGN KEY(organization_id,employee_id) REFERENCES employees(organization_id,id)",
+        "FOREIGN KEY(organization_id,agent_id) REFERENCES agents(organization_id,id)",
+        "CHECK((manifest_id IS NULL) = (manifest_api_version IS NULL) AND (manifest_id IS NULL) = (manifest_key_id IS NULL))"
+      ]
+    },
+    "agent_run_steps": {
+      "file": "apps/control-plane-api/src/db/migrations/0001-baseline.ts",
+      "columns": [
+        {
+          "name": "id",
+          "type": "text",
+          "definition": "PRIMARY KEY"
+        },
+        {
+          "name": "organization_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES organizations(id)"
+        },
+        {
+          "name": "run_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "sequence",
+          "type": "bigint",
+          "definition": "NOT NULL CHECK(sequence>0)"
+        },
+        {
+          "name": "kind",
+          "type": "text",
+          "definition": "NOT NULL CHECK(kind IN ('PLAN','MODEL','TOOL','ACTION','MESSAGE'))"
+        },
+        {
+          "name": "title",
+          "type": "text",
+          "definition": "NOT NULL CHECK(length(title) BETWEEN 1 AND 200)"
+        },
+        {
+          "name": "status",
+          "type": "text",
+          "definition": "NOT NULL CHECK(status IN ('PENDING','RUNNING','WAITING_FOR_APPROVAL','COMPLETED','FAILED','SKIPPED','CANCELLED'))"
+        },
+        {
+          "name": "detail",
+          "type": "jsonb",
+          "definition": "NOT NULL DEFAULT '{}'::jsonb"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "started_at",
+          "type": "timestamptz",
+          "definition": ""
+        },
+        {
+          "name": "completed_at",
+          "type": "timestamptz",
+          "definition": ""
+        }
+      ],
+      "constraints": [
+        "UNIQUE(organization_id,id)",
+        "UNIQUE(run_id,sequence)",
+        "FOREIGN KEY(organization_id,run_id) REFERENCES agent_runs(organization_id,id)"
+      ]
+    },
+    "agent_events": {
+      "file": "apps/control-plane-api/src/db/migrations/0001-baseline.ts",
+      "columns": [
+        {
+          "name": "id",
+          "type": "text",
+          "definition": "PRIMARY KEY"
+        },
+        {
+          "name": "organization_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES organizations(id)"
+        },
+        {
+          "name": "thread_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "run_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "step_id",
+          "type": "text",
+          "definition": ""
+        },
+        {
+          "name": "sequence",
+          "type": "bigint",
+          "definition": "NOT NULL CHECK(sequence>0)"
+        },
+        {
+          "name": "runtime_sequence",
+          "type": "bigint",
+          "definition": "CHECK(runtime_sequence>0)"
+        },
+        {
+          "name": "event_type",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "source",
+          "type": "text",
+          "definition": "NOT NULL CHECK(source IN ('CONTROL_PLANE','RUNTIME'))"
+        },
+        {
+          "name": "actor_id",
+          "type": "text",
+          "definition": ""
+        },
+        {
+          "name": "payload",
+          "type": "jsonb",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "payload_hash",
+          "type": "text",
+          "definition": "NOT NULL CHECK(length(payload_hash)=64)"
+        },
+        {
+          "name": "occurred_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "recorded_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        }
+      ],
+      "constraints": [
+        "UNIQUE(run_id,sequence)",
+        "UNIQUE(run_id,runtime_sequence)",
+        "CHECK((source='RUNTIME') = (runtime_sequence IS NOT NULL))",
+        "FOREIGN KEY(organization_id,run_id) REFERENCES agent_runs(organization_id,id)",
+        "FOREIGN KEY(organization_id,thread_id) REFERENCES agent_threads(organization_id,id)",
+        "FOREIGN KEY(organization_id,step_id) REFERENCES agent_run_steps(organization_id,id)"
+      ]
+    },
+    "agent_artifacts": {
+      "file": "apps/control-plane-api/src/db/migrations/0001-baseline.ts",
+      "columns": [
+        {
+          "name": "id",
+          "type": "text",
+          "definition": "PRIMARY KEY"
+        },
+        {
+          "name": "organization_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES organizations(id)"
+        },
+        {
+          "name": "thread_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "run_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "step_id",
+          "type": "text",
+          "definition": ""
+        },
+        {
+          "name": "artifact_type",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "media_type",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "name",
+          "type": "text",
+          "definition": "NOT NULL CHECK(length(name) BETWEEN 1 AND 255)"
+        },
+        {
+          "name": "storage_reference",
+          "type": "text",
+          "definition": "NOT NULL UNIQUE CHECK(storage_reference LIKE 'artifact://%')"
+        },
+        {
+          "name": "checksum_sha256",
+          "type": "text",
+          "definition": "NOT NULL CHECK(length(checksum_sha256)=64)"
+        },
+        {
+          "name": "size_bytes",
+          "type": "bigint",
+          "definition": "NOT NULL CHECK(size_bytes>=0)"
+        },
+        {
+          "name": "retention_policy",
+          "type": "text",
+          "definition": "NOT NULL CHECK(retention_policy IN ('EPHEMERAL','STANDARD_30D','EXTENDED_365D','LEGAL_HOLD'))"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "created_by",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "seq",
+          "type": "bigint",
+          "definition": "GENERATED ALWAYS AS IDENTITY UNIQUE"
+        }
+      ],
+      "constraints": [
+        "FOREIGN KEY(organization_id,run_id) REFERENCES agent_runs(organization_id,id)",
+        "FOREIGN KEY(organization_id,thread_id) REFERENCES agent_threads(organization_id,id)",
+        "FOREIGN KEY(organization_id,step_id) REFERENCES agent_run_steps(organization_id,id)"
+      ]
+    },
+    "agent_run_leases": {
+      "file": "apps/control-plane-api/src/db/migrations/0001-baseline.ts",
+      "columns": [
+        {
+          "name": "run_id",
+          "type": "text",
+          "definition": "PRIMARY KEY"
+        },
+        {
+          "name": "organization_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES organizations(id)"
+        },
+        {
+          "name": "session_id",
+          "type": "text",
+          "definition": "NOT NULL UNIQUE"
+        },
+        {
+          "name": "runtime_id",
+          "type": "text",
+          "definition": "NOT NULL CHECK(length(runtime_id) BETWEEN 1 AND 120)"
+        },
+        {
+          "name": "state",
+          "type": "text",
+          "definition": "NOT NULL CHECK(state IN ('ACTIVE','CLOSED'))"
+        },
+        {
+          "name": "last_command",
+          "type": "text",
+          "definition": ""
+        },
+        {
+          "name": "claimed_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "heartbeat_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "lease_expires_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "closed_at",
+          "type": "timestamptz",
+          "definition": ""
+        },
+        {
+          "name": "seq",
+          "type": "bigint",
+          "definition": "GENERATED ALWAYS AS IDENTITY UNIQUE"
+        },
+        {
+          "name": "recoveries",
+          "type": "integer",
+          "definition": "NOT NULL DEFAULT 0 CHECK(recoveries>=0)"
+        }
+      ],
+      "constraints": [
+        "FOREIGN KEY(organization_id,run_id) REFERENCES agent_runs(organization_id,id)"
+      ]
+    },
+    "runtime_request_nonces": {
+      "file": "apps/control-plane-api/src/db/migrations/0001-baseline.ts",
+      "columns": [
+        {
+          "name": "runtime_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "nonce",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "expires_at",
+          "type": "bigint",
+          "definition": "NOT NULL"
+        }
+      ],
+      "constraints": [
+        "PRIMARY KEY(runtime_id,nonce)"
+      ]
+    },
+    "organization_connector_connections": {
+      "file": "apps/control-plane-api/src/db/migrations/0001-baseline.ts",
+      "columns": [
+        {
+          "name": "id",
+          "type": "text",
+          "definition": "PRIMARY KEY"
+        },
+        {
+          "name": "organization_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES organizations(id)"
+        },
+        {
+          "name": "provider",
+          "type": "text",
+          "definition": "NOT NULL CHECK(provider IN ('jira','github'))"
+        },
+        {
+          "name": "name",
+          "type": "text",
+          "definition": "NOT NULL CHECK(length(name) BETWEEN 1 AND 120)"
+        },
+        {
+          "name": "base_url",
+          "type": "text",
+          "definition": "NOT NULL CHECK(base_url LIKE 'http%')"
+        },
+        {
+          "name": "secret_ref",
+          "type": "text",
+          "definition": "NOT NULL CHECK(secret_ref LIKE 'secret://%')"
+        },
+        {
+          "name": "settings",
+          "type": "jsonb",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "status",
+          "type": "text",
+          "definition": "NOT NULL CHECK(status IN ('ACTIVE','DISABLED'))"
+        },
+        {
+          "name": "version",
+          "type": "bigint",
+          "definition": "NOT NULL DEFAULT 1 CHECK(version>0)"
+        },
+        {
+          "name": "created_by",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "updated_by",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        }
+      ],
+      "constraints": [
+        "UNIQUE(organization_id,id)",
+        "FOREIGN KEY(organization_id,created_by) REFERENCES employees(organization_id,id)",
+        "FOREIGN KEY(organization_id,updated_by) REFERENCES employees(organization_id,id)"
+      ]
+    },
+    "agent_action_requests": {
+      "file": "apps/control-plane-api/src/db/migrations/0001-baseline.ts",
+      "columns": [
+        {
+          "name": "id",
+          "type": "text",
+          "definition": "PRIMARY KEY"
+        },
+        {
+          "name": "organization_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES organizations(id)"
+        },
+        {
+          "name": "run_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "step_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "runtime_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "action",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "tool_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "request_hash",
+          "type": "text",
+          "definition": "NOT NULL CHECK(length(request_hash)=64)"
+        },
+        {
+          "name": "decision",
+          "type": "text",
+          "definition": "NOT NULL CHECK(decision IN ('ALLOWED','DENIED','APPROVAL_REQUIRED'))"
+        },
+        {
+          "name": "risk",
+          "type": "text",
+          "definition": "NOT NULL CHECK(risk IN ('LOW','MEDIUM','HIGH','CRITICAL'))"
+        },
+        {
+          "name": "reason",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "approval_id",
+          "type": "text",
+          "definition": "REFERENCES approvals(id)"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "parameters",
+          "type": "jsonb",
+          "definition": ""
+        },
+        {
+          "name": "policy_id",
+          "type": "text",
+          "definition": ""
+        },
+        {
+          "name": "policy_version",
+          "type": "text",
+          "definition": ""
+        },
+        {
+          "name": "change_set",
+          "type": "jsonb",
+          "definition": ""
+        },
+        {
+          "name": "seq",
+          "type": "bigint",
+          "definition": "GENERATED ALWAYS AS IDENTITY UNIQUE"
+        }
+      ],
+      "constraints": [
+        "CHECK((decision='APPROVAL_REQUIRED') = (approval_id IS NOT NULL))",
+        "FOREIGN KEY(organization_id,run_id) REFERENCES agent_runs(organization_id,id)",
+        "FOREIGN KEY(organization_id,step_id) REFERENCES agent_run_steps(organization_id,id)"
+      ]
+    },
+    "organization_action_policies": {
+      "file": "apps/control-plane-api/src/db/migrations/0001-baseline.ts",
+      "columns": [
+        {
+          "name": "organization_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES organizations(id)"
+        },
+        {
+          "name": "action",
+          "type": "text",
+          "definition": "NOT NULL CHECK(length(action) BETWEEN 3 AND 120)"
+        },
+        {
+          "name": "outcome",
+          "type": "text",
+          "definition": "NOT NULL CHECK(outcome IN ('REQUIRE_APPROVAL','DENY'))"
+        },
+        {
+          "name": "reason",
+          "type": "text",
+          "definition": "NOT NULL CHECK(length(reason) BETWEEN 1 AND 500)"
+        },
+        {
+          "name": "updated_by",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        }
+      ],
+      "constraints": [
+        "PRIMARY KEY(organization_id,action)",
+        "FOREIGN KEY(organization_id,updated_by) REFERENCES employees(organization_id,id)"
+      ]
+    },
+    "agent_action_executions": {
+      "file": "apps/control-plane-api/src/db/migrations/0001-baseline.ts",
+      "columns": [
+        {
+          "name": "request_id",
+          "type": "text",
+          "definition": "PRIMARY KEY REFERENCES agent_action_requests(id)"
+        },
+        {
+          "name": "organization_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES organizations(id)"
+        },
+        {
+          "name": "run_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "connection_id",
+          "type": "text",
+          "definition": ""
+        },
+        {
+          "name": "status",
+          "type": "text",
+          "definition": "NOT NULL CHECK(status IN ('DISPATCHING','SUCCEEDED','FAILED'))"
+        },
+        {
+          "name": "result",
+          "type": "jsonb",
+          "definition": ""
+        },
+        {
+          "name": "error_code",
+          "type": "text",
+          "definition": ""
+        },
+        {
+          "name": "started_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "completed_at",
+          "type": "timestamptz",
+          "definition": ""
+        }
+      ],
+      "constraints": [
+        "FOREIGN KEY(organization_id,run_id) REFERENCES agent_runs(organization_id,id)",
+        "FOREIGN KEY(organization_id,connection_id) REFERENCES organization_connector_connections(organization_id,id)"
+      ]
+    },
+    "agent_execution_grants": {
+      "file": "apps/control-plane-api/src/db/migrations/0001-baseline.ts",
+      "columns": [
+        {
+          "name": "grant_id",
+          "type": "text",
+          "definition": "PRIMARY KEY"
+        },
+        {
+          "name": "request_id",
+          "type": "text",
+          "definition": "NOT NULL UNIQUE REFERENCES agent_action_requests(id)"
+        },
+        {
+          "name": "organization_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES organizations(id)"
+        },
+        {
+          "name": "run_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "operation_kind",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "signed_grant",
+          "type": "text",
+          "definition": "NOT NULL CHECK(af_json_valid(signed_grant))"
+        },
+        {
+          "name": "issued_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "expires_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "seq",
+          "type": "bigint",
+          "definition": "GENERATED ALWAYS AS IDENTITY UNIQUE"
+        }
+      ],
+      "constraints": [
+        "FOREIGN KEY(organization_id,run_id) REFERENCES agent_runs(organization_id,id)"
+      ]
+    },
+    "organization_model_budgets": {
+      "file": "apps/control-plane-api/src/db/migrations/0002-model-spending.ts",
+      "columns": [
+        {
+          "name": "organization_id",
+          "type": "text",
+          "definition": "PRIMARY KEY REFERENCES organizations(id)"
+        },
+        {
+          "name": "monthly_token_limit",
+          "type": "bigint",
+          "definition": "CHECK(monthly_token_limit IS NULL OR monthly_token_limit>0)"
+        },
+        {
+          "name": "run_token_limit",
+          "type": "bigint",
+          "definition": "CHECK(run_token_limit IS NULL OR run_token_limit>0)"
+        },
+        {
+          "name": "version",
+          "type": "bigint",
+          "definition": "NOT NULL DEFAULT 1 CHECK(version>0)"
+        },
+        {
+          "name": "updated_by",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "currency",
+          "type": "text",
+          "definition": "NOT NULL DEFAULT 'USD' CHECK(currency ~ '^[A-Z]{3}$')"
+        },
+        {
+          "name": "monthly_cost_limit_micros",
+          "type": "bigint",
+          "definition": "CHECK(monthly_cost_limit_micros IS NULL OR monthly_cost_limit_micros>0)"
+        },
+        {
+          "name": "run_cost_limit_micros",
+          "type": "bigint",
+          "definition": "CHECK(run_cost_limit_micros IS NULL OR run_cost_limit_micros>0)"
+        },
+        {
+          "name": "alert_thresholds",
+          "type": "smallint",
+          "definition": "[] NOT NULL DEFAULT '{80}'\n   CHECK(cardinality(alert_thresholds) <= 5 AND array_position(alert_thresholds, NULL) IS NULL\n     AND 1 <= ALL(alert_thresholds) AND 99 >= ALL(alert_thresholds))"
+        }
+      ],
+      "constraints": [
+        "FOREIGN KEY(organization_id,updated_by) REFERENCES employees(organization_id,id)"
+      ]
+    },
+    "model_usage_reservations": {
+      "file": "apps/control-plane-api/src/db/migrations/0002-model-spending.ts",
+      "columns": [
+        {
+          "name": "id",
+          "type": "text",
+          "definition": "PRIMARY KEY"
+        },
+        {
+          "name": "organization_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES organizations(id)"
+        },
+        {
+          "name": "run_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "employee_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "agent_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "runtime_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "provider",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "model",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "period",
+          "type": "text",
+          "definition": "NOT NULL CHECK(period ~ '^[0-9]{4}-[0-9]{2}$')"
+        },
+        {
+          "name": "reserved_tokens",
+          "type": "bigint",
+          "definition": "NOT NULL CHECK(reserved_tokens>0)"
+        },
+        {
+          "name": "max_output_tokens",
+          "type": "bigint",
+          "definition": "NOT NULL CHECK(max_output_tokens>0)"
+        },
+        {
+          "name": "status",
+          "type": "text",
+          "definition": "NOT NULL CHECK(status IN ('RESERVED','SETTLED'))"
+        },
+        {
+          "name": "input_tokens",
+          "type": "bigint",
+          "definition": "CHECK(input_tokens>=0)"
+        },
+        {
+          "name": "output_tokens",
+          "type": "bigint",
+          "definition": "CHECK(output_tokens>=0)"
+        },
+        {
+          "name": "request_hash",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "settled_at",
+          "type": "timestamptz",
+          "definition": ""
+        },
+        {
+          "name": "seq",
+          "type": "bigint",
+          "definition": "GENERATED ALWAYS AS IDENTITY UNIQUE"
+        },
+        {
+          "name": "price_id",
+          "type": "text",
+          "definition": ""
+        },
+        {
+          "name": "currency",
+          "type": "text",
+          "definition": ""
+        },
+        {
+          "name": "reserved_cost_micros",
+          "type": "bigint",
+          "definition": "CHECK(reserved_cost_micros>=0)"
+        },
+        {
+          "name": "cost_micros",
+          "type": "bigint",
+          "definition": "CHECK(cost_micros>=0)"
+        }
+      ],
+      "constraints": [
+        "CHECK((status='SETTLED') = (input_tokens IS NOT NULL AND output_tokens IS NOT NULL AND settled_at IS NOT NULL))",
+        "FOREIGN KEY(organization_id,run_id) REFERENCES agent_runs(organization_id,id)",
+        "FOREIGN KEY(organization_id,employee_id) REFERENCES employees(organization_id,id)",
+        "FOREIGN KEY(organization_id,agent_id) REFERENCES agents(organization_id,id)"
+      ]
+    },
+    "model_prices": {
+      "file": "apps/control-plane-api/src/db/migrations/0003-model-prices.ts",
+      "columns": [
+        {
+          "name": "id",
+          "type": "text",
+          "definition": "PRIMARY KEY"
+        },
+        {
+          "name": "organization_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES organizations(id)"
+        },
+        {
+          "name": "provider",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "model",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "currency",
+          "type": "text",
+          "definition": "NOT NULL CHECK(currency ~ '^[A-Z]{3}$')"
+        },
+        {
+          "name": "input_micros_per_million",
+          "type": "bigint",
+          "definition": "CHECK(input_micros_per_million BETWEEN 0 AND 10000000000)"
+        },
+        {
+          "name": "output_micros_per_million",
+          "type": "bigint",
+          "definition": "CHECK(output_micros_per_million BETWEEN 0 AND 10000000000)"
+        },
+        {
+          "name": "supersedes",
+          "type": "text",
+          "definition": ""
+        },
+        {
+          "name": "set_by",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "set_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "seq",
+          "type": "bigint",
+          "definition": "GENERATED ALWAYS AS IDENTITY UNIQUE"
+        }
+      ],
+      "constraints": [
+        "CHECK((input_micros_per_million IS NULL) = (output_micros_per_million IS NULL))",
+        "UNIQUE(organization_id,id)",
+        "UNIQUE(organization_id,supersedes)",
+        "FOREIGN KEY(organization_id,supersedes) REFERENCES model_prices(organization_id,id)",
+        "FOREIGN KEY(organization_id,set_by) REFERENCES employees(organization_id,id)"
+      ]
+    },
+    "model_budget_alerts": {
+      "file": "apps/control-plane-api/src/db/migrations/0004-model-budget-alerts.ts",
+      "columns": [
+        {
+          "name": "id",
+          "type": "text",
+          "definition": "PRIMARY KEY"
+        },
+        {
+          "name": "organization_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES organizations(id)"
+        },
+        {
+          "name": "period",
+          "type": "text",
+          "definition": "NOT NULL CHECK(period ~ '^[0-9]{4}-[0-9]{2}$')"
+        },
+        {
+          "name": "scope",
+          "type": "text",
+          "definition": "NOT NULL CHECK(scope IN ('MONTHLY_TOKENS','MONTHLY_COST'))"
+        },
+        {
+          "name": "threshold_percent",
+          "type": "smallint",
+          "definition": "NOT NULL CHECK(threshold_percent BETWEEN 1 AND 100)"
+        },
+        {
+          "name": "limit_value",
+          "type": "bigint",
+          "definition": "NOT NULL CHECK(limit_value>0)"
+        },
+        {
+          "name": "charged_value",
+          "type": "bigint",
+          "definition": "NOT NULL CHECK(charged_value>=0)"
+        },
+        {
+          "name": "currency",
+          "type": "text",
+          "definition": "CHECK(currency ~ '^[A-Z]{3}$')"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "acknowledged_by",
+          "type": "text",
+          "definition": ""
+        },
+        {
+          "name": "acknowledged_at",
+          "type": "timestamptz",
+          "definition": ""
+        },
+        {
+          "name": "seq",
+          "type": "bigint",
+          "definition": "GENERATED ALWAYS AS IDENTITY UNIQUE"
+        }
+      ],
+      "constraints": [
+        "UNIQUE(organization_id,period,scope,threshold_percent)",
+        "CHECK((scope='MONTHLY_COST') = (currency IS NOT NULL))",
+        "CHECK((acknowledged_by IS NULL) = (acknowledged_at IS NULL))",
+        "FOREIGN KEY(organization_id,acknowledged_by) REFERENCES employees(organization_id,id)"
+      ]
+    },
+    "organization_alert_webhooks": {
+      "file": "apps/control-plane-api/src/db/migrations/0005-alert-webhooks.ts",
+      "columns": [
+        {
+          "name": "id",
+          "type": "text",
+          "definition": "PRIMARY KEY"
+        },
+        {
+          "name": "organization_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES organizations(id)"
+        },
+        {
+          "name": "url",
+          "type": "text",
+          "definition": "NOT NULL CHECK(url ~ '^https?://' AND length(url) <= 500)"
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "definition": "NOT NULL CHECK(length(description) <= 200)"
+        },
+        {
+          "name": "status",
+          "type": "text",
+          "definition": "NOT NULL CHECK(status IN ('ACTIVE','DISABLED'))"
+        },
+        {
+          "name": "version",
+          "type": "bigint",
+          "definition": "NOT NULL DEFAULT 1 CHECK(version>0)"
+        },
+        {
+          "name": "created_by",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "updated_by",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        }
+      ],
+      "constraints": [
+        "UNIQUE(organization_id,id)",
+        "FOREIGN KEY(organization_id,created_by) REFERENCES employees(organization_id,id)",
+        "FOREIGN KEY(organization_id,updated_by) REFERENCES employees(organization_id,id)"
+      ]
+    },
+    "alert_webhook_deliveries": {
+      "file": "apps/control-plane-api/src/db/migrations/0005-alert-webhooks.ts",
+      "columns": [
+        {
+          "name": "id",
+          "type": "text",
+          "definition": "PRIMARY KEY"
+        },
+        {
+          "name": "organization_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES organizations(id)"
+        },
+        {
+          "name": "webhook_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "event_type",
+          "type": "text",
+          "definition": "NOT NULL CHECK(event_type IN ('model.budget.alert','webhook.test'))"
+        },
+        {
+          "name": "alert_id",
+          "type": "text",
+          "definition": "REFERENCES model_budget_alerts(id)"
+        },
+        {
+          "name": "body",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "status",
+          "type": "text",
+          "definition": "NOT NULL CHECK(status IN ('PENDING','DELIVERED','FAILED'))"
+        },
+        {
+          "name": "attempts",
+          "type": "integer",
+          "definition": "NOT NULL DEFAULT 0 CHECK(attempts BETWEEN 0 AND 10)"
+        },
+        {
+          "name": "next_attempt_at",
+          "type": "timestamptz",
+          "definition": ""
+        },
+        {
+          "name": "last_attempt_at",
+          "type": "timestamptz",
+          "definition": ""
+        },
+        {
+          "name": "last_status_code",
+          "type": "integer",
+          "definition": "CHECK(last_status_code BETWEEN 100 AND 599)"
+        },
+        {
+          "name": "last_error",
+          "type": "text",
+          "definition": "CHECK(length(last_error) <= 80)"
+        },
+        {
+          "name": "delivered_at",
+          "type": "timestamptz",
+          "definition": ""
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "seq",
+          "type": "bigint",
+          "definition": "GENERATED ALWAYS AS IDENTITY UNIQUE"
+        }
+      ],
+      "constraints": [
+        "UNIQUE(webhook_id,alert_id)",
+        "CHECK((event_type='model.budget.alert') = (alert_id IS NOT NULL))",
+        "CHECK((status='PENDING') = (next_attempt_at IS NOT NULL))",
+        "CHECK((status='DELIVERED') = (delivered_at IS NOT NULL))",
+        "FOREIGN KEY(organization_id,webhook_id) REFERENCES organization_alert_webhooks(organization_id,id)"
+      ]
+    },
+    "model_quality_results": {
+      "file": "apps/control-plane-api/src/db/migrations/0006-model-quality-results.ts",
+      "columns": [
+        {
+          "name": "run_id",
+          "type": "text",
+          "definition": "NOT NULL CHECK(length(run_id) BETWEEN 1 AND 200)"
+        },
+        {
+          "name": "run_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "commit_sha",
+          "type": "text",
+          "definition": "CHECK(length(commit_sha) <= 64)"
+        },
+        {
+          "name": "provider",
+          "type": "text",
+          "definition": "NOT NULL CHECK(length(provider) BETWEEN 1 AND 200)"
+        },
+        {
+          "name": "model",
+          "type": "text",
+          "definition": "NOT NULL CHECK(length(model) BETWEEN 1 AND 200)"
+        },
+        {
+          "name": "judge_model",
+          "type": "text",
+          "definition": "NOT NULL CHECK(length(judge_model) BETWEEN 1 AND 200)"
+        },
+        {
+          "name": "blueprint",
+          "type": "text",
+          "definition": "NOT NULL CHECK(length(blueprint) BETWEEN 1 AND 200)"
+        },
+        {
+          "name": "suite",
+          "type": "text",
+          "definition": "NOT NULL CHECK(length(suite) BETWEEN 1 AND 200)"
+        },
+        {
+          "name": "task",
+          "type": "text",
+          "definition": "NOT NULL CHECK(length(task) BETWEEN 1 AND 200)"
+        },
+        {
+          "name": "trial",
+          "type": "integer",
+          "definition": "NOT NULL CHECK(trial BETWEEN 1 AND 100)"
+        },
+        {
+          "name": "passed",
+          "type": "boolean",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "score",
+          "type": "double precision",
+          "definition": "NOT NULL CHECK(score BETWEEN 0 AND 1)"
+        },
+        {
+          "name": "pass_threshold",
+          "type": "double precision",
+          "definition": "NOT NULL CHECK(pass_threshold BETWEEN 0 AND 1)"
+        },
+        {
+          "name": "failed_gates",
+          "type": "jsonb",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "run_status",
+          "type": "text",
+          "definition": "NOT NULL CHECK(length(run_status) BETWEEN 1 AND 200)"
+        },
+        {
+          "name": "tokens",
+          "type": "bigint",
+          "definition": "NOT NULL CHECK(tokens >= 0)"
+        },
+        {
+          "name": "estimated_cost_usd",
+          "type": "double precision",
+          "definition": "CHECK(estimated_cost_usd >= 0)"
+        },
+        {
+          "name": "imported_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        }
+      ],
+      "constraints": [
+        "PRIMARY KEY(run_id, provider, model, judge_model, blueprint, task, trial)"
+      ]
+    },
+    "organization_source_control_connections": {
+      "file": "apps/control-plane-api/src/db/migrations/0011-repository-credentials.ts",
+      "columns": [
+        {
+          "name": "id",
+          "type": "text",
+          "definition": "PRIMARY KEY"
+        },
+        {
+          "name": "organization_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES organizations(id)"
+        },
+        {
+          "name": "provider",
+          "type": "text",
+          "definition": "NOT NULL CHECK(provider IN ('github','bitbucket'))"
+        },
+        {
+          "name": "name",
+          "type": "text",
+          "definition": "NOT NULL CHECK(length(name) BETWEEN 1 AND 120)"
+        },
+        {
+          "name": "git_host",
+          "type": "text",
+          "definition": "NOT NULL CHECK(git_host ~ '^[a-z0-9]([a-z0-9.-]{0,251}[a-z0-9])?$')"
+        },
+        {
+          "name": "api_base_url",
+          "type": "text",
+          "definition": "NOT NULL CHECK(api_base_url ~ '^https?://' AND length(api_base_url) <= 300)"
+        },
+        {
+          "name": "credential_mode",
+          "type": "text",
+          "definition": "NOT NULL CHECK(credential_mode IN ('static_token','github_app'))"
+        },
+        {
+          "name": "secret_ref",
+          "type": "text",
+          "definition": "NOT NULL CHECK(secret_ref ~ '^secret://[a-z0-9][a-z0-9._-]{0,63}$')"
+        },
+        {
+          "name": "app_id",
+          "type": "text",
+          "definition": "CHECK(app_id ~ '^[0-9]{1,20}$')"
+        },
+        {
+          "name": "installation_id",
+          "type": "text",
+          "definition": "CHECK(installation_id ~ '^[0-9]{1,20}$')"
+        },
+        {
+          "name": "allowed_repositories",
+          "type": "jsonb",
+          "definition": "NOT NULL CHECK(jsonb_typeof(allowed_repositories)='array')"
+        },
+        {
+          "name": "status",
+          "type": "text",
+          "definition": "NOT NULL CHECK(status IN ('ACTIVE','DISABLED'))"
+        },
+        {
+          "name": "version",
+          "type": "bigint",
+          "definition": "NOT NULL DEFAULT 1 CHECK(version>0)"
+        },
+        {
+          "name": "created_by",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "updated_by",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        }
+      ],
+      "constraints": [
+        "UNIQUE(organization_id,id)",
+        "CHECK((credential_mode='github_app') = (app_id IS NOT NULL AND installation_id IS NOT NULL))",
+        "CHECK(credential_mode<>'github_app' OR provider='github')",
+        "FOREIGN KEY(organization_id,created_by) REFERENCES employees(organization_id,id)",
+        "FOREIGN KEY(organization_id,updated_by) REFERENCES employees(organization_id,id)"
+      ]
+    },
+    "repository_credential_leases": {
+      "file": "apps/control-plane-api/src/db/migrations/0011-repository-credentials.ts",
+      "columns": [
+        {
+          "name": "id",
+          "type": "text",
+          "definition": "PRIMARY KEY"
+        },
+        {
+          "name": "organization_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES organizations(id)"
+        },
+        {
+          "name": "connection_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "provider",
+          "type": "text",
+          "definition": "NOT NULL CHECK(provider IN ('github','bitbucket'))"
+        },
+        {
+          "name": "repository",
+          "type": "text",
+          "definition": "NOT NULL CHECK(repository ~ '^[A-Za-z0-9][A-Za-z0-9_.-]{0,99}/[A-Za-z0-9_.-]{1,100}$')"
+        },
+        {
+          "name": "repository_url",
+          "type": "text",
+          "definition": "NOT NULL CHECK(repository_url ~ '^https://' AND length(repository_url) <= 2048)"
+        },
+        {
+          "name": "ref",
+          "type": "text",
+          "definition": "NOT NULL CHECK(length(ref) BETWEEN 1 AND 200)"
+        },
+        {
+          "name": "operation_kind",
+          "type": "text",
+          "definition": "NOT NULL CHECK(operation_kind='git.checkout')"
+        },
+        {
+          "name": "operation_digest",
+          "type": "text",
+          "definition": "NOT NULL CHECK(operation_digest ~ '^[a-f0-9]{64}$')"
+        },
+        {
+          "name": "grant_id",
+          "type": "text",
+          "definition": "NOT NULL UNIQUE"
+        },
+        {
+          "name": "request_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "run_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "employee_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "agent_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "issued_to_runtime",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "status",
+          "type": "text",
+          "definition": "NOT NULL CHECK(status IN ('ISSUED','REDEEMED','RELEASED','REVOKED','EXPIRED'))"
+        },
+        {
+          "name": "issued_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "expires_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "redeemed_at",
+          "type": "timestamptz",
+          "definition": ""
+        },
+        {
+          "name": "redeemed_by",
+          "type": "text",
+          "definition": ""
+        },
+        {
+          "name": "released_at",
+          "type": "timestamptz",
+          "definition": ""
+        },
+        {
+          "name": "revoked_at",
+          "type": "timestamptz",
+          "definition": ""
+        },
+        {
+          "name": "revoked_by",
+          "type": "text",
+          "definition": ""
+        },
+        {
+          "name": "revoke_reason",
+          "type": "text",
+          "definition": "CHECK(revoke_reason ~ '^[A-Z][A-Z0-9_]{1,63}$')"
+        },
+        {
+          "name": "outcome",
+          "type": "text",
+          "definition": "CHECK(outcome IN ('SUCCEEDED','FAILED','TIMED_OUT','CANCELLED','INTERRUPTED'))"
+        },
+        {
+          "name": "seq",
+          "type": "bigint",
+          "definition": "GENERATED ALWAYS AS IDENTITY UNIQUE"
+        }
+      ],
+      "constraints": [
+        "CHECK(expires_at > issued_at)",
+        "CHECK(status<>'ISSUED' OR (redeemed_at IS NULL AND released_at IS NULL AND revoked_at IS NULL))",
+        "CHECK((redeemed_at IS NULL) = (redeemed_by IS NULL))",
+        "CHECK(status<>'REDEEMED' OR redeemed_at IS NOT NULL)",
+        "CHECK(status<>'RELEASED' OR (redeemed_at IS NOT NULL AND released_at IS NOT NULL))",
+        "CHECK(status<>'REVOKED' OR (revoked_at IS NOT NULL AND revoke_reason IS NOT NULL))",
+        "FOREIGN KEY(organization_id,connection_id)\n  REFERENCES organization_source_control_connections(organization_id,id)",
+        "FOREIGN KEY(request_id) REFERENCES agent_action_requests(id)",
+        "FOREIGN KEY(organization_id,run_id) REFERENCES agent_runs(organization_id,id)"
+      ]
+    },
+    "agent_run_checkpoints": {
+      "file": "apps/control-plane-api/src/db/migrations/0012-run-recovery.ts",
+      "columns": [
+        {
+          "name": "organization_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES organizations(id)"
+        },
+        {
+          "name": "run_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "version",
+          "type": "integer",
+          "definition": "NOT NULL CHECK(version>0)"
+        },
+        {
+          "name": "thread_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "session_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "runtime_id",
+          "type": "text",
+          "definition": "NOT NULL CHECK(length(runtime_id) BETWEEN 1 AND 120)"
+        },
+        {
+          "name": "manifest_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "manifest_digest",
+          "type": "text",
+          "definition": "NOT NULL CHECK(manifest_digest ~ '^[a-f0-9]{64}$')"
+        },
+        {
+          "name": "workflow",
+          "type": "text",
+          "definition": ""
+        },
+        {
+          "name": "step_id",
+          "type": "text",
+          "definition": ""
+        },
+        {
+          "name": "approval_id",
+          "type": "text",
+          "definition": ""
+        },
+        {
+          "name": "kernel_id",
+          "type": "text",
+          "definition": "NOT NULL CHECK(length(kernel_id) BETWEEN 1 AND 100)"
+        },
+        {
+          "name": "runtime_sequence",
+          "type": "bigint",
+          "definition": "NOT NULL CHECK(runtime_sequence>=0)"
+        },
+        {
+          "name": "body_sha256",
+          "type": "text",
+          "definition": "NOT NULL CHECK(body_sha256 ~ '^[a-f0-9]{64}$')"
+        },
+        {
+          "name": "body_bytes",
+          "type": "integer",
+          "definition": "NOT NULL CHECK(body_bytes BETWEEN 2 AND 8388608)"
+        },
+        {
+          "name": "body",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        }
+      ],
+      "constraints": [
+        "PRIMARY KEY(run_id,version)",
+        "FOREIGN KEY(organization_id,run_id) REFERENCES agent_runs(organization_id,id)",
+        "FOREIGN KEY(organization_id,thread_id) REFERENCES agent_threads(organization_id,id)",
+        "FOREIGN KEY(organization_id,step_id) REFERENCES agent_run_steps(organization_id,id)"
+      ]
+    },
+    "agent_artifact_objects": {
+      "file": "apps/control-plane-api/src/db/migrations/0013-artifact-objects.ts",
+      "columns": [
+        {
+          "name": "artifact_id",
+          "type": "text",
+          "definition": "PRIMARY KEY"
+        },
+        {
+          "name": "organization_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES organizations(id)"
+        },
+        {
+          "name": "thread_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "run_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "step_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "tool_call_id",
+          "type": "text",
+          "definition": ""
+        },
+        {
+          "name": "store",
+          "type": "text",
+          "definition": "NOT NULL CHECK(store ~ '^[a-z0-9][a-z0-9-]{0,62}$')"
+        },
+        {
+          "name": "storage_key",
+          "type": "text",
+          "definition": "NOT NULL UNIQUE\n  CHECK(storage_key ~ '^[A-Za-z0-9._/-]+$' AND length(storage_key) <= 512)"
+        },
+        {
+          "name": "media_type",
+          "type": "text",
+          "definition": "NOT NULL CHECK(length(media_type) BETWEEN 3 AND 129)"
+        },
+        {
+          "name": "size_bytes",
+          "type": "bigint",
+          "definition": "NOT NULL CHECK(size_bytes>=0)"
+        },
+        {
+          "name": "sha256",
+          "type": "text",
+          "definition": "NOT NULL CHECK(sha256 ~ '^[a-f0-9]{64}$')"
+        },
+        {
+          "name": "retention_class",
+          "type": "text",
+          "definition": "NOT NULL\n  CHECK(retention_class IN ('EPHEMERAL','STANDARD_30D','EXTENDED_365D','LEGAL_HOLD'))"
+        },
+        {
+          "name": "state",
+          "type": "text",
+          "definition": "NOT NULL CHECK(state IN ('PENDING','STORED','REGISTERED','DELETED'))"
+        },
+        {
+          "name": "uploaded_by",
+          "type": "text",
+          "definition": "NOT NULL CHECK(length(uploaded_by) BETWEEN 1 AND 120)"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "registered_at",
+          "type": "timestamptz",
+          "definition": ""
+        },
+        {
+          "name": "expires_at",
+          "type": "timestamptz",
+          "definition": ""
+        },
+        {
+          "name": "deleted_at",
+          "type": "timestamptz",
+          "definition": ""
+        },
+        {
+          "name": "deletion_reason",
+          "type": "text",
+          "definition": "CHECK(deletion_reason ~ '^[A-Z][A-Z0-9_]{1,63}$')"
+        },
+        {
+          "name": "seq",
+          "type": "bigint",
+          "definition": "GENERATED ALWAYS AS IDENTITY UNIQUE"
+        }
+      ],
+      "constraints": [
+        "CHECK((retention_class='LEGAL_HOLD') = (expires_at IS NULL))",
+        "CHECK(state<>'REGISTERED' OR registered_at IS NOT NULL)",
+        "CHECK((state='DELETED') = (deleted_at IS NOT NULL))",
+        "CHECK((deleted_at IS NULL) = (deletion_reason IS NULL))",
+        "FOREIGN KEY(organization_id,run_id) REFERENCES agent_runs(organization_id,id)",
+        "FOREIGN KEY(organization_id,thread_id) REFERENCES agent_threads(organization_id,id)",
+        "FOREIGN KEY(organization_id,step_id) REFERENCES agent_run_steps(organization_id,id)"
+      ]
+    },
+    "organization_model_credentials": {
+      "file": "apps/control-plane-api/src/db/migrations/0014-model-credentials.ts",
+      "columns": [
+        {
+          "name": "organization_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES organizations(id)"
+        },
+        {
+          "name": "provider",
+          "type": "text",
+          "definition": "NOT NULL CHECK(provider ~ '^[a-zA-Z0-9._-]{1,80}$')"
+        },
+        {
+          "name": "secret_ref",
+          "type": "text",
+          "definition": "NOT NULL CHECK(secret_ref ~ '^secret://[a-z0-9][a-z0-9._-]{0,63}$')"
+        },
+        {
+          "name": "status",
+          "type": "text",
+          "definition": "NOT NULL CHECK(status IN ('ACTIVE','DISABLED'))"
+        },
+        {
+          "name": "version",
+          "type": "bigint",
+          "definition": "NOT NULL DEFAULT 1 CHECK(version>0)"
+        },
+        {
+          "name": "created_by",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "updated_by",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        }
+      ],
+      "constraints": [
+        "PRIMARY KEY(organization_id,provider)",
+        "FOREIGN KEY(organization_id,created_by) REFERENCES employees(organization_id,id)",
+        "FOREIGN KEY(organization_id,updated_by) REFERENCES employees(organization_id,id)"
+      ]
+    },
+    "agent_action_reconciliations": {
+      "file": "apps/control-plane-api/src/db/migrations/0015-action-reconciliation.ts",
+      "columns": [
+        {
+          "name": "request_id",
+          "type": "text",
+          "definition": "PRIMARY KEY REFERENCES agent_action_executions(request_id)"
+        },
+        {
+          "name": "organization_id",
+          "type": "text",
+          "definition": "NOT NULL REFERENCES organizations(id)"
+        },
+        {
+          "name": "thread_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "run_id",
+          "type": "text",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "action",
+          "type": "text",
+          "definition": "NOT NULL CHECK(action ~ '^[a-z][a-z0-9_.]+$' AND length(action) <= 120)"
+        },
+        {
+          "name": "payload_digest",
+          "type": "text",
+          "definition": "NOT NULL CHECK(payload_digest ~ '^[a-f0-9]{64}$')"
+        },
+        {
+          "name": "reason",
+          "type": "text",
+          "definition": "NOT NULL CHECK(reason IN ('CONNECTOR_OUTCOME_UNKNOWN','DISPATCH_INTERRUPTED'))"
+        },
+        {
+          "name": "state",
+          "type": "text",
+          "definition": "NOT NULL CHECK(state IN ('REQUIRED','APPLIED','NOT_APPLIED'))"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamptz",
+          "definition": "NOT NULL"
+        },
+        {
+          "name": "resolved_by",
+          "type": "text",
+          "definition": ""
+        },
+        {
+          "name": "resolved_at",
+          "type": "timestamptz",
+          "definition": ""
+        },
+        {
+          "name": "note",
+          "type": "text",
+          "definition": "CHECK(note IS NULL OR length(note) <= 500)"
+        },
+        {
+          "name": "seq",
+          "type": "bigint",
+          "definition": "GENERATED ALWAYS AS IDENTITY UNIQUE"
+        }
+      ],
+      "constraints": [
+        "CHECK((state='REQUIRED') = (resolved_at IS NULL))",
+        "CHECK((resolved_at IS NULL) = (resolved_by IS NULL))",
+        "FOREIGN KEY(organization_id,run_id) REFERENCES agent_runs(organization_id,id)",
+        "FOREIGN KEY(organization_id,thread_id) REFERENCES agent_threads(organization_id,id)",
+        "FOREIGN KEY(organization_id,resolved_by) REFERENCES employees(organization_id,id)"
+      ]
+    }
+  }
+}
