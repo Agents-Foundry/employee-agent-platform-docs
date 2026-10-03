@@ -39,4 +39,6 @@ Give each guide a purpose, audience, prerequisites, implementation status, sourc
 
 Use relative links for documents, pinned GitHub links for product evidence and Mermaid for bounded diagrams. Keep generated API/schema/type declarations out of manually maintained prose. Historical ADR context/date/status is preserved; propose new decisions rather than retroactively labeling recommendations as accepted.
 
+For website changes, run `npm run site:build` and `npm run site:check`, then review desktop/mobile layouts, search and Mermaid rendering with `npm run site:preview`. The [hosting guide](SITE_HOSTING.md) documents deployment; validated main-branch changes publish automatically to GitHub Pages.
+
 Every architecture/API/schema/security/runtime change requires a [documentation impact review](docs/contributing/release-documentation.md). Reviewers should inspect code-backed claims, affected audiences, examples, diagram syntax and missing operational evidence. Unknowns belong in [DOCUMENTATION_BACKLOG](DOCUMENTATION_BACKLOG.md), with investigation and priority.

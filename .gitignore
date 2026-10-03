@@ -2,3 +2,4 @@ node_modules/
 .sources/
 .validation/
 .documentation-pages.json
+.site/

@@ -4,7 +4,7 @@ import {lint} from 'markdownlint/sync';
 import {JSDOM} from 'jsdom';
 import MarkdownIt from 'markdown-it';
 const root=process.cwd();
-const excluded=new Set(['.git','.sources','.validation','node_modules']);
+const excluded=new Set(['.git','.sources','.validation','.site','node_modules']);
 const walk=dir=>fs.readdirSync(dir,{withFileTypes:true}).flatMap(e=>excluded.has(e.name)?[]:e.isDirectory()?walk(path.join(dir,e.name)):[path.join(dir,e.name)]);
 const files=walk(root);const markdown=files.filter(f=>f.endsWith('.md'));
 const inventory=JSON.parse(fs.readFileSync('source-inventory.json','utf8'));
