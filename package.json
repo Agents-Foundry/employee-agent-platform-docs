@@ -1,0 +1,25 @@
+{
+  "name": "employee-agent-platform-docs",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "check": "node scripts/validate-docs.mjs",
+    "check:source": "node --import tsx scripts/validate-source.mjs",
+    "reference:generate": "node scripts/generate-reference.mjs",
+    "schema:generate": "node --import tsx scripts/generate-schema.mjs",
+    "examples:generate": "node --import tsx scripts/generate-examples.mjs",
+    "use-cases:generate": "node --import tsx scripts/generate-use-cases.mjs"
+  },
+  "devDependencies": {
+    "jsdom": "28.1.0",
+    "markdown-it": "14.1.0",
+    "markdownlint": "0.41.1",
+    "mermaid": "12.1.0",
+    "tsx": "4.20.6",
+    "typescript": "6.0.2",
+    "zod": "4.4.3"
+  }
+}
