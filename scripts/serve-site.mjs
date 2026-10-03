@@ -1,0 +1,6 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import {createServer} from 'node:http';
+const root=path.resolve('.site');const base=process.env.SITE_BASE??'/employee-agent-platform-docs/';const port=Number(process.env.PORT??4412);
+const types={'.html':'text/html; charset=utf-8','.css':'text/css','.js':'text/javascript','.mjs':'text/javascript','.json':'application/json','.svg':'image/svg+xml','.xml':'application/xml','.sql':'text/plain'};
+createServer((req,res)=>{const url=new URL(req.url,'http://localhost');if(url.pathname==='/'){res.writeHead(302,{Location:base});res.end();return;}if(!url.pathname.startsWith(base)){res.writeHead(404);res.end();return;}let file=path.resolve(root,decodeURIComponent(url.pathname.slice(base.length))||'index.html');if(file!==root&&!file.startsWith(root+path.sep)){res.writeHead(403);res.end();return;}if(fs.existsSync(file)&&fs.statSync(file).isDirectory())file=path.join(file,'index.html');if(!fs.existsSync(file)){res.writeHead(404,{'Content-Type':'text/html; charset=utf-8'});res.end(fs.readFileSync(path.join(root,'404.html')));return;}res.writeHead(200,{'Content-Type':types[path.extname(file)]??'application/octet-stream'});fs.createReadStream(file).pipe(res);}).listen(port,'127.0.0.1',()=>console.log(`Docs preview: http://127.0.0.1:${port}${base}`));

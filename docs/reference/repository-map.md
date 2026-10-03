@@ -10,7 +10,7 @@ Inventory of the GitHub organization: three active repositories, inspected on 20
 | --- | --- | --- | --- | --- |
 | [employee-agent-platform](https://github.com/Agents-Foundry/employee-agent-platform) | Product implementation: control plane, agent runtime, execution runtime, roles | TypeScript, Angular 22, Express 5, PostgreSQL 16, Rust/Tauri 2 | npm workspaces, Docker for sandbox/tests, external model and connector services | Implemented; capability limits in the status matrix |
 | [employee-agent-website](https://github.com/Agents-Foundry/employee-agent-website) | Public product marketing; no authorization authority | Static HTML/CSS/JS build, Node 24, jsdom | GitHub Pages workflow; links to platform | Implemented; inspected `4cc111021cf60b5a4b676a26659fbc51431a5ef3` |
-| [employee-agent-platform-docs](https://github.com/Agents-Foundry/employee-agent-platform-docs) | Technical documentation and drift checks | Markdown, Mermaid, JSON examples, Node tooling | Pinned product source inventory | This documentation foundation; private repository |
+| [employee-agent-platform-docs](https://github.com/Agents-Foundry/employee-agent-platform-docs) | Technical documentation, GitHub Pages website and drift checks | Markdown, Mermaid, JSON examples, Node tooling | Pinned product source inventory | Public repository; Pages deploys validated site builds |
 
 | Product directory | Responsibility | Direct dependencies / trust |
 | --- | --- | --- |

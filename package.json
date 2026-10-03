@@ -11,7 +11,10 @@
     "reference:generate": "node scripts/generate-reference.mjs",
     "schema:generate": "node --import tsx scripts/generate-schema.mjs",
     "examples:generate": "node --import tsx scripts/generate-examples.mjs",
-    "use-cases:generate": "node --import tsx scripts/generate-use-cases.mjs"
+    "use-cases:generate": "node --import tsx scripts/generate-use-cases.mjs",
+    "site:build": "node scripts/build-site.mjs",
+    "site:check": "node scripts/check-site.mjs",
+    "site:preview": "node scripts/serve-site.mjs"
   },
   "devDependencies": {
     "jsdom": "28.1.0",

@@ -44,6 +44,8 @@ Use the [complete documentation index](docs/README.md) for all guides and refere
 
 ## Maintain and verify
 
+Browse the published documentation at [Agents Foundry Docs](https://agents-foundry.github.io/employee-agent-platform-docs/). GitHub Pages deploys validated builds when changes reach main; see [website hosting](SITE_HOSTING.md) for local preview and deployment details.
+
 ```bash
 npm ci
 npm run check
