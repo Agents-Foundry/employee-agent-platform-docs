@@ -1,0 +1,70 @@
+# Test Automation Engineer: end-to-end use case
+
+**Audience:** Employees, administrators, QA and implementers. **Implementation status:** Implemented role package; generic runtime is opt-in and UI coverage is partial.
+
+**Prerequisites:** An active employee assignment, verified V2 manifest, organization-managed Anthropic configuration, generic-runtime flags, registered workloads and execution service. Jira/repository/QA connections must match the selected questionnaire and intended task.
+
+## Scenario and boundary
+
+Turn acceptance criteria into repository Playwright regression tests. Author tests with code-editor, install dependencies and request approval to run against the assigned QA URL. Retain result/evidence artifacts, then request a separate HIGH-risk approval for a draft GitHub pull request. Browser approval does not authorize publishing code; a changed draft payload must be evaluated again.
+
+The exact blueprint is `engineering.test-automation-engineer@1.0.0`. Write Playwright regression tests for approved work items, run them against the QA environment only with approval, and propose them as draft pull requests.
+
+Catalog workflow steps guide the native model loop. They are not a deterministic workflow scheduler or executable skill engine; tool calls can vary. Authorization, lease checks, input scope and approvals are enforced independently at every action.
+
+## Prepare the assignment
+
+Install/select this exact catalog version and complete the scoped questionnaire. Choose only connectors with real adapters: Jira and GitHub draft-PR actions are implemented; repository checkout also supports scoped Bitbucket credentials. Azure DevOps/Linear/GitLab selections or an MCP ID do not install an adapter.
+
+| Questionnaire field | Scope | Type | Required |
+| --- | --- | --- | --- |
+| `projectName` | AGENT | text | Yes |
+| `repositoryUrl` | AGENT | url | Yes |
+| `qaUrl` | AGENT | url | Yes |
+| `packageRegistryUrl` | AGENT | url | No |
+| `issueTracker` | INSTALLATION | multiselect | Yes |
+| `sourceControl` | INSTALLATION | multiselect | Yes |
+
+Tools pinned by the bundle: `repository@1.0.0`, `code-editor@1.0.0`, `dependencies@1.0.0`, `browser@1.0.0`, `source-control@1.0.0`, `issue-tracker@1.0.0`, `artifact@1.0.0`. The runtime registers execution-backed tools only when its execution service is configured.
+
+## Guided work and policy gates
+
+### Automate regression tests (automate-regression-tests@1.0.0)
+
+Turn a work item into Playwright regression tests, run them against the approved QA environment and propose them as a draft pull request.
+
+| Step | Skill reference | Requested action | Default policy |
+| --- | --- | --- | --- |
+| Read acceptance criteria | `change-scoping` | `jira.read` | ALLOW |
+| Write the tests | `test-authoring` | `repository.write` | ALLOW |
+| Install locked dependencies | `test-verification` | `workspace.dependencies.install` | ALLOW |
+| Run the tests against QA | `test-verification` | `qa.execute_playwright` | REQUIRE_APPROVAL |
+| Open a draft pull request | `change-proposal` | `repository.pull_request.create` | REQUIRE_APPROVAL |
+
+Tenant overrides can only tighten these outcomes. The current lease, manifest action set, tool version and repository/URL/project scope must also pass. Approval pauses the run in WAITING_FOR_APPROVAL; an eligible same-tenant administrator who is not the requester approves the exact payload. The control plane requeues work; a changed payload or expired approval is not silently permitted.
+
+## Trace the participating components
+
+| Stage | Responsible component | Evidence to inspect |
+| --- | --- | --- |
+| Assignment/configuration | Admin API, catalog resolver, manifest signer | Bundle/version/digest, employee ownership, issued manifest |
+| Start work | Employee execution API, central run service | Thread, task, QUEUED run and command |
+| Context/model | Agent host, native kernel, model gateway | Run events, spending reservation/settlement; no raw-secret logs |
+| Read or write connector | Runtime tool → Action Gateway | Input digest, policy result, connection scope, approval/dispatch result |
+| Repository/files/commands/browser | Granted execution runtime | Verified grant, workspace scope, operation status and evidence |
+| Pause/resume | Control-plane approval and runtime command | Approval expiry/actor, run status/requeue, resumed event |
+| Report and retain | Artifact tool/service and run persistence | Artifact checksum/size/retention, terminal event and audit records |
+
+## Acceptance and failure checks
+
+Verify the intended employee owns the run; out-of-scope repositories/URLs fail; no external write occurs before approval; required evidence is retained; and terminal status agrees with operation results. A test failure should be reported as evidence rather than converted to a success. Read [test strategy](../qa/test-strategy.md) and the role's scripted evaluation suite before a live-provider qualification.
+
+If a connector dispatch is uncertain, reconcile APPLIED/NOT_APPLIED before issuing a replacement. Do not blindly retry an unknown Jira issue or PR creation. If a workspace is lost, preserve state and diagnose instead of pretending an empty recreated directory contains earlier changes. See [troubleshooting](../operations/troubleshooting.md).
+
+## Source provenance
+
+Verified against `9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4`: [catalog role](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/catalog/src/blueprints/test-automation-engineer.ts), [workflow definitions](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/catalog/src/workflows.ts), [policy engine](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/policy-engine/src/index.ts), [scripted evaluations](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/catalog/src/evaluations.ts), [native kernel](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/agent-runtime/src/kernel/native-kernel.ts).
+
+## Related documentation
+
+[Role index](README.md) · [Manifest](../agents/manifest-v2.md) · [Employee guide](../employee/workspace.md) · [Policy/approvals](../admin/policies-and-approvals.md)

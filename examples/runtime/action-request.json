@@ -1,0 +1,21 @@
+{
+  "protocol": "agents-foundry/runtime/v1",
+  "requestId": "30000000-0000-4000-8000-000000000004",
+  "correlation": {
+    "organizationId": "org_example",
+    "employeeId": "employee_example",
+    "agentId": "agent_example_qa",
+    "threadId": "20000000-0000-4000-8000-000000000001",
+    "runId": "20000000-0000-4000-8000-000000000002",
+    "stepId": "30000000-0000-4000-8000-000000000005",
+    "toolCallId": "30000000-0000-4000-8000-000000000006"
+  },
+  "action": "jira.read",
+  "toolId": "issue-tracker",
+  "toolVersion": "1.0.0",
+  "inputDigest": "2e79e6da4f6ecd373061f008b05611b25bf06743ceca266fe29803a88c04306c",
+  "summary": "Read QA-123 in the configured Jira project.",
+  "parameters": {
+    "issueKey": "QA-123"
+  }
+}

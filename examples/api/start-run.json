@@ -1,0 +1,14 @@
+{
+  "agentId": "agent_example_qa",
+  "task": {
+    "objective": "Validate the checkout story and retain evidence.",
+    "workflow": "validate-story",
+    "workItem": {
+      "system": "jira",
+      "key": "QA-123"
+    },
+    "inputs": {
+      "targetUrl": "https://qa.example.com"
+    }
+  }
+}

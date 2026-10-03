@@ -1,0 +1,1912 @@
+[
+  {
+    "method": "GET",
+    "path": "/api/agents/:id/manifest",
+    "file": "apps/control-plane-api/src/app.ts",
+    "line": 282,
+    "group": "agents-and-conversations",
+    "access": "Authenticated actor; service ownership/role checks",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (request, response) => {\r\n    const actor = response.locals['actor'];\r\n    response.json(\r\n      await database.getManifest(\r\n        String(request.params['id']),\r\n        actor.organizationId,\r\n        actor.role === 'EMPLOYEE' ? actor.id : undefined,\r\n      ),\r\n    );\r\n  }"
+  },
+  {
+    "method": "GET",
+    "path": "/api/approvals",
+    "file": "apps/control-plane-api/src/app.ts",
+    "line": 395,
+    "group": "agents-and-conversations",
+    "access": "Authenticated actor; service ownership/role checks",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (_request, response) => {\r\n    const actor = response.locals['actor'];\r\n    response.json(\r\n      await database.listApprovals(\r\n        actor.organizationId,\r\n        actor.role === 'EMPLOYEE' ? actor.id : undefined,\r\n      ),\r\n    );\r\n  }"
+  },
+  {
+    "method": "POST",
+    "path": "/api/approvals/:id/decision",
+    "file": "apps/control-plane-api/src/app.ts",
+    "line": 405,
+    "group": "agents-and-conversations",
+    "access": "Authenticated actor; service ownership/role checks",
+    "middleware": [],
+    "status": [
+      "403"
+    ],
+    "errors": [
+      "ADMIN_ROLE_REQUIRED"
+    ],
+    "bindings": [
+      "approvalDecisionSchema(request.body)"
+    ],
+    "handler": "async (request, response) => {\r\n    const actor = response.locals['actor'];\r\n    if (actor.role !== 'ADMIN') {\r\n      return response.status(403).json({ error: 'ADMIN_ROLE_REQUIRED' });\r\n    }\r\n    const { decision } = approvalDecisionSchema.parse(request.body);\r\n    return response.json(\r\n      await database.decideApproval(\r\n        String(request.params['id']),\r\n        decision,\r\n        actor.id,\r\n        actor.organizationId,\r\n      ),\r\n    );\r\n  }"
+  },
+  {
+    "method": "GET",
+    "path": "/api/blueprints",
+    "file": "apps/control-plane-api/src/app.ts",
+    "line": 206,
+    "group": "agents-and-conversations",
+    "access": "Authenticated actor; service ownership/role checks",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (_request, response) =>\r\n    response.json(await database.catalog.legacyBlueprints())"
+  },
+  {
+    "method": "GET",
+    "path": "/api/bootstrap",
+    "file": "apps/control-plane-api/src/app.ts",
+    "line": 202,
+    "group": "agents-and-conversations",
+    "access": "Authenticated actor; service ownership/role checks",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (_request, response) => {\r\n    response.json(await database.getBootstrap(response.locals['actor'], auth.mode === 'demo'));\r\n  }"
+  },
+  {
+    "method": "GET",
+    "path": "/api/conversations",
+    "file": "apps/control-plane-api/src/app.ts",
+    "line": 298,
+    "group": "agents-and-conversations",
+    "access": "Authenticated actor; service ownership/role checks",
+    "middleware": [],
+    "status": [
+      "403"
+    ],
+    "errors": [
+      "ACTOR_FORBIDDEN"
+    ],
+    "bindings": [],
+    "handler": "async (request, response) => {\r\n    const actor = response.locals['actor'];\r\n    if (request.query['employeeId'] && request.query['employeeId'] !== actor.id)\r\n      return response.status(403).json({ error: 'ACTOR_FORBIDDEN' });\r\n    return response.json(await database.listConversations(actor.id, actor.organizationId));\r\n  }"
+  },
+  {
+    "method": "POST",
+    "path": "/api/conversations",
+    "file": "apps/control-plane-api/src/app.ts",
+    "line": 305,
+    "group": "agents-and-conversations",
+    "access": "Authenticated actor; service ownership/role checks",
+    "middleware": [],
+    "status": [
+      "403",
+      "201"
+    ],
+    "errors": [
+      "ACTOR_FORBIDDEN"
+    ],
+    "bindings": [
+      "createConversationSchema(request.body)"
+    ],
+    "handler": "async (request, response) => {\r\n    const input = createConversationSchema.parse(request.body);\r\n    const actor = response.locals['actor'];\r\n    if (actor.role !== 'EMPLOYEE' || input.employeeId !== actor.id)\r\n      return response.status(403).json({ error: 'ACTOR_FORBIDDEN' });\r\n    return response\r\n      .status(201)\r\n      .json(\r\n        await database.createConversation(\r\n          actor.id,\r\n          input.agentId,\r\n          input.title,\r\n          actor.organizationId,\r\n          auth.mode === 'demo',\r\n        ),\r\n      );\r\n  }"
+  },
+  {
+    "method": "GET",
+    "path": "/api/conversations/:id",
+    "file": "apps/control-plane-api/src/app.ts",
+    "line": 323,
+    "group": "agents-and-conversations",
+    "access": "Authenticated actor; service ownership/role checks",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (request, response) => {\r\n    const actor = response.locals['actor'];\r\n    response.json(\r\n      await database.getConversation(String(request.params['id']), actor.organizationId, actor.id),\r\n    );\r\n  }"
+  },
+  {
+    "method": "POST",
+    "path": "/api/conversations/:id/messages",
+    "file": "apps/control-plane-api/src/app.ts",
+    "line": 330,
+    "group": "agents-and-conversations",
+    "access": "Authenticated actor; service ownership/role checks",
+    "middleware": [],
+    "status": [
+      "403",
+      "201"
+    ],
+    "errors": [
+      "ACTOR_FORBIDDEN"
+    ],
+    "bindings": [
+      "addMessageSchema(request.body)"
+    ],
+    "handler": "async (request, response) => {\r\n    const input = addMessageSchema.parse(request.body);\r\n    const actor = response.locals['actor'];\r\n    if (actor.role !== 'EMPLOYEE' || input.author !== 'EMPLOYEE')\r\n      return response.status(403).json({ error: 'ACTOR_FORBIDDEN' });\r\n    return response\r\n      .status(201)\r\n      .json(\r\n        await database.addMessage(\r\n          String(request.params['id']),\r\n          'EMPLOYEE',\r\n          input.content,\r\n          actor.organizationId,\r\n          actor.id,\r\n        ),\r\n      );\r\n  }"
+  },
+  {
+    "method": "GET",
+    "path": "/api/health",
+    "file": "apps/control-plane-api/src/app.ts",
+    "line": 161,
+    "group": "agents-and-conversations",
+    "access": "Public liveness",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (_request, response) => {\r\n    response.json({\r\n      status: 'ok',\r\n      service: 'control-plane-api',\r\n      timestamp: new Date().toISOString(),\r\n    });\r\n  }"
+  },
+  {
+    "method": "GET",
+    "path": "/api/lifecycle-events",
+    "file": "apps/control-plane-api/src/app.ts",
+    "line": 292,
+    "group": "agents-and-conversations",
+    "access": "Authenticated actor; service ownership/role checks",
+    "middleware": [],
+    "status": [
+      "403"
+    ],
+    "errors": [
+      "ADMIN_ROLE_REQUIRED"
+    ],
+    "bindings": [],
+    "handler": "async (_request, response) => {\r\n    const actor = response.locals['actor'];\r\n    if (actor.role !== 'ADMIN') return response.status(403).json({ error: 'ADMIN_ROLE_REQUIRED' });\r\n    return response.json(await database.listLifecycleEvents(actor.organizationId));\r\n  }"
+  },
+  {
+    "method": "GET",
+    "path": "/api/manifest-key",
+    "file": "apps/control-plane-api/src/app.ts",
+    "line": 241,
+    "group": "agents-and-conversations",
+    "access": "Authenticated actor; service ownership/role checks",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (_request, response) =>\r\n    response.json(database.signer.verificationKey)"
+  },
+  {
+    "method": "GET",
+    "path": "/api/provisioning",
+    "file": "apps/control-plane-api/src/app.ts",
+    "line": 244,
+    "group": "agents-and-conversations",
+    "access": "Authenticated actor; service ownership/role checks",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (_request, response) => {\r\n    const actor = response.locals['actor'];\r\n    response.json(\r\n      await database.listProvisioning(\r\n        actor.organizationId,\r\n        actor.role === 'EMPLOYEE' ? actor.id : undefined,\r\n      ),\r\n    );\r\n  }"
+  },
+  {
+    "method": "POST",
+    "path": "/api/provisioning",
+    "file": "apps/control-plane-api/src/app.ts",
+    "line": 253,
+    "group": "agents-and-conversations",
+    "access": "Authenticated actor; service ownership/role checks",
+    "middleware": [],
+    "status": [
+      "403",
+      "201"
+    ],
+    "errors": [
+      "EMPLOYEE_ROLE_REQUIRED"
+    ],
+    "bindings": [
+      "provisioningSchema(request.body)"
+    ],
+    "handler": "async (request, response) => {\r\n    const actor = response.locals['actor'];\r\n    if (actor.role !== 'EMPLOYEE')\r\n      return response.status(403).json({ error: 'EMPLOYEE_ROLE_REQUIRED' });\r\n    const input = provisioningSchema.parse(request.body);\r\n    return response\r\n      .status(201)\r\n      .json(await database.requestProvisioning(actor.id, input, actor.organizationId));\r\n  }"
+  },
+  {
+    "method": "POST",
+    "path": "/api/provisioning/:id/decision",
+    "file": "apps/control-plane-api/src/app.ts",
+    "line": 262,
+    "group": "agents-and-conversations",
+    "access": "Authenticated actor; service ownership/role checks",
+    "middleware": [],
+    "status": [
+      "403"
+    ],
+    "errors": [
+      "ADMIN_ROLE_REQUIRED"
+    ],
+    "bindings": [],
+    "handler": "async (request, response) => {\r\n    const actor = response.locals['actor'];\r\n    if (actor.role !== 'ADMIN') return response.status(403).json({ error: 'ADMIN_ROLE_REQUIRED' });\r\n    const input = z\r\n      .object({\r\n        decision: z.enum(['APPROVED', 'REJECTED']),\r\n        reason: z.string().trim().min(1).max(500),\r\n      })\r\n      .strict()\r\n      .parse(request.body);\r\n    return response.json(\r\n      await database.decideProvisioning(\r\n        String(request.params['id']),\r\n        actor.organizationId,\r\n        actor.id,\r\n        input.decision,\r\n        input.reason,\r\n      ),\r\n    );\r\n  }"
+  },
+  {
+    "method": "POST",
+    "path": "/api/qa/runs",
+    "file": "apps/control-plane-api/src/app.ts",
+    "line": 348,
+    "group": "agents-and-conversations",
+    "access": "Authenticated actor; service ownership/role checks",
+    "middleware": [],
+    "status": [
+      "403",
+      "202",
+      "500"
+    ],
+    "errors": [
+      "ACTOR_FORBIDDEN",
+      "POLICY_CONFIGURATION_ERROR"
+    ],
+    "bindings": [
+      "qaRunSchema(request.body)"
+    ],
+    "handler": "async (request, response) => {\r\n    const input: QaRunRequest = qaRunSchema.parse(request.body);\r\n    const actor = response.locals['actor'];\r\n    if (actor.role !== 'EMPLOYEE' || input.employeeId !== actor.id)\r\n      return response.status(403).json({ error: 'ACTOR_FORBIDDEN' });\r\n    await database.getConversation(input.conversationId, actor.organizationId, actor.id);\r\n    if (database.qaGenericRuntimeEnabled) {\r\n      const generic = await database.createGenericQaRun(\r\n        input,\r\n        actor.organizationId,\r\n        auth.mode === 'demo',\r\n      );\r\n      if (generic) return response.status(202).json(generic);\r\n    }\r\n    const policy = evaluatePolicy('qa.execute_playwright');\r\n    if (policy.outcome !== 'REQUIRE_APPROVAL') {\r\n      return response.status(500).json({ error: 'POLICY_CONFIGURATION_ERROR' });\r\n    }\r\n    const plan = [\r\n      `Read acceptance criteria from ${input.storyKey}`,\r\n      'Map impacted UI and API paths from the assigned repositories',\r\n      'Generate deterministic smoke and regression scenarios',\r\n      `Run isolated Playwright checks against ${new URL(input.targetUrl).origin}`,\r\n      'Capture trace, screenshots, console, and network evidence',\r\n      'Draft defects for human review; never publish automatically',\r\n    ];\r\n    const { instructions: _unused, ...legacyInput } = input;\r\n    const legacy = await database.createQaRun(\r\n      {\r\n        ...legacyInput,\r\n        plan,\r\n        approvalSummary: `Approve isolated Playwright execution for ${input.storyKey} against ${input.targetUrl}.`,\r\n      },\r\n      actor.organizationId,\r\n      auth.mode === 'demo',\r\n    );\r\n    const result: QaRunResponse = { mode: 'LEGACY_STATIC_PLAN', ...legacy };\r\n    await database.addMessage(\r\n      input.conversationId,\r\n      'AGENT',\r\n      `I prepared a six-step QA plan for ${input.storyKey}. Browser execution is paused for admin approval (${result.approval.id}).`,\r\n      actor.organizationId,\r\n      actor.id,\r\n    );\r\n    return response.status(202).json(result);\r\n  }"
+  },
+  {
+    "method": "GET",
+    "path": "/metrics",
+    "file": "apps/control-plane-api/src/metrics-route.ts",
+    "line": 20,
+    "group": "agents-and-conversations",
+    "access": "Operator bearer token; conditional route",
+    "middleware": [],
+    "status": [
+      "401"
+    ],
+    "errors": [
+      "METRICS_TOKEN_REQUIRED"
+    ],
+    "bindings": [],
+    "handler": "async (request, response) => {\r\n    let expected: string;\r\n    try {\r\n      expected = readFileSync(tokenPath, 'utf8').trim();\r\n    } catch {\r\n      expected = '';\r\n    }\r\n    const presented = /^Bearer (.+)$/.exec(request.header('authorization') ?? '')?.[1] ?? '';\r\n    // Compared as digests, so neither length nor content leaks through timing.\r\n    if (expected.length < 32 || !timingSafeEqual(digest(presented), digest(expected))) {\r\n      response.setHeader('WWW-Authenticate', 'Bearer');\r\n      response.status(401).json({ error: 'METRICS_TOKEN_REQUIRED' });\r\n      return;\r\n    }\r\n    response.setHeader('Cache-Control', 'no-store');\r\n    response.type('text/plain; version=0.0.4').send(await telemetry.metrics.prometheus());\r\n  }"
+  },
+  {
+    "method": "POST",
+    "path": "/api/auth/activate",
+    "file": "apps/control-plane-api/src/auth.ts",
+    "line": 457,
+    "group": "authentication",
+    "access": "Authentication lifecycle; per-route guards",
+    "middleware": [
+      "requireOrigin",
+      "passwordLimit"
+    ],
+    "status": [
+      "404",
+      "400",
+      "429",
+      "204"
+    ],
+    "errors": [
+      "NOT_FOUND",
+      "INVALID_ACTIVATION",
+      "LOGIN_RATE_LIMITED"
+    ],
+    "bindings": [],
+    "handler": "async (req, res) => {\r\n      res.setHeader('Cache-Control', 'no-store');\r\n      if (config.mode !== 'password') {\r\n        res.status(404).json({ error: 'NOT_FOUND' });\r\n        return;\r\n      }\r\n      const input = z\r\n        .object({\r\n          token: z.string().regex(/^[A-Za-z0-9_-]{43}$/),\r\n          password: z\r\n            .string()\r\n            .min(15)\r\n            .max(256)\r\n            .refine((value) => [...value].length >= 15),\r\n        })\r\n        .strict()\r\n        .safeParse(req.body);\r\n      if (!input.success) {\r\n        res.status(400).json({ error: 'INVALID_ACTIVATION' });\r\n        return;\r\n      }\r\n      if (passwordChecks >= 4) {\r\n        res.status(429).json({ error: 'LOGIN_RATE_LIMITED' });\r\n        return;\r\n      }\r\n      passwordChecks++;\r\n      try {\r\n        const hash = await hashPassword(input.data.password);\r\n        const resetting = req.path === '/api/auth/reset-password';\r\n        const accepted = resetting\r\n          ? await database.resetPassword(hashToken(input.data.token), hash)\r\n          : await database.acceptInvitation(hashToken(input.data.token), hash);\r\n        if (!accepted) {\r\n          res.status(400).json({\r\n            error: resetting ? 'INVALID_OR_EXPIRED_RESET' : 'INVALID_OR_EXPIRED_INVITATION',\r\n          });\r\n          return;\r\n        }\r\n        // Activation does not replace an existing browser session or log a different user in.\r\n        res.status(204).end();\r\n      } finally {\r\n        passwordChecks--;\r\n      }\r\n    }"
+  },
+  {
+    "method": "GET",
+    "path": "/api/auth/callback",
+    "file": "apps/control-plane-api/src/auth.ts",
+    "line": 401,
+    "group": "authentication",
+    "access": "Authentication lifecycle; per-route guards",
+    "middleware": [],
+    "status": [
+      "404",
+      "400",
+      "403",
+      "401"
+    ],
+    "errors": [
+      "GOOGLE_NOT_CONFIGURED",
+      "INVALID_LOGIN_CALLBACK",
+      "MEMBERSHIP_REQUIRED",
+      "GOOGLE_SIGN_IN_FAILED"
+    ],
+    "bindings": [],
+    "handler": "async (req, res) => {\r\n    if (!provider) {\r\n      res.status(404).json({ error: 'GOOGLE_NOT_CONFIGURED' });\r\n      return;\r\n    }\r\n    res.setHeader('Cache-Control', 'no-store');\r\n    const binding = cookie(req, loginName);\r\n    res.clearCookie(loginName, options);\r\n    const transaction = binding ? await database.consumeLogin(hashToken(binding)) : undefined;\r\n    if (\r\n      !transaction ||\r\n      req.query['state'] !== transaction.state ||\r\n      typeof req.query['code'] !== 'string' ||\r\n      req.query['code'].length > 4000 ||\r\n      req.query['error']\r\n    ) {\r\n      res.status(400).json({ error: 'INVALID_LOGIN_CALLBACK' });\r\n      return;\r\n    }\r\n    try {\r\n      const subject = await provider.exchange(\r\n        req.query['code'],\r\n        transaction.verifier,\r\n        transaction.nonce,\r\n      );\r\n      if (\r\n        !(await database.findIdentity(\r\n          GOOGLE_ISSUER,\r\n          subject,\r\n          res.locals['tenantOrganizationId'] as string | undefined,\r\n        ))\r\n      ) {\r\n        res.status(403).json({ error: 'MEMBERSHIP_REQUIRED', issuer: GOOGLE_ISSUER, subject });\r\n        return;\r\n      }\r\n      const old = cookie(req, sessionName);\r\n      if (old) await database.deleteSession(hashToken(old));\r\n      const session = randomToken();\r\n      await database.createSession(\r\n        hashToken(session),\r\n        GOOGLE_ISSUER,\r\n        subject,\r\n        Date.now() + 8 * 3600000,\r\n      );\r\n      res.cookie(sessionName, session, { ...options, maxAge: 8 * 3600000 });\r\n      res.redirect(transaction.destination);\r\n    } catch {\r\n      res.status(401).json({ error: 'GOOGLE_SIGN_IN_FAILED' });\r\n    }\r\n  }"
+  },
+  {
+    "method": "GET",
+    "path": "/api/auth/config",
+    "file": "apps/control-plane-api/src/auth.ts",
+    "line": 178,
+    "group": "authentication",
+    "access": "Authentication lifecycle; per-route guards",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "(_req, res) => {\r\n    res.setHeader('Cache-Control', 'no-store');\r\n    res.json(publicAuthConfig(config));\r\n  }"
+  },
+  {
+    "method": "POST",
+    "path": "/api/auth/link-account",
+    "file": "apps/control-plane-api/src/auth.ts",
+    "line": 566,
+    "group": "authentication",
+    "access": "Authentication lifecycle; per-route guards",
+    "middleware": [
+      "requireAccount"
+    ],
+    "status": [
+      "403",
+      "400",
+      "404"
+    ],
+    "errors": [
+      "CANONICAL_HOST_REQUIRED",
+      "INVALID_LINK",
+      "INVALID_OR_EXPIRED_LINK"
+    ],
+    "bindings": [],
+    "handler": "async (req, res) => {\r\n    if (res.locals['tenantOrganizationId'])\r\n      return res.status(403).json({ error: 'CANONICAL_HOST_REQUIRED' });\r\n    const input = z\r\n      .object({ token: z.string().regex(/^[A-Za-z0-9_-]{43}$/) })\r\n      .strict()\r\n      .safeParse(req.body);\r\n    if (!input.success) return res.status(400).json({ error: 'INVALID_LINK' });\r\n    const actor = await database.acceptAccountLink(\r\n      hashToken(input.data.token),\r\n      res.locals['accountUserId'],\r\n    );\r\n    if (!actor) return res.status(404).json({ error: 'INVALID_OR_EXPIRED_LINK' });\r\n    const session = randomToken();\r\n    await database.createAccountSession(\r\n      hashToken(session),\r\n      res.locals['accountUserId'],\r\n      actor.organizationId,\r\n      Date.now() + 8 * 3600000,\r\n    );\r\n    await database.deleteSession(res.locals['accountSessionHash']);\r\n    res.cookie(sessionName, session, { ...options, maxAge: 8 * 3600000 });\r\n    return res.json(actor);\r\n  }"
+  },
+  {
+    "method": "GET",
+    "path": "/api/auth/link-preview",
+    "file": "apps/control-plane-api/src/auth.ts",
+    "line": 550,
+    "group": "authentication",
+    "access": "Authentication lifecycle; per-route guards",
+    "middleware": [
+      "requireAccount"
+    ],
+    "status": [
+      "403",
+      "400",
+      "404"
+    ],
+    "errors": [
+      "CANONICAL_HOST_REQUIRED",
+      "INVALID_LINK",
+      "INVALID_OR_EXPIRED_LINK"
+    ],
+    "bindings": [],
+    "handler": "async (req, res) => {\r\n    if (res.locals['tenantOrganizationId'])\r\n      return res.status(403).json({ error: 'CANONICAL_HOST_REQUIRED' });\r\n    const token = z\r\n      .string()\r\n      .regex(/^[A-Za-z0-9_-]{43}$/)\r\n      .safeParse(req.query['token']);\r\n    if (!token.success) return res.status(400).json({ error: 'INVALID_LINK' });\r\n    const preview = await database.previewAccountLink(\r\n      hashToken(token.data),\r\n      res.locals['accountUserId'],\r\n    );\r\n    if (!preview) return res.status(404).json({ error: 'INVALID_OR_EXPIRED_LINK' });\r\n    res.setHeader('Cache-Control', 'no-store');\r\n    return res.json(preview);\r\n  }"
+  },
+  {
+    "method": "GET",
+    "path": "/api/auth/login",
+    "file": "apps/control-plane-api/src/auth.ts",
+    "line": 358,
+    "group": "authentication",
+    "access": "Authentication lifecycle; per-route guards",
+    "middleware": [],
+    "status": [
+      "404",
+      "400"
+    ],
+    "errors": [
+      "GOOGLE_NOT_CONFIGURED",
+      "INVALID_CLIENT"
+    ],
+    "bindings": [],
+    "handler": "async (req, res) => {\r\n    if (config.mode !== 'google') {\r\n      res.status(404).json({ error: 'GOOGLE_NOT_CONFIGURED' });\r\n      return;\r\n    }\r\n    const destination =\r\n      req.query['client'] === 'admin'\r\n        ? config.adminUrl\r\n        : req.query['client'] === 'employee'\r\n          ? config.employeeUrl\r\n          : undefined;\r\n    if (!destination) {\r\n      res.status(400).json({ error: 'INVALID_CLIENT' });\r\n      return;\r\n    }\r\n    const state = randomToken(),\r\n      nonce = randomToken(),\r\n      verifier = randomToken(),\r\n      binding = randomToken();\r\n    const previous = cookie(req, loginName);\r\n    if (previous) await database.discardLogin(hashToken(previous));\r\n    await database.createLogin(\r\n      hashToken(binding),\r\n      { state, nonce, verifier, destination },\r\n      Date.now() + 600000,\r\n    );\r\n    const url = new URL('https://accounts.google.com/o/oauth2/v2/auth');\r\n    url.search = new URLSearchParams({\r\n      client_id: config.clientId,\r\n      redirect_uri: config.callbackUrl,\r\n      response_type: 'code',\r\n      scope: 'openid email profile',\r\n      state,\r\n      nonce,\r\n      hd: config.workspaceDomain,\r\n      code_challenge: createHash('sha256').update(verifier).digest('base64url'),\r\n      code_challenge_method: 'S256',\r\n      prompt: 'select_account',\r\n    }).toString();\r\n    res.cookie(loginName, binding, { ...options, maxAge: 600000 });\r\n    res.setHeader('Cache-Control', 'no-store');\r\n    res.redirect(url.href);\r\n  }"
+  },
+  {
+    "method": "POST",
+    "path": "/api/auth/logout",
+    "file": "apps/control-plane-api/src/auth.ts",
+    "line": 451,
+    "group": "authentication",
+    "access": "Authentication lifecycle; per-route guards",
+    "middleware": [
+      "requireOrigin"
+    ],
+    "status": [
+      "204"
+    ],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) => {\r\n    const token = cookie(req, sessionName);\r\n    if (token) await database.deleteSession(hashToken(token));\r\n    res.clearCookie(sessionName, options);\r\n    res.status(204).end();\r\n  }"
+  },
+  {
+    "method": "GET",
+    "path": "/api/auth/memberships",
+    "file": "apps/control-plane-api/src/auth.ts",
+    "line": 522,
+    "group": "authentication",
+    "access": "Authentication lifecycle; per-route guards",
+    "middleware": [
+      "requireAccount"
+    ],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (_req, res) => {\r\n    res.setHeader('Cache-Control', 'no-store');\r\n    res.json(\r\n      await database.listAccountMemberships(\r\n        res.locals['accountActor'],\r\n        res.locals['tenantOrganizationId'],\r\n      ),\r\n    );\r\n  }"
+  },
+  {
+    "method": "POST",
+    "path": "/api/auth/password",
+    "file": "apps/control-plane-api/src/auth.ts",
+    "line": 257,
+    "group": "authentication",
+    "access": "Authentication lifecycle; per-route guards",
+    "middleware": [
+      "requireOrigin",
+      "passwordLimit",
+      "accountLimit"
+    ],
+    "status": [
+      "401",
+      "429"
+    ],
+    "errors": [
+      "INVALID_CREDENTIALS",
+      "LOGIN_RATE_LIMITED"
+    ],
+    "bindings": [],
+    "handler": "async (req, res) => {\r\n    res.setHeader('Cache-Control', 'no-store');\r\n    const input = z\r\n      .object({\r\n        email: z.string().trim().max(254).pipe(z.email()),\r\n        password: z.string().min(1).max(256),\r\n        client: z.enum(['admin', 'employee']).optional(),\r\n      })\r\n      .strict()\r\n      .safeParse(req.body);\r\n    if (!input.success) {\r\n      res.status(401).json({ error: 'INVALID_CREDENTIALS' });\r\n      return;\r\n    }\r\n    if (passwordChecks >= 4) {\r\n      res.status(429).json({ error: 'LOGIN_RATE_LIMITED' });\r\n      return;\r\n    }\r\n    passwordChecks++;\r\n    try {\r\n      const tenantId = res.locals['tenantOrganizationId'] as string | undefined;\r\n      if (config.mode === 'google') {\r\n        const identity = await database.findPasswordIdentity(\r\n          GOOGLE_ISSUER,\r\n          input.data.email,\r\n          tenantId,\r\n        );\r\n        const valid = await verifyPassword(input.data.password, identity?.hash);\r\n        const current = await database.findPasswordIdentity(\r\n          GOOGLE_ISSUER,\r\n          input.data.email,\r\n          tenantId,\r\n        );\r\n        if (\r\n          !valid ||\r\n          !identity ||\r\n          current?.subject !== identity.subject ||\r\n          current.hash !== identity.hash\r\n        ) {\r\n          res.status(401).json({ error: 'INVALID_CREDENTIALS' });\r\n          return;\r\n        }\r\n        const old = cookie(req, sessionName);\r\n        if (old) await database.deleteSession(hashToken(old));\r\n        const session = randomToken();\r\n        await database.createSession(\r\n          hashToken(session),\r\n          GOOGLE_ISSUER,\r\n          identity.subject,\r\n          Date.now() + 8 * 3600000,\r\n        );\r\n        res.cookie(sessionName, session, { ...options, maxAge: 8 * 3600000 });\r\n        res.json(await database.findIdentity(GOOGLE_ISSUER, identity.subject, tenantId));\r\n        return;\r\n      }\r\n      const account = await database.findPasswordAccount(\r\n        input.data.email,\r\n        tenantId,\r\n        input.data.client === 'admin'\r\n          ? 'ADMIN'\r\n          : input.data.client === 'employee'\r\n            ? 'EMPLOYEE'\r\n            : undefined,\r\n      );\r\n      const valid = await verifyPassword(input.data.password, account?.hash);\r\n      // Recheck after async hashing so concurrent revocation/rotation cannot issue a stale session.\r\n      const current = await database.findPasswordAccount(\r\n        input.data.email,\r\n        tenantId,\r\n        input.data.client === 'admin'\r\n          ? 'ADMIN'\r\n          : input.data.client === 'employee'\r\n            ? 'EMPLOYEE'\r\n            : undefined,\r\n      );\r\n      if (\r\n        !valid ||\r\n        !account ||\r\n        current?.userId !== account.userId ||\r\n        current.organizationId !== account.organizationId ||\r\n        current.hash !== account.hash\r\n      ) {\r\n        res.status(401).json({ error: 'INVALID_CREDENTIALS' });\r\n        return;\r\n      }\r\n      const old = cookie(req, sessionName);\r\n      if (old) await database.deleteSession(hashToken(old));\r\n      const session = randomToken();\r\n      const actor = await database.createAccountSession(\r\n        hashToken(session),\r\n        account.userId,\r\n        account.organizationId,\r\n        Date.now() + 8 * 3600000,\r\n      );\r\n      res.cookie(sessionName, session, { ...options, maxAge: 8 * 3600000 });\r\n      res.json(actor);\r\n    } finally {\r\n      passwordChecks--;\r\n    }\r\n  }"
+  },
+  {
+    "method": "POST",
+    "path": "/api/auth/reset-password",
+    "file": "apps/control-plane-api/src/auth.ts",
+    "line": 457,
+    "group": "authentication",
+    "access": "Authentication lifecycle; per-route guards",
+    "middleware": [
+      "requireOrigin",
+      "passwordLimit"
+    ],
+    "status": [
+      "404",
+      "400",
+      "429",
+      "204"
+    ],
+    "errors": [
+      "NOT_FOUND",
+      "INVALID_ACTIVATION",
+      "LOGIN_RATE_LIMITED"
+    ],
+    "bindings": [],
+    "handler": "async (req, res) => {\r\n      res.setHeader('Cache-Control', 'no-store');\r\n      if (config.mode !== 'password') {\r\n        res.status(404).json({ error: 'NOT_FOUND' });\r\n        return;\r\n      }\r\n      const input = z\r\n        .object({\r\n          token: z.string().regex(/^[A-Za-z0-9_-]{43}$/),\r\n          password: z\r\n            .string()\r\n            .min(15)\r\n            .max(256)\r\n            .refine((value) => [...value].length >= 15),\r\n        })\r\n        .strict()\r\n        .safeParse(req.body);\r\n      if (!input.success) {\r\n        res.status(400).json({ error: 'INVALID_ACTIVATION' });\r\n        return;\r\n      }\r\n      if (passwordChecks >= 4) {\r\n        res.status(429).json({ error: 'LOGIN_RATE_LIMITED' });\r\n        return;\r\n      }\r\n      passwordChecks++;\r\n      try {\r\n        const hash = await hashPassword(input.data.password);\r\n        const resetting = req.path === '/api/auth/reset-password';\r\n        const accepted = resetting\r\n          ? await database.resetPassword(hashToken(input.data.token), hash)\r\n          : await database.acceptInvitation(hashToken(input.data.token), hash);\r\n        if (!accepted) {\r\n          res.status(400).json({\r\n            error: resetting ? 'INVALID_OR_EXPIRED_RESET' : 'INVALID_OR_EXPIRED_INVITATION',\r\n          });\r\n          return;\r\n        }\r\n        // Activation does not replace an existing browser session or log a different user in.\r\n        res.status(204).end();\r\n      } finally {\r\n        passwordChecks--;\r\n      }\r\n    }"
+  },
+  {
+    "method": "GET",
+    "path": "/api/auth/session",
+    "file": "apps/control-plane-api/src/app.ts",
+    "line": 174,
+    "group": "authentication",
+    "access": "Authenticated actor; service ownership/role checks",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (_request, response) =>\r\n    response.json(response.locals['actor'])"
+  },
+  {
+    "method": "POST",
+    "path": "/api/auth/switch",
+    "file": "apps/control-plane-api/src/auth.ts",
+    "line": 531,
+    "group": "authentication",
+    "access": "Authentication lifecycle; per-route guards",
+    "middleware": [
+      "requireAccount"
+    ],
+    "status": [
+      "400",
+      "403"
+    ],
+    "errors": [
+      "INVALID_ORGANIZATION",
+      "TENANT_HOST_MISMATCH",
+      "MEMBERSHIP_REQUIRED"
+    ],
+    "bindings": [],
+    "handler": "async (req, res) => {\r\n    const input = z.object({ organizationId: z.string().uuid() }).strict().safeParse(req.body);\r\n    if (!input.success) return res.status(400).json({ error: 'INVALID_ORGANIZATION' });\r\n    const target = input.data.organizationId;\r\n    if (res.locals['tenantOrganizationId'] && res.locals['tenantOrganizationId'] !== target)\r\n      return res.status(403).json({ error: 'TENANT_HOST_MISMATCH' });\r\n    const actor = await database.accountMembership(res.locals['accountUserId'], target);\r\n    if (!actor) return res.status(403).json({ error: 'MEMBERSHIP_REQUIRED' });\r\n    const session = randomToken();\r\n    await database.createAccountSession(\r\n      hashToken(session),\r\n      res.locals['accountUserId'],\r\n      target,\r\n      Date.now() + 8 * 3600000,\r\n    );\r\n    await database.deleteSession(res.locals['accountSessionHash']);\r\n    res.cookie(sessionName, session, { ...options, maxAge: 8 * 3600000 });\r\n    return res.json(actor);\r\n  }"
+  },
+  {
+    "method": "GET",
+    "path": "/api/catalog/v1/blueprints",
+    "file": "apps/control-plane-api/src/catalog/catalog-routes.ts",
+    "line": 20,
+    "group": "catalog",
+    "access": "Authenticated actor; service ownership/role checks",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (_req, res) => res.json(await catalog.summaries())"
+  },
+  {
+    "method": "GET",
+    "path": "/api/catalog/v1/blueprints/:id/versions/:version",
+    "file": "apps/control-plane-api/src/catalog/catalog-routes.ts",
+    "line": 21,
+    "group": "catalog",
+    "access": "Authenticated actor; service ownership/role checks",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) =>\r\n    res.json(await catalog.bundle(String(req.params['id']), String(req.params['version']), 404))"
+  },
+  {
+    "method": "GET",
+    "path": "/api/catalog/v1/quality",
+    "file": "apps/control-plane-api/src/catalog/catalog-routes.ts",
+    "line": 25,
+    "group": "catalog",
+    "access": "Authenticated actor; service ownership/role checks",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) =>\r\n    res.json(await quality.overview(res.locals['actor'], req.query))"
+  },
+  {
+    "method": "GET",
+    "path": "/api/organization/agent-installations",
+    "file": "apps/control-plane-api/src/catalog/catalog-routes.ts",
+    "line": 38,
+    "group": "catalog",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) =>\r\n    res.json(await installations.list(res.locals['actor'], req.query))"
+  },
+  {
+    "method": "POST",
+    "path": "/api/organization/agent-installations",
+    "file": "apps/control-plane-api/src/catalog/catalog-routes.ts",
+    "line": 41,
+    "group": "catalog",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [
+      "201"
+    ],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) =>\r\n    res.status(201).json(await installations.create(res.locals['actor'], req.body))"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/organization/agent-installations/:id",
+    "file": "apps/control-plane-api/src/catalog/catalog-routes.ts",
+    "line": 44,
+    "group": "catalog",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) =>\r\n    res.json(await installations.update(res.locals['actor'], String(req.params['id']), req.body))"
+  },
+  {
+    "method": "POST",
+    "path": "/api/organization/agent-installations/:id/retire",
+    "file": "apps/control-plane-api/src/catalog/catalog-routes.ts",
+    "line": 47,
+    "group": "catalog",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) => {\r\n    const { version } = z.object({ version: z.number().int().positive() }).strict().parse(req.body);\r\n    res.json(await installations.retire(res.locals['actor'], String(req.params['id']), version));\r\n  }"
+  },
+  {
+    "method": "GET",
+    "path": "/api/execution/v1/artifact-content/:token",
+    "file": "apps/control-plane-api/src/execution/execution-routes.ts",
+    "line": 129,
+    "group": "execution",
+    "access": "Authenticated actor; service ownership/role checks",
+    "middleware": [],
+    "status": [
+      "200"
+    ],
+    "errors": [
+      "ARTIFACT_RETRIEVAL_INVALID"
+    ],
+    "bindings": [],
+    "handler": "async (req, res) => {\r\n    const token = String(req.params['token'] ?? '');\r\n    if (token.length > 2048) throw new ExecutionError(403, 'ARTIFACT_RETRIEVAL_INVALID');\r\n    const artifact = await options.artifacts.retrieve(res.locals['actor'], token);\r\n    // Always a download, never rendered in the control plane's origin.\r\n    res.setHeader('Content-Type', artifact.mediaType);\r\n    res.setHeader('X-Content-Type-Options', 'nosniff');\r\n    res.setHeader(\r\n      'Content-Disposition',\r\n      `attachment; filename=\"${artifact.name.replace(/[^A-Za-z0-9._-]/g, '_')}\"`,\r\n    );\r\n    res.setHeader('Content-Length', String(artifact.content.byteLength));\r\n    res.status(200).end(artifact.content);\r\n  }"
+  },
+  {
+    "method": "POST",
+    "path": "/api/execution/v1/artifacts/:id/retrievals",
+    "file": "apps/control-plane-api/src/execution/execution-routes.ts",
+    "line": 119,
+    "group": "execution",
+    "access": "Authenticated actor; service ownership/role checks",
+    "middleware": [],
+    "status": [
+      "201"
+    ],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) => {\r\n    res\r\n      .status(201)\r\n      .json(\r\n        await options.artifacts.requestRetrieval(\r\n          res.locals['actor'],\r\n          id(req.params['id'], 'ARTIFACT_NOT_FOUND'),\r\n        ),\r\n      );\r\n  }"
+  },
+  {
+    "method": "POST",
+    "path": "/api/execution/v1/runs",
+    "file": "apps/control-plane-api/src/execution/execution-routes.ts",
+    "line": 85,
+    "group": "execution",
+    "access": "Authenticated actor; service ownership/role checks",
+    "middleware": [],
+    "status": [
+      "202"
+    ],
+    "errors": [
+      "GENERIC_RUNTIME_DISABLED",
+      "RUNTIME_MANIFEST_V2_REQUIRED",
+      "WORKFLOW_NOT_IN_MANIFEST",
+      "CONVERSATION_AGENT_MISMATCH"
+    ],
+    "bindings": [
+      "startRunSchema(req.body)"
+    ],
+    "handler": "async (req, res) => {\r\n    if (!options.genericRuntimeEnabled) throw new ExecutionError(404, 'GENERIC_RUNTIME_DISABLED');\r\n    const actor = res.locals['actor'];\r\n    const input = startRunSchema.parse(req.body);\r\n    const manifest = await options.loadManifest(input.agentId, actor.organizationId, actor.id);\r\n    if (manifest.payload.apiVersion !== 'agents-foundry/v2')\r\n      throw new ExecutionError(409, 'RUNTIME_MANIFEST_V2_REQUIRED');\r\n    if (input.task.workflow && !manifest.payload.workflows.includes(input.task.workflow))\r\n      throw new ExecutionError(400, 'WORKFLOW_NOT_IN_MANIFEST');\r\n    const conversation = input.conversationId\r\n      ? await options.loadConversation(input.conversationId, actor.organizationId, actor.id)\r\n      : null;\r\n    if (conversation && conversation.agentId !== input.agentId)\r\n      throw new ExecutionError(409, 'CONVERSATION_AGENT_MISMATCH');\r\n    const run = await service.createRun({\r\n      organizationId: actor.organizationId,\r\n      employeeId: actor.id,\r\n      agentId: input.agentId,\r\n      title: input.title ?? input.task.objective,\r\n      task: input.task,\r\n      manifest,\r\n      ...(input.threadId ? { threadId: input.threadId } : {}),\r\n      ...(conversation ? { conversation: { id: conversation.id, title: conversation.title } } : {}),\r\n    });\r\n    res.status(202).json(runView(run));\r\n  }"
+  },
+  {
+    "method": "GET",
+    "path": "/api/execution/v1/runs/:id",
+    "file": "apps/control-plane-api/src/execution/execution-routes.ts",
+    "line": 70,
+    "group": "execution",
+    "access": "Authenticated actor; service ownership/role checks",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) => {\r\n    res.json(await service.getRun(res.locals['actor'], id(req.params['id'], 'RUN_NOT_FOUND')));\r\n  }"
+  },
+  {
+    "method": "POST",
+    "path": "/api/execution/v1/runs/:id/cancel",
+    "file": "apps/control-plane-api/src/execution/execution-routes.ts",
+    "line": 111,
+    "group": "execution",
+    "access": "Authenticated actor; service ownership/role checks",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) => {\r\n    res.json(\r\n      runView(\r\n        await service.cancelOwnRun(res.locals['actor'], id(req.params['id'], 'RUN_NOT_FOUND')),\r\n      ),\r\n    );\r\n  }"
+  },
+  {
+    "method": "GET",
+    "path": "/api/execution/v1/runs/:id/events",
+    "file": "apps/control-plane-api/src/execution/execution-routes.ts",
+    "line": 73,
+    "group": "execution",
+    "access": "Authenticated actor; service ownership/role checks",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [
+      "eventQuery(req.query)"
+    ],
+    "handler": "async (req, res) => {\r\n    const query = eventQuery.parse(req.query);\r\n    res.json(\r\n      await service.listEvents(\r\n        res.locals['actor'],\r\n        id(req.params['id'], 'RUN_NOT_FOUND'),\r\n        query.afterSequence,\r\n        query.limit,\r\n      ),\r\n    );\r\n  }"
+  },
+  {
+    "method": "GET",
+    "path": "/api/execution/v1/threads/:id",
+    "file": "apps/control-plane-api/src/execution/execution-routes.ts",
+    "line": 65,
+    "group": "execution",
+    "access": "Authenticated actor; service ownership/role checks",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) => {\r\n    res.json(\r\n      await service.getThread(res.locals['actor'], id(req.params['id'], 'THREAD_NOT_FOUND')),\r\n    );\r\n  }"
+  },
+  {
+    "method": "GET",
+    "path": "/execution/v1/health",
+    "file": "apps/execution-runtime/src/server.ts",
+    "line": 1,
+    "group": "execution-server",
+    "access": "Private service network; public health within that boundary",
+    "middleware": [],
+    "status": [
+      "200"
+    ],
+    "errors": [],
+    "bindings": [],
+    "handler": "Health returns { status, provider, isolation, enforces }."
+  },
+  {
+    "method": "POST",
+    "path": "/execution/v1/operations",
+    "file": "apps/execution-runtime/src/server.ts",
+    "line": 1,
+    "group": "execution-server",
+    "access": "Control-plane-signed single-use grant; private service network",
+    "middleware": [],
+    "status": [
+      "200",
+      "400",
+      "413",
+      "415"
+    ],
+    "errors": [
+      "REQUEST_INVALID",
+      "REQUEST_TOO_LARGE",
+      "JSON_REQUIRED",
+      "EXECUTION_RUNTIME_ERROR"
+    ],
+    "bindings": [
+      "parseExecutionRequest"
+    ],
+    "handler": "Request: { protocol: 'agents-foundry/execution/v1', grant, operation }. Response: ExecuteOperationResponse; result.status is SUCCEEDED | FAILED | TIMED_OUT | DENIED. HTTP 200 does not imply operation success."
+  },
+  {
+    "method": "GET",
+    "path": "/metrics",
+    "file": "apps/execution-runtime/src/server.ts",
+    "line": 1,
+    "group": "execution-server",
+    "access": "Operator bearer token; conditional route",
+    "middleware": [],
+    "status": [
+      "200",
+      "401"
+    ],
+    "errors": [],
+    "bindings": [],
+    "handler": "Exists only with execution metrics configuration. Response is Prometheus text, not JSON."
+  },
+  {
+    "method": "GET",
+    "path": "/api/organization/action-policies",
+    "file": "apps/control-plane-api/src/actions/action-routes.ts",
+    "line": 44,
+    "group": "governance-and-connections",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (_req, res) => res.json(await policies.list(res.locals['actor']))"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/organization/action-policies/:action",
+    "file": "apps/control-plane-api/src/actions/action-routes.ts",
+    "line": 50,
+    "group": "governance-and-connections",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [
+      "204"
+    ],
+    "errors": [],
+    "bindings": [
+      "actionParam(req.params['action'])"
+    ],
+    "handler": "async (req, res) => {\r\n    await policies.clear(res.locals['actor'], actionParam.parse(req.params['action']));\r\n    res.status(204).end();\r\n  }"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/organization/action-policies/:action",
+    "file": "apps/control-plane-api/src/actions/action-routes.ts",
+    "line": 45,
+    "group": "governance-and-connections",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [
+      "actionParam(req.params['action'])"
+    ],
+    "handler": "async (req, res) =>\r\n    res.json(\r\n      await policies.set(res.locals['actor'], actionParam.parse(req.params['action']), req.body),\r\n    )"
+  },
+  {
+    "method": "GET",
+    "path": "/api/organization/action-reconciliations",
+    "file": "apps/control-plane-api/src/actions/action-routes.ts",
+    "line": 57,
+    "group": "governance-and-connections",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (_req, res) =>\r\n    res.json(await reconciliations.list(res.locals['actor']))"
+  },
+  {
+    "method": "POST",
+    "path": "/api/organization/action-reconciliations/:requestId/resolution",
+    "file": "apps/control-plane-api/src/actions/action-routes.ts",
+    "line": 60,
+    "group": "governance-and-connections",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) =>\r\n    res.json(\r\n      await reconciliations.resolve(\r\n        res.locals['actor'],\r\n        z.uuid().parse(req.params['requestId']),\r\n        req.body,\r\n      ),\r\n    )"
+  },
+  {
+    "method": "GET",
+    "path": "/api/organization/connector-connections",
+    "file": "apps/control-plane-api/src/actions/action-routes.ts",
+    "line": 34,
+    "group": "governance-and-connections",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (_req, res) => res.json(await connectors.list(res.locals['actor']))"
+  },
+  {
+    "method": "POST",
+    "path": "/api/organization/connector-connections",
+    "file": "apps/control-plane-api/src/actions/action-routes.ts",
+    "line": 35,
+    "group": "governance-and-connections",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [
+      "201"
+    ],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) =>\r\n    res.status(201).json(await connectors.create(res.locals['actor'], req.body))"
+  },
+  {
+    "method": "POST",
+    "path": "/api/organization/connector-connections/:id/disable",
+    "file": "apps/control-plane-api/src/actions/action-routes.ts",
+    "line": 38,
+    "group": "governance-and-connections",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) => {\r\n    const { version } = z.object({ version: z.number().int().positive() }).strict().parse(req.body);\r\n    res.json(await connectors.disable(res.locals['actor'], String(req.params['id']), version));\r\n  }"
+  },
+  {
+    "method": "GET",
+    "path": "/api/organization/credential-leases",
+    "file": "apps/control-plane-api/src/credentials/credential-routes.ts",
+    "line": 43,
+    "group": "governance-and-connections",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (_req, res) => res.json(await credentials.list(res.locals['actor']))"
+  },
+  {
+    "method": "POST",
+    "path": "/api/organization/credential-leases/:id/revoke",
+    "file": "apps/control-plane-api/src/credentials/credential-routes.ts",
+    "line": 44,
+    "group": "governance-and-connections",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) =>\r\n    res.json(await credentials.revoke(res.locals['actor'], z.uuid().parse(req.params['id'])))"
+  },
+  {
+    "method": "GET",
+    "path": "/api/organization/source-control-connections",
+    "file": "apps/control-plane-api/src/credentials/credential-routes.ts",
+    "line": 31,
+    "group": "governance-and-connections",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (_req, res) =>\r\n    res.json(await connections.list(res.locals['actor']))"
+  },
+  {
+    "method": "POST",
+    "path": "/api/organization/source-control-connections",
+    "file": "apps/control-plane-api/src/credentials/credential-routes.ts",
+    "line": 34,
+    "group": "governance-and-connections",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [
+      "201"
+    ],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) =>\r\n    res.status(201).json(await connections.create(res.locals['actor'], req.body))"
+  },
+  {
+    "method": "POST",
+    "path": "/api/organization/source-control-connections/:id/disable",
+    "file": "apps/control-plane-api/src/credentials/credential-routes.ts",
+    "line": 37,
+    "group": "governance-and-connections",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) => {\r\n    const { version } = z.object({ version: z.number().int().positive() }).strict().parse(req.body);\r\n    res.json(await connections.disable(res.locals['actor'], String(req.params['id']), version));\r\n  }"
+  },
+  {
+    "method": "GET",
+    "path": "/api/organization/alert-webhooks",
+    "file": "apps/control-plane-api/src/webhooks/webhook-routes.ts",
+    "line": 23,
+    "group": "models-and-alerts",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (_req, res) => res.json(await webhooks.list(res.locals['actor']))"
+  },
+  {
+    "method": "POST",
+    "path": "/api/organization/alert-webhooks",
+    "file": "apps/control-plane-api/src/webhooks/webhook-routes.ts",
+    "line": 24,
+    "group": "models-and-alerts",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [
+      "201"
+    ],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) =>\r\n    res.status(201).json(await webhooks.create(res.locals['actor'], req.body))"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/organization/alert-webhooks/:webhookId",
+    "file": "apps/control-plane-api/src/webhooks/webhook-routes.ts",
+    "line": 27,
+    "group": "models-and-alerts",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) =>\r\n    res.json(await webhooks.setStatus(res.locals['actor'], req.params['webhookId'], req.body))"
+  },
+  {
+    "method": "POST",
+    "path": "/api/organization/alert-webhooks/:webhookId/test",
+    "file": "apps/control-plane-api/src/webhooks/webhook-routes.ts",
+    "line": 30,
+    "group": "models-and-alerts",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [
+      "202"
+    ],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) =>\r\n    res.status(202).json(await webhooks.test(res.locals['actor'], req.params['webhookId']))"
+  },
+  {
+    "method": "GET",
+    "path": "/api/organization/model-alerts",
+    "file": "apps/control-plane-api/src/spending/spending-routes.ts",
+    "line": 43,
+    "group": "models-and-alerts",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) =>\r\n    res.json(await spending.alerts.list(res.locals['actor'], req.query))"
+  },
+  {
+    "method": "POST",
+    "path": "/api/organization/model-alerts/:alertId/acknowledge",
+    "file": "apps/control-plane-api/src/spending/spending-routes.ts",
+    "line": 46,
+    "group": "models-and-alerts",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) =>\r\n    res.json(await spending.alerts.acknowledge(res.locals['actor'], req.params['alertId']))"
+  },
+  {
+    "method": "GET",
+    "path": "/api/organization/model-budget",
+    "file": "apps/control-plane-api/src/spending/spending-routes.ts",
+    "line": 24,
+    "group": "models-and-alerts",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (_req, res) =>\r\n    res.json(await spending.getBudget(res.locals['actor']))"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/organization/model-budget",
+    "file": "apps/control-plane-api/src/spending/spending-routes.ts",
+    "line": 27,
+    "group": "models-and-alerts",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) =>\r\n    res.json(await spending.setBudget(res.locals['actor'], req.body))"
+  },
+  {
+    "method": "GET",
+    "path": "/api/organization/model-credentials",
+    "file": "apps/control-plane-api/src/secrets/model-credential-routes.ts",
+    "line": 23,
+    "group": "models-and-alerts",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (_req, res) => res.json(await service.list(res.locals['actor']))"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/organization/model-credentials/:provider",
+    "file": "apps/control-plane-api/src/secrets/model-credential-routes.ts",
+    "line": 24,
+    "group": "models-and-alerts",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) =>\r\n    res.json(await service.set(res.locals['actor'], String(req.params['provider']), req.body))"
+  },
+  {
+    "method": "POST",
+    "path": "/api/organization/model-credentials/:provider/disable",
+    "file": "apps/control-plane-api/src/secrets/model-credential-routes.ts",
+    "line": 27,
+    "group": "models-and-alerts",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) => {\r\n    const { version } = z.object({ version: z.number().int().positive() }).strict().parse(req.body);\r\n    res.json(await service.disable(res.locals['actor'], String(req.params['provider']), version));\r\n  }"
+  },
+  {
+    "method": "GET",
+    "path": "/api/organization/model-prices",
+    "file": "apps/control-plane-api/src/spending/spending-routes.ts",
+    "line": 33,
+    "group": "models-and-alerts",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (_req, res) =>\r\n    res.json(await spending.prices.list(res.locals['actor']))"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/organization/model-prices",
+    "file": "apps/control-plane-api/src/spending/spending-routes.ts",
+    "line": 36,
+    "group": "models-and-alerts",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) =>\r\n    res.json(await spending.prices.set(res.locals['actor'], req.body))"
+  },
+  {
+    "method": "POST",
+    "path": "/api/organization/model-prices/remove",
+    "file": "apps/control-plane-api/src/spending/spending-routes.ts",
+    "line": 39,
+    "group": "models-and-alerts",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [
+      "204"
+    ],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) => {\r\n    await spending.prices.remove(res.locals['actor'], req.body);\r\n    res.status(204).end();\r\n  }"
+  },
+  {
+    "method": "GET",
+    "path": "/api/organization/model-usage",
+    "file": "apps/control-plane-api/src/spending/spending-routes.ts",
+    "line": 30,
+    "group": "models-and-alerts",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) =>\r\n    res.json(await spending.usage(res.locals['actor'], req.query))"
+  },
+  {
+    "method": "GET",
+    "path": "/api/organization/agents",
+    "file": "apps/control-plane-api/src/app.ts",
+    "line": 209,
+    "group": "organization",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [
+      "403"
+    ],
+    "errors": [
+      "ADMIN_ROLE_REQUIRED"
+    ],
+    "bindings": [],
+    "handler": "async (_request, response) => {\r\n    const actor = response.locals['actor'];\r\n    if (auth.mode !== 'password' || actor.role !== 'ADMIN')\r\n      return response.status(403).json({ error: 'ADMIN_ROLE_REQUIRED' });\r\n    return response.json(await database.listAgentAssignments(actor.organizationId));\r\n  }"
+  },
+  {
+    "method": "POST",
+    "path": "/api/organization/agents",
+    "file": "apps/control-plane-api/src/app.ts",
+    "line": 215,
+    "group": "organization",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [
+      "403",
+      "201",
+      "409"
+    ],
+    "errors": [
+      "ADMIN_ROLE_REQUIRED",
+      "IDEMPOTENCY_CONFLICT"
+    ],
+    "bindings": [],
+    "handler": "async (request, response) => {\r\n    const actor = response.locals['actor'];\r\n    if (auth.mode !== 'password' || actor.role !== 'ADMIN')\r\n      return response.status(403).json({ error: 'ADMIN_ROLE_REQUIRED' });\r\n    const input = provisioningSchema\r\n      .extend({\r\n        requestId: z.string().uuid(),\r\n        installationId: z.string().uuid().optional(),\r\n        name: z.string().trim().min(1).max(120),\r\n        employeeIds: z\r\n          .array(z.string().uuid())\r\n          .min(1)\r\n          .max(25)\r\n          .refine((ids) => new Set(ids).size === ids.length)\r\n          .transform((ids) => ids.sort()),\r\n      })\r\n      .strict()\r\n      .parse(request.body);\r\n    try {\r\n      return response.status(201).json(await database.createAssignedAgents(actor, input));\r\n    } catch (error) {\r\n      if (error instanceof Error && error.message === 'IDEMPOTENCY_CONFLICT')\r\n        return response.status(409).json({ error: 'IDEMPOTENCY_CONFLICT' });\r\n      throw error;\r\n    }\r\n  }"
+  },
+  {
+    "method": "GET",
+    "path": "/api/organization/domains",
+    "file": "apps/control-plane-api/src/organization/tenancy-routes.ts",
+    "line": 27,
+    "group": "organization",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (_req, res) =>\r\n    res.json(await service.listDomains(res.locals['actor']))"
+  },
+  {
+    "method": "POST",
+    "path": "/api/organization/domains",
+    "file": "apps/control-plane-api/src/organization/tenancy-routes.ts",
+    "line": 30,
+    "group": "organization",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [
+      "201"
+    ],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) =>\r\n    res.status(201).json(await service.registerDomain(res.locals['actor'], req.body))"
+  },
+  {
+    "method": "POST",
+    "path": "/api/organization/domains/:id/primary",
+    "file": "apps/control-plane-api/src/organization/tenancy-routes.ts",
+    "line": 36,
+    "group": "organization",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) =>\r\n    res.json(await service.setPrimaryDomain(res.locals['actor'], req.params['id']))"
+  },
+  {
+    "method": "POST",
+    "path": "/api/organization/domains/:id/verify",
+    "file": "apps/control-plane-api/src/organization/tenancy-routes.ts",
+    "line": 33,
+    "group": "organization",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) =>\r\n    res.json(await service.verifyDomain(res.locals['actor'], req.params['id']))"
+  },
+  {
+    "method": "GET",
+    "path": "/api/organization/employees",
+    "file": "apps/control-plane-api/src/organization/tenancy-routes.ts",
+    "line": 39,
+    "group": "organization",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) =>\r\n    res.json(await service.listEmployees(res.locals['actor'], req.query))"
+  },
+  {
+    "method": "POST",
+    "path": "/api/organization/employees",
+    "file": "apps/control-plane-api/src/organization/tenancy-routes.ts",
+    "line": 42,
+    "group": "organization",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [
+      "201"
+    ],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) =>\r\n    res.status(201).json(await service.createEmployee(res.locals['actor'], req.body))"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/organization/employees/:id",
+    "file": "apps/control-plane-api/src/organization/tenancy-routes.ts",
+    "line": 45,
+    "group": "organization",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) =>\r\n    res.json(await service.updateEmployee(res.locals['actor'], req.params['id'], req.body))"
+  },
+  {
+    "method": "POST",
+    "path": "/api/organization/employees/:id/invitation",
+    "file": "apps/control-plane-api/src/organization/tenancy-routes.ts",
+    "line": 51,
+    "group": "organization",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [
+      "201",
+      "409"
+    ],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) => {\r\n    try {\r\n      const result = await db.inviteExistingEmployee(res.locals['actor'], req.params['id']);\r\n      if (config.mode !== 'password') return;\r\n      res.status(201).json({\r\n        employeeId: result.employeeId,\r\n        expiresAt: result.expiresAt,\r\n        activationUrl: activationUrl(config.employeeUrl, result.token, result.purpose),\r\n        purpose: result.purpose,\r\n        delivery: 'MANUAL',\r\n      });\r\n    } catch (error) {\r\n      if (\r\n        error instanceof Error &&\r\n        ['ACCOUNT_NOT_ACTIVE', 'MEMBER_ALREADY_EXISTS'].includes(error.message)\r\n      ) {\r\n        res.status(409).json({ error: error.message });\r\n        return;\r\n      }\r\n      throw error;\r\n    }\r\n  }"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/organization/employees/:id/position",
+    "file": "apps/control-plane-api/src/organization/tenancy-routes.ts",
+    "line": 48,
+    "group": "organization",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) =>\r\n    res.json(await service.assignPosition(res.locals['actor'], req.params['id'], req.body))"
+  },
+  {
+    "method": "POST",
+    "path": "/api/organization/invitations",
+    "file": "apps/control-plane-api/src/organization-routes.ts",
+    "line": 43,
+    "group": "organization",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [
+      "admin"
+    ],
+    "status": [
+      "201",
+      "409"
+    ],
+    "errors": [
+      "EMAIL_UNAVAILABLE",
+      "ACCOUNT_NOT_ACTIVE"
+    ],
+    "bindings": [
+      "memberInput(req.body)"
+    ],
+    "handler": "async (req, res) => {\r\n    if (config.mode !== 'password') return;\r\n    const input = memberInput.parse(req.body);\r\n    try {\r\n      const invitation = await db.inviteEmployee(res.locals['actor'], input);\r\n      res.status(201).json({\r\n        employeeId: invitation.employeeId,\r\n        expiresAt: invitation.expiresAt,\r\n        activationUrl: activationUrl(config.employeeUrl, invitation.token, invitation.purpose),\r\n        purpose: invitation.purpose,\r\n        delivery: 'MANUAL',\r\n      });\r\n    } catch (error) {\r\n      if (error instanceof Error && error.message === 'MEMBER_ALREADY_EXISTS') {\r\n        res.status(409).json({ error: 'EMAIL_UNAVAILABLE' });\r\n        return;\r\n      }\r\n      if (error instanceof Error && error.message === 'ACCOUNT_NOT_ACTIVE') {\r\n        res.status(409).json({ error: 'ACCOUNT_NOT_ACTIVE' });\r\n        return;\r\n      }\r\n      throw error;\r\n    }\r\n  }"
+  },
+  {
+    "method": "GET",
+    "path": "/api/organization/jobs/:kind",
+    "file": "apps/control-plane-api/src/organization/job-routes.ts",
+    "line": 18,
+    "group": "organization",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) =>\r\n    res.json(await service.list(res.locals['actor'], req.params['kind'], req.query))"
+  },
+  {
+    "method": "POST",
+    "path": "/api/organization/jobs/:kind",
+    "file": "apps/control-plane-api/src/organization/job-routes.ts",
+    "line": 21,
+    "group": "organization",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [
+      "201"
+    ],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) =>\r\n    res.status(201).json(await service.save(res.locals['actor'], req.params['kind'], req.body))"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/organization/jobs/:kind/:id",
+    "file": "apps/control-plane-api/src/organization/job-routes.ts",
+    "line": 24,
+    "group": "organization",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) =>\r\n    res.json(\r\n      await service.save(res.locals['actor'], req.params['kind'], req.body, req.params['id']),\r\n    )"
+  },
+  {
+    "method": "POST",
+    "path": "/api/organization/jobs/:kind/:id/archive",
+    "file": "apps/control-plane-api/src/organization/job-routes.ts",
+    "line": 29,
+    "group": "organization",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [
+      "204"
+    ],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) => {\r\n    const { version } = z.object({ version: z.number().int().positive() }).strict().parse(req.body);\r\n    await service.archive(res.locals['actor'], req.params['kind'], req.params['id'], version);\r\n    res.status(204).end();\r\n  }"
+  },
+  {
+    "method": "GET",
+    "path": "/api/organization/members",
+    "file": "apps/control-plane-api/src/organization-routes.ts",
+    "line": 40,
+    "group": "organization",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [
+      "admin"
+    ],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (_req, res) =>\r\n    res.json(await db.listMembers(res.locals['actor'].organizationId))"
+  },
+  {
+    "method": "POST",
+    "path": "/api/organization/members/:id/disable",
+    "file": "apps/control-plane-api/src/organization-routes.ts",
+    "line": 67,
+    "group": "organization",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [
+      "admin"
+    ],
+    "status": [
+      "204"
+    ],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) => {\r\n    await db.disableMember(res.locals['actor'], z.string().uuid().parse(req.params['id']));\r\n    res.status(204).end();\r\n  }"
+  },
+  {
+    "method": "POST",
+    "path": "/api/organization/members/:id/recovery-link",
+    "file": "apps/control-plane-api/src/organization-routes.ts",
+    "line": 79,
+    "group": "organization",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [
+      "admin",
+      "linkLimit"
+    ],
+    "status": [
+      "201",
+      "409"
+    ],
+    "errors": [
+      "RECOVERY_STATE_CONFLICT"
+    ],
+    "bindings": [],
+    "handler": "async (req, res) => {\r\n    if (config.mode !== 'password') return;\r\n    const { purpose } = z\r\n      .object({ purpose: z.enum(['activate', 'reset']) })\r\n      .strict()\r\n      .parse(req.body);\r\n    const id = z.string().uuid().parse(req.params['id']);\r\n    try {\r\n      const result = await db.issueEmployeeLink(res.locals['actor'], id, purpose);\r\n      res.status(201).json({\r\n        employeeId: id,\r\n        purpose,\r\n        expiresAt: result.expiresAt,\r\n        activationUrl: activationUrl(config.employeeUrl, result.token, purpose),\r\n        delivery: 'MANUAL',\r\n      });\r\n    } catch (error) {\r\n      if (error instanceof Error && error.message === 'RECOVERY_STATE_CONFLICT') {\r\n        res.status(409).json({ error: 'RECOVERY_STATE_CONFLICT' });\r\n        return;\r\n      }\r\n      throw error;\r\n    }\r\n  }"
+  },
+  {
+    "method": "GET",
+    "path": "/api/organization/memberships",
+    "file": "apps/control-plane-api/src/organization/tenancy-routes.ts",
+    "line": 73,
+    "group": "organization",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) =>\r\n    res.json(await service.listMemberships(res.locals['actor'], req.query))"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/organization/memberships/:id/status",
+    "file": "apps/control-plane-api/src/organization/tenancy-routes.ts",
+    "line": 76,
+    "group": "organization",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) =>\r\n    res.json(await service.setMembershipStatus(res.locals['actor'], req.params['id'], req.body))"
+  },
+  {
+    "method": "GET",
+    "path": "/api/organization/profile",
+    "file": "apps/control-plane-api/src/organization/tenancy-routes.ts",
+    "line": 20,
+    "group": "organization",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (_req, res) => res.json(await service.profile(res.locals['actor']))"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/organization/profile",
+    "file": "apps/control-plane-api/src/organization/tenancy-routes.ts",
+    "line": 24,
+    "group": "organization",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) =>\r\n    res.json(await service.updateProfile(res.locals['actor'], req.body))"
+  },
+  {
+    "method": "GET",
+    "path": "/api/organization/setup-progress",
+    "file": "apps/control-plane-api/src/organization/tenancy-routes.ts",
+    "line": 21,
+    "group": "organization",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (_req, res) =>\r\n    res.json(await service.setupProgress(res.locals['actor']))"
+  },
+  {
+    "method": "GET",
+    "path": "/api/organization/units",
+    "file": "apps/control-plane-api/src/organization/structure-routes.ts",
+    "line": 19,
+    "group": "organization",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) => res.json(await service.list(res.locals['actor'], req.query))"
+  },
+  {
+    "method": "POST",
+    "path": "/api/organization/units",
+    "file": "apps/control-plane-api/src/organization/structure-routes.ts",
+    "line": 23,
+    "group": "organization",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [
+      "201"
+    ],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) =>\r\n    res.status(201).json(await service.save(res.locals['actor'], req.body))"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/organization/units/:id",
+    "file": "apps/control-plane-api/src/organization/structure-routes.ts",
+    "line": 35,
+    "group": "organization",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) =>\r\n    res.json(await service.save(res.locals['actor'], req.body, req.params['id']))"
+  },
+  {
+    "method": "GET",
+    "path": "/api/organization/units/:id/ancestors",
+    "file": "apps/control-plane-api/src/organization/structure-routes.ts",
+    "line": 26,
+    "group": "organization",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) =>\r\n    res.json(await service.ancestors(res.locals['actor'], req.params['id']))"
+  },
+  {
+    "method": "POST",
+    "path": "/api/organization/units/:id/archive",
+    "file": "apps/control-plane-api/src/organization/structure-routes.ts",
+    "line": 38,
+    "group": "organization",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [
+      "204"
+    ],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) => {\r\n    const { version } = z.object({ version: z.number().int().positive() }).strict().parse(req.body);\r\n    await service.archive(res.locals['actor'], req.params['id'], version);\r\n    res.status(204).end();\r\n  }"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/organization/units/:id/head",
+    "file": "apps/control-plane-api/src/organization/structure-routes.ts",
+    "line": 32,
+    "group": "organization",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) =>\r\n    res.json(await service.setHeadPosition(res.locals['actor'], req.params['id'], req.body))"
+  },
+  {
+    "method": "GET",
+    "path": "/api/organization/units/:id/head-position-options",
+    "file": "apps/control-plane-api/src/organization/structure-routes.ts",
+    "line": 29,
+    "group": "organization",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) =>\r\n    res.json(await service.headPositionOptions(res.locals['actor'], req.params['id'], req.query))"
+  },
+  {
+    "method": "GET",
+    "path": "/api/organization/units/:id/members",
+    "file": "apps/control-plane-api/src/organization/structure-routes.ts",
+    "line": 43,
+    "group": "organization",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) =>\r\n    res.json(await service.members(res.locals['actor'], req.params['id'], req.query))"
+  },
+  {
+    "method": "POST",
+    "path": "/api/organization/units/:id/members",
+    "file": "apps/control-plane-api/src/organization/structure-routes.ts",
+    "line": 46,
+    "group": "organization",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [
+      "201"
+    ],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) => {\r\n    await service.addMember(res.locals['actor'], req.params['id'], req.body);\r\n    res.status(201).json({ saved: true });\r\n  }"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/organization/units/:id/members/:membershipId",
+    "file": "apps/control-plane-api/src/organization/structure-routes.ts",
+    "line": 50,
+    "group": "organization",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [
+      "204"
+    ],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) => {\r\n    await service.removeMember(res.locals['actor'], req.params['id'], req.params['membershipId']);\r\n    res.status(204).end();\r\n  }"
+  },
+  {
+    "method": "GET",
+    "path": "/api/organization/units/employee-options",
+    "file": "apps/control-plane-api/src/organization/structure-routes.ts",
+    "line": 20,
+    "group": "organization",
+    "access": "Password-mode organization admin; service authorization",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (req, res) =>\r\n    res.json(await service.employeeOptions(res.locals['actor'], req.query))"
+  },
+  {
+    "method": "POST",
+    "path": "/runtime/v1/actions",
+    "file": "apps/control-plane-api/src/runtime/runtime-routes.ts",
+    "line": 106,
+    "group": "runtime",
+    "access": "Agent workload signature",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (request, response) => {\r\n    const runtime = await authenticate(request);\r\n    response.json(await transport.requestAction(runtime, json(request)));\r\n  }"
+  },
+  {
+    "method": "POST",
+    "path": "/runtime/v1/actions/execute",
+    "file": "apps/control-plane-api/src/runtime/runtime-routes.ts",
+    "line": 110,
+    "group": "runtime",
+    "access": "Agent workload signature",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (request, response) => {\r\n    const runtime = await authenticate(request);\r\n    response.json(await transport.executeAction(runtime, json(request)));\r\n  }"
+  },
+  {
+    "method": "POST",
+    "path": "/runtime/v1/actions/grant",
+    "file": "apps/control-plane-api/src/runtime/runtime-routes.ts",
+    "line": 114,
+    "group": "runtime",
+    "access": "Agent workload signature",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (request, response) => {\r\n    const runtime = await authenticate(request);\r\n    response.json(await transport.issueGrant(runtime, json(request)));\r\n  }"
+  },
+  {
+    "method": "PUT",
+    "path": "/runtime/v1/artifact-content/:token",
+    "file": "apps/control-plane-api/src/runtime/runtime-routes.ts",
+    "line": 162,
+    "group": "runtime",
+    "access": "Execution workload signature",
+    "middleware": [],
+    "status": [
+      "204"
+    ],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (request, response) => {\r\n      const runtime = await authenticateExecution(request);\r\n      await artifacts.receiveDirectContent(\r\n        runtime,\r\n        String(request.params['token']),\r\n        Buffer.isBuffer(request.body) ? request.body : Buffer.alloc(0),\r\n      );\r\n      response.status(204).end();\r\n    }"
+  },
+  {
+    "method": "POST",
+    "path": "/runtime/v1/artifacts",
+    "file": "apps/control-plane-api/src/runtime/runtime-routes.ts",
+    "line": 144,
+    "group": "runtime",
+    "access": "Agent workload signature",
+    "middleware": [],
+    "status": [
+      "201"
+    ],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (request, response) => {\r\n    const runtime = await authenticate(request);\r\n    response.status(201).json(await artifacts.uploadFromAgent(runtime, json(request)));\r\n  }"
+  },
+  {
+    "method": "POST",
+    "path": "/runtime/v1/artifacts/execution",
+    "file": "apps/control-plane-api/src/runtime/runtime-routes.ts",
+    "line": 148,
+    "group": "runtime",
+    "access": "Execution workload signature",
+    "middleware": [],
+    "status": [
+      "201"
+    ],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (request, response) => {\r\n      const runtime = await authenticateExecution(request);\r\n      response.status(201).json(await artifacts.uploadFromExecution(runtime, json(request)));\r\n    }"
+  },
+  {
+    "method": "POST",
+    "path": "/runtime/v1/artifacts/execution/authorize",
+    "file": "apps/control-plane-api/src/runtime/runtime-routes.ts",
+    "line": 155,
+    "group": "runtime",
+    "access": "Execution workload signature",
+    "middleware": [],
+    "status": [
+      "201"
+    ],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (request, response) => {\r\n      const runtime = await authenticateExecution(request);\r\n      response.status(201).json(await artifacts.authorizeDirectUpload(runtime, json(request)));\r\n    }"
+  },
+  {
+    "method": "POST",
+    "path": "/runtime/v1/artifacts/execution/complete",
+    "file": "apps/control-plane-api/src/runtime/runtime-routes.ts",
+    "line": 174,
+    "group": "runtime",
+    "access": "Execution workload signature",
+    "middleware": [],
+    "status": [
+      "201"
+    ],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (request, response) => {\r\n    const runtime = await authenticateExecution(request);\r\n    response.status(201).json(await artifacts.completeDirectUpload(runtime, json(request)));\r\n  }"
+  },
+  {
+    "method": "POST",
+    "path": "/runtime/v1/checkpoints",
+    "file": "apps/control-plane-api/src/runtime/runtime-routes.ts",
+    "line": 134,
+    "group": "runtime",
+    "access": "Agent workload signature",
+    "middleware": [],
+    "status": [
+      "201"
+    ],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (request, response) => {\r\n    const runtime = await authenticate(request);\r\n    response.status(201).json(await transport.saveCheckpoint(runtime, json(request)));\r\n  }"
+  },
+  {
+    "method": "POST",
+    "path": "/runtime/v1/checkpoints/load",
+    "file": "apps/control-plane-api/src/runtime/runtime-routes.ts",
+    "line": 138,
+    "group": "runtime",
+    "access": "Agent workload signature",
+    "middleware": [],
+    "status": [
+      "204"
+    ],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (request, response) => {\r\n    const runtime = await authenticate(request);\r\n    const checkpoint = await transport.loadCheckpoint(runtime, json(request));\r\n    if (!checkpoint) return response.status(204).end();\r\n    return response.json(checkpoint);\r\n  }"
+  },
+  {
+    "method": "POST",
+    "path": "/runtime/v1/commands/claim",
+    "file": "apps/control-plane-api/src/runtime/runtime-routes.ts",
+    "line": 93,
+    "group": "runtime",
+    "access": "Agent workload signature",
+    "middleware": [],
+    "status": [
+      "204"
+    ],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (request, response) => {\r\n    const runtime = await authenticate(request);\r\n    // Runtimes poll here, so no scheduler is needed to expire credential leases (ADR 0031).\r\n    await credentials.expireDue();\r\n    const claim = await transport.claim(runtime);\r\n    if (!claim) return response.status(204).end();\r\n    return response.json(claim);\r\n  }"
+  },
+  {
+    "method": "POST",
+    "path": "/runtime/v1/credentials/redeem",
+    "file": "apps/control-plane-api/src/runtime/runtime-routes.ts",
+    "line": 178,
+    "group": "runtime",
+    "access": "Execution workload signature",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (request, response) => {\r\n    const runtime = await authenticateExecution(request);\r\n    response.json(await credentials.redeem(runtime, json(request)));\r\n  }"
+  },
+  {
+    "method": "POST",
+    "path": "/runtime/v1/credentials/release",
+    "file": "apps/control-plane-api/src/runtime/runtime-routes.ts",
+    "line": 182,
+    "group": "runtime",
+    "access": "Execution workload signature",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (request, response) => {\r\n    const runtime = await authenticateExecution(request);\r\n    response.json(await credentials.release(runtime, json(request)));\r\n  }"
+  },
+  {
+    "method": "POST",
+    "path": "/runtime/v1/events",
+    "file": "apps/control-plane-api/src/runtime/runtime-routes.ts",
+    "line": 101,
+    "group": "runtime",
+    "access": "Agent workload signature",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (request, response) => {\r\n    const runtime = await authenticate(request);\r\n    const ack = await transport.ingest(runtime, json(request));\r\n    response.status(ack.duplicate ? 200 : 201).json(ack);\r\n  }"
+  },
+  {
+    "method": "POST",
+    "path": "/runtime/v1/heartbeat",
+    "file": "apps/control-plane-api/src/runtime/runtime-routes.ts",
+    "line": 130,
+    "group": "runtime",
+    "access": "Agent workload signature",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (request, response) => {\r\n    const runtime = await authenticate(request);\r\n    response.json(await transport.heartbeat(runtime, json(request)));\r\n  }"
+  },
+  {
+    "method": "POST",
+    "path": "/runtime/v1/models/credential",
+    "file": "apps/control-plane-api/src/runtime/runtime-routes.ts",
+    "line": 122,
+    "group": "runtime",
+    "access": "Agent workload signature",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (request, response) => {\r\n    const runtime = await authenticate(request);\r\n    response.json(await transport.modelCredential(runtime, json(request)));\r\n  }"
+  },
+  {
+    "method": "POST",
+    "path": "/runtime/v1/models/reserve",
+    "file": "apps/control-plane-api/src/runtime/runtime-routes.ts",
+    "line": 118,
+    "group": "runtime",
+    "access": "Agent workload signature",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (request, response) => {\r\n    const runtime = await authenticate(request);\r\n    response.json(await transport.reserveModelTokens(runtime, json(request)));\r\n  }"
+  },
+  {
+    "method": "POST",
+    "path": "/runtime/v1/models/settle",
+    "file": "apps/control-plane-api/src/runtime/runtime-routes.ts",
+    "line": 126,
+    "group": "runtime",
+    "access": "Agent workload signature",
+    "middleware": [],
+    "status": [],
+    "errors": [],
+    "bindings": [],
+    "handler": "async (request, response) => {\r\n    const runtime = await authenticate(request);\r\n    response.json(await transport.settleModelTokens(runtime, json(request)));\r\n  }"
+  }
+]
