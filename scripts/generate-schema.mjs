@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 const source=path.resolve(process.argv[2]??'.sources/platform');
-const sha='9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4';
+const sha='d2bc8d7fa3fc185cc4f487bdaa1f11611844763f';
 const base=`https://github.com/Agents-Foundry/employee-agent-platform/blob/${sha}/`;
 const folder='apps/control-plane-api/src/db/migrations';
 const migrations=[];

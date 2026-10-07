@@ -4,30 +4,30 @@
 
 **Prerequisites:** Read [HTTP conventions](README.md), sign in for browser API calls, or configure the signed workload identity for runtime calls.
 
-This reference is extracted from route registrations at `9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4`. Handler bindings below identify actual input validators, service calls and response expressions; referenced service schemas supply the full field bounds. Authentication middleware and service authorization still apply. See [request validators](request-schemas.md) and [wire contracts](contracts.md).
+This reference is extracted from route registrations at `d2bc8d7fa3fc185cc4f487bdaa1f11611844763f`. Handler bindings below identify actual input validators, service calls and response expressions; referenced service schemas supply the full field bounds. Authentication middleware and service authorization still apply. See [request validators](request-schemas.md) and [wire contracts](contracts.md).
 
 ## Endpoints
 
 | Method | Path | Access | Source |
 | --- | --- | --- | --- |
-| POST | `/runtime/v1/actions` | Agent workload signature | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/runtime/runtime-routes.ts#L106) |
-| POST | `/runtime/v1/actions/execute` | Agent workload signature | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/runtime/runtime-routes.ts#L110) |
-| POST | `/runtime/v1/actions/grant` | Agent workload signature | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/runtime/runtime-routes.ts#L114) |
-| PUT | `/runtime/v1/artifact-content/:token` | Execution workload signature | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/runtime/runtime-routes.ts#L162) |
-| POST | `/runtime/v1/artifacts` | Agent workload signature | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/runtime/runtime-routes.ts#L144) |
-| POST | `/runtime/v1/artifacts/execution` | Execution workload signature | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/runtime/runtime-routes.ts#L148) |
-| POST | `/runtime/v1/artifacts/execution/authorize` | Execution workload signature | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/runtime/runtime-routes.ts#L155) |
-| POST | `/runtime/v1/artifacts/execution/complete` | Execution workload signature | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/runtime/runtime-routes.ts#L174) |
-| POST | `/runtime/v1/checkpoints` | Agent workload signature | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/runtime/runtime-routes.ts#L134) |
-| POST | `/runtime/v1/checkpoints/load` | Agent workload signature | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/runtime/runtime-routes.ts#L138) |
-| POST | `/runtime/v1/commands/claim` | Agent workload signature | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/runtime/runtime-routes.ts#L93) |
-| POST | `/runtime/v1/credentials/redeem` | Execution workload signature | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/runtime/runtime-routes.ts#L178) |
-| POST | `/runtime/v1/credentials/release` | Execution workload signature | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/runtime/runtime-routes.ts#L182) |
-| POST | `/runtime/v1/events` | Agent workload signature | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/runtime/runtime-routes.ts#L101) |
-| POST | `/runtime/v1/heartbeat` | Agent workload signature | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/runtime/runtime-routes.ts#L130) |
-| POST | `/runtime/v1/models/credential` | Agent workload signature | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/runtime/runtime-routes.ts#L122) |
-| POST | `/runtime/v1/models/reserve` | Agent workload signature | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/runtime/runtime-routes.ts#L118) |
-| POST | `/runtime/v1/models/settle` | Agent workload signature | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/runtime/runtime-routes.ts#L126) |
+| POST | `/runtime/v1/actions` | Agent workload signature | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/runtime/runtime-routes.ts#L106) |
+| POST | `/runtime/v1/actions/execute` | Agent workload signature | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/runtime/runtime-routes.ts#L110) |
+| POST | `/runtime/v1/actions/grant` | Agent workload signature | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/runtime/runtime-routes.ts#L114) |
+| PUT | `/runtime/v1/artifact-content/:token` | Execution workload signature | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/runtime/runtime-routes.ts#L162) |
+| POST | `/runtime/v1/artifacts` | Agent workload signature | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/runtime/runtime-routes.ts#L144) |
+| POST | `/runtime/v1/artifacts/execution` | Execution workload signature | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/runtime/runtime-routes.ts#L148) |
+| POST | `/runtime/v1/artifacts/execution/authorize` | Execution workload signature | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/runtime/runtime-routes.ts#L155) |
+| POST | `/runtime/v1/artifacts/execution/complete` | Execution workload signature | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/runtime/runtime-routes.ts#L174) |
+| POST | `/runtime/v1/checkpoints` | Agent workload signature | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/runtime/runtime-routes.ts#L134) |
+| POST | `/runtime/v1/checkpoints/load` | Agent workload signature | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/runtime/runtime-routes.ts#L138) |
+| POST | `/runtime/v1/commands/claim` | Agent workload signature | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/runtime/runtime-routes.ts#L93) |
+| POST | `/runtime/v1/credentials/redeem` | Execution workload signature | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/runtime/runtime-routes.ts#L178) |
+| POST | `/runtime/v1/credentials/release` | Execution workload signature | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/runtime/runtime-routes.ts#L182) |
+| POST | `/runtime/v1/events` | Agent workload signature | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/runtime/runtime-routes.ts#L101) |
+| POST | `/runtime/v1/heartbeat` | Agent workload signature | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/runtime/runtime-routes.ts#L130) |
+| POST | `/runtime/v1/models/credential` | Agent workload signature | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/runtime/runtime-routes.ts#L122) |
+| POST | `/runtime/v1/models/reserve` | Agent workload signature | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/runtime/runtime-routes.ts#L118) |
+| POST | `/runtime/v1/models/settle` | Agent workload signature | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/runtime/runtime-routes.ts#L126) |
 
 ## POST /runtime/v1/actions
 
@@ -46,7 +46,7 @@ async (request, response) => {
   }
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/runtime/runtime-routes.ts#L106).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/runtime/runtime-routes.ts#L106).
 
 ## POST /runtime/v1/actions/execute
 
@@ -65,7 +65,7 @@ async (request, response) => {
   }
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/runtime/runtime-routes.ts#L110).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/runtime/runtime-routes.ts#L110).
 
 ## POST /runtime/v1/actions/grant
 
@@ -84,7 +84,7 @@ async (request, response) => {
   }
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/runtime/runtime-routes.ts#L114).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/runtime/runtime-routes.ts#L114).
 
 ## PUT /runtime/v1/artifact-content/:token
 
@@ -108,7 +108,7 @@ async (request, response) => {
     }
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/runtime/runtime-routes.ts#L162).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/runtime/runtime-routes.ts#L162).
 
 ## POST /runtime/v1/artifacts
 
@@ -127,7 +127,7 @@ async (request, response) => {
   }
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/runtime/runtime-routes.ts#L144).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/runtime/runtime-routes.ts#L144).
 
 ## POST /runtime/v1/artifacts/execution
 
@@ -146,7 +146,7 @@ async (request, response) => {
     }
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/runtime/runtime-routes.ts#L148).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/runtime/runtime-routes.ts#L148).
 
 ## POST /runtime/v1/artifacts/execution/authorize
 
@@ -165,7 +165,7 @@ async (request, response) => {
     }
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/runtime/runtime-routes.ts#L155).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/runtime/runtime-routes.ts#L155).
 
 ## POST /runtime/v1/artifacts/execution/complete
 
@@ -184,7 +184,7 @@ async (request, response) => {
   }
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/runtime/runtime-routes.ts#L174).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/runtime/runtime-routes.ts#L174).
 
 ## POST /runtime/v1/checkpoints
 
@@ -203,7 +203,7 @@ async (request, response) => {
   }
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/runtime/runtime-routes.ts#L134).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/runtime/runtime-routes.ts#L134).
 
 ## POST /runtime/v1/checkpoints/load
 
@@ -224,7 +224,7 @@ async (request, response) => {
   }
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/runtime/runtime-routes.ts#L138).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/runtime/runtime-routes.ts#L138).
 
 ## POST /runtime/v1/commands/claim
 
@@ -247,7 +247,7 @@ async (request, response) => {
   }
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/runtime/runtime-routes.ts#L93).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/runtime/runtime-routes.ts#L93).
 
 ## POST /runtime/v1/credentials/redeem
 
@@ -266,7 +266,7 @@ async (request, response) => {
   }
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/runtime/runtime-routes.ts#L178).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/runtime/runtime-routes.ts#L178).
 
 ## POST /runtime/v1/credentials/release
 
@@ -285,7 +285,7 @@ async (request, response) => {
   }
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/runtime/runtime-routes.ts#L182).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/runtime/runtime-routes.ts#L182).
 
 ## POST /runtime/v1/events
 
@@ -305,7 +305,7 @@ async (request, response) => {
   }
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/runtime/runtime-routes.ts#L101).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/runtime/runtime-routes.ts#L101).
 
 ## POST /runtime/v1/heartbeat
 
@@ -324,7 +324,7 @@ async (request, response) => {
   }
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/runtime/runtime-routes.ts#L130).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/runtime/runtime-routes.ts#L130).
 
 ## POST /runtime/v1/models/credential
 
@@ -343,7 +343,7 @@ async (request, response) => {
   }
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/runtime/runtime-routes.ts#L122).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/runtime/runtime-routes.ts#L122).
 
 ## POST /runtime/v1/models/reserve
 
@@ -362,7 +362,7 @@ async (request, response) => {
   }
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/runtime/runtime-routes.ts#L118).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/runtime/runtime-routes.ts#L118).
 
 ## POST /runtime/v1/models/settle
 
@@ -381,7 +381,7 @@ async (request, response) => {
   }
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/runtime/runtime-routes.ts#L126).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/runtime/runtime-routes.ts#L126).
 
 ## Related documentation
 

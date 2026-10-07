@@ -20,12 +20,12 @@ An approval request is a pause, not completion. Rejection or expiry prevents tha
 
 ## Source provenance
 
-Reviewed against platform commit `9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4`. These references support the behavior described; types alone are not evidence that a capability executes.
+Reviewed against platform commit `d2bc8d7fa3fc185cc4f487bdaa1f11611844763f`. These references support the behavior described; types alone are not evidence that a capability executes.
 
-- [apps/employee-desktop/src/app/app.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/employee-desktop/src/app/app.ts)
-- [apps/employee-desktop/src/app/app.html](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/employee-desktop/src/app/app.html)
-- [apps/employee-desktop/src/app/verify-manifest.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/employee-desktop/src/app/verify-manifest.ts)
-- [apps/control-plane-api/src/execution/execution-routes.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/execution/execution-routes.ts)
+- [apps/employee-desktop/src/app/app.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/employee-desktop/src/app/app.ts)
+- [apps/employee-desktop/src/app/app.html](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/employee-desktop/src/app/app.html)
+- [apps/employee-desktop/src/app/verify-manifest.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/employee-desktop/src/app/verify-manifest.ts)
+- [apps/control-plane-api/src/execution/execution-routes.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/execution/execution-routes.ts)
 
 ## Related documentation
 

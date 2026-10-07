@@ -4,47 +4,47 @@
 
 **Prerequisites:** Read [HTTP conventions](README.md), sign in for browser API calls, or configure the signed workload identity for runtime calls.
 
-This reference is extracted from route registrations at `9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4`. Handler bindings below identify actual input validators, service calls and response expressions; referenced service schemas supply the full field bounds. Authentication middleware and service authorization still apply. See [request validators](request-schemas.md) and [wire contracts](contracts.md).
+This reference is extracted from route registrations at `d2bc8d7fa3fc185cc4f487bdaa1f11611844763f`. Handler bindings below identify actual input validators, service calls and response expressions; referenced service schemas supply the full field bounds. Authentication middleware and service authorization still apply. See [request validators](request-schemas.md) and [wire contracts](contracts.md).
 
 ## Endpoints
 
 | Method | Path | Access | Source |
 | --- | --- | --- | --- |
-| GET | `/api/organization/agents` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/app.ts#L209) |
-| POST | `/api/organization/agents` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/app.ts#L215) |
-| GET | `/api/organization/domains` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/tenancy-routes.ts#L27) |
-| POST | `/api/organization/domains` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/tenancy-routes.ts#L30) |
-| POST | `/api/organization/domains/:id/primary` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/tenancy-routes.ts#L36) |
-| POST | `/api/organization/domains/:id/verify` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/tenancy-routes.ts#L33) |
-| GET | `/api/organization/employees` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/tenancy-routes.ts#L39) |
-| POST | `/api/organization/employees` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/tenancy-routes.ts#L42) |
-| PUT | `/api/organization/employees/:id` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/tenancy-routes.ts#L45) |
-| POST | `/api/organization/employees/:id/invitation` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/tenancy-routes.ts#L51) |
-| PUT | `/api/organization/employees/:id/position` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/tenancy-routes.ts#L48) |
-| POST | `/api/organization/invitations` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization-routes.ts#L43) |
-| GET | `/api/organization/jobs/:kind` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/job-routes.ts#L18) |
-| POST | `/api/organization/jobs/:kind` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/job-routes.ts#L21) |
-| PUT | `/api/organization/jobs/:kind/:id` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/job-routes.ts#L24) |
-| POST | `/api/organization/jobs/:kind/:id/archive` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/job-routes.ts#L29) |
-| GET | `/api/organization/members` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization-routes.ts#L40) |
-| POST | `/api/organization/members/:id/disable` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization-routes.ts#L67) |
-| POST | `/api/organization/members/:id/recovery-link` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization-routes.ts#L79) |
-| GET | `/api/organization/memberships` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/tenancy-routes.ts#L73) |
-| PUT | `/api/organization/memberships/:id/status` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/tenancy-routes.ts#L76) |
-| GET | `/api/organization/profile` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/tenancy-routes.ts#L20) |
-| PUT | `/api/organization/profile` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/tenancy-routes.ts#L24) |
-| GET | `/api/organization/setup-progress` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/tenancy-routes.ts#L21) |
-| GET | `/api/organization/units` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/structure-routes.ts#L19) |
-| POST | `/api/organization/units` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/structure-routes.ts#L23) |
-| PUT | `/api/organization/units/:id` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/structure-routes.ts#L35) |
-| GET | `/api/organization/units/:id/ancestors` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/structure-routes.ts#L26) |
-| POST | `/api/organization/units/:id/archive` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/structure-routes.ts#L38) |
-| PUT | `/api/organization/units/:id/head` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/structure-routes.ts#L32) |
-| GET | `/api/organization/units/:id/head-position-options` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/structure-routes.ts#L29) |
-| GET | `/api/organization/units/:id/members` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/structure-routes.ts#L43) |
-| POST | `/api/organization/units/:id/members` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/structure-routes.ts#L46) |
-| DELETE | `/api/organization/units/:id/members/:membershipId` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/structure-routes.ts#L50) |
-| GET | `/api/organization/units/employee-options` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/structure-routes.ts#L20) |
+| GET | `/api/organization/agents` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/app.ts#L209) |
+| POST | `/api/organization/agents` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/app.ts#L215) |
+| GET | `/api/organization/domains` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/tenancy-routes.ts#L27) |
+| POST | `/api/organization/domains` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/tenancy-routes.ts#L30) |
+| POST | `/api/organization/domains/:id/primary` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/tenancy-routes.ts#L36) |
+| POST | `/api/organization/domains/:id/verify` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/tenancy-routes.ts#L33) |
+| GET | `/api/organization/employees` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/tenancy-routes.ts#L39) |
+| POST | `/api/organization/employees` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/tenancy-routes.ts#L42) |
+| PUT | `/api/organization/employees/:id` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/tenancy-routes.ts#L45) |
+| POST | `/api/organization/employees/:id/invitation` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/tenancy-routes.ts#L51) |
+| PUT | `/api/organization/employees/:id/position` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/tenancy-routes.ts#L48) |
+| POST | `/api/organization/invitations` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization-routes.ts#L43) |
+| GET | `/api/organization/jobs/:kind` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/job-routes.ts#L18) |
+| POST | `/api/organization/jobs/:kind` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/job-routes.ts#L21) |
+| PUT | `/api/organization/jobs/:kind/:id` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/job-routes.ts#L24) |
+| POST | `/api/organization/jobs/:kind/:id/archive` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/job-routes.ts#L29) |
+| GET | `/api/organization/members` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization-routes.ts#L40) |
+| POST | `/api/organization/members/:id/disable` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization-routes.ts#L67) |
+| POST | `/api/organization/members/:id/recovery-link` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization-routes.ts#L79) |
+| GET | `/api/organization/memberships` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/tenancy-routes.ts#L73) |
+| PUT | `/api/organization/memberships/:id/status` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/tenancy-routes.ts#L76) |
+| GET | `/api/organization/profile` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/tenancy-routes.ts#L20) |
+| PUT | `/api/organization/profile` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/tenancy-routes.ts#L24) |
+| GET | `/api/organization/setup-progress` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/tenancy-routes.ts#L21) |
+| GET | `/api/organization/units` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/structure-routes.ts#L19) |
+| POST | `/api/organization/units` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/structure-routes.ts#L23) |
+| PUT | `/api/organization/units/:id` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/structure-routes.ts#L35) |
+| GET | `/api/organization/units/:id/ancestors` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/structure-routes.ts#L26) |
+| POST | `/api/organization/units/:id/archive` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/structure-routes.ts#L38) |
+| PUT | `/api/organization/units/:id/head` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/structure-routes.ts#L32) |
+| GET | `/api/organization/units/:id/head-position-options` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/structure-routes.ts#L29) |
+| GET | `/api/organization/units/:id/members` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/structure-routes.ts#L43) |
+| POST | `/api/organization/units/:id/members` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/structure-routes.ts#L46) |
+| DELETE | `/api/organization/units/:id/members/:membershipId` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/structure-routes.ts#L50) |
+| GET | `/api/organization/units/employee-options` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/structure-routes.ts#L20) |
 
 ## GET /api/organization/agents
 
@@ -65,7 +65,7 @@ async (_request, response) => {
   }
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/app.ts#L209).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/app.ts#L209).
 
 ## POST /api/organization/agents
 
@@ -106,7 +106,7 @@ async (request, response) => {
   }
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/app.ts#L215).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/app.ts#L215).
 
 ## GET /api/organization/domains
 
@@ -123,7 +123,7 @@ async (_req, res) =>
     res.json(await service.listDomains(res.locals['actor']))
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/tenancy-routes.ts#L27).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/tenancy-routes.ts#L27).
 
 ## POST /api/organization/domains
 
@@ -140,7 +140,7 @@ async (req, res) =>
     res.status(201).json(await service.registerDomain(res.locals['actor'], req.body))
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/tenancy-routes.ts#L30).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/tenancy-routes.ts#L30).
 
 ## POST /api/organization/domains/:id/primary
 
@@ -157,7 +157,7 @@ async (req, res) =>
     res.json(await service.setPrimaryDomain(res.locals['actor'], req.params['id']))
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/tenancy-routes.ts#L36).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/tenancy-routes.ts#L36).
 
 ## POST /api/organization/domains/:id/verify
 
@@ -174,7 +174,7 @@ async (req, res) =>
     res.json(await service.verifyDomain(res.locals['actor'], req.params['id']))
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/tenancy-routes.ts#L33).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/tenancy-routes.ts#L33).
 
 ## GET /api/organization/employees
 
@@ -191,7 +191,7 @@ async (req, res) =>
     res.json(await service.listEmployees(res.locals['actor'], req.query))
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/tenancy-routes.ts#L39).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/tenancy-routes.ts#L39).
 
 ## POST /api/organization/employees
 
@@ -208,7 +208,7 @@ async (req, res) =>
     res.status(201).json(await service.createEmployee(res.locals['actor'], req.body))
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/tenancy-routes.ts#L42).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/tenancy-routes.ts#L42).
 
 ## PUT /api/organization/employees/:id
 
@@ -225,7 +225,7 @@ async (req, res) =>
     res.json(await service.updateEmployee(res.locals['actor'], req.params['id'], req.body))
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/tenancy-routes.ts#L45).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/tenancy-routes.ts#L45).
 
 ## POST /api/organization/employees/:id/invitation
 
@@ -262,7 +262,7 @@ async (req, res) => {
   }
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/tenancy-routes.ts#L51).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/tenancy-routes.ts#L51).
 
 ## PUT /api/organization/employees/:id/position
 
@@ -279,7 +279,7 @@ async (req, res) =>
     res.json(await service.assignPosition(res.locals['actor'], req.params['id'], req.body))
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/tenancy-routes.ts#L48).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/tenancy-routes.ts#L48).
 
 ## POST /api/organization/invitations
 
@@ -318,7 +318,7 @@ async (req, res) => {
   }
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization-routes.ts#L43).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization-routes.ts#L43).
 
 ## GET /api/organization/jobs/:kind
 
@@ -335,7 +335,7 @@ async (req, res) =>
     res.json(await service.list(res.locals['actor'], req.params['kind'], req.query))
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/job-routes.ts#L18).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/job-routes.ts#L18).
 
 ## POST /api/organization/jobs/:kind
 
@@ -352,7 +352,7 @@ async (req, res) =>
     res.status(201).json(await service.save(res.locals['actor'], req.params['kind'], req.body))
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/job-routes.ts#L21).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/job-routes.ts#L21).
 
 ## PUT /api/organization/jobs/:kind/:id
 
@@ -371,7 +371,7 @@ async (req, res) =>
     )
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/job-routes.ts#L24).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/job-routes.ts#L24).
 
 ## POST /api/organization/jobs/:kind/:id/archive
 
@@ -391,7 +391,7 @@ async (req, res) => {
   }
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/job-routes.ts#L29).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/job-routes.ts#L29).
 
 ## GET /api/organization/members
 
@@ -408,7 +408,7 @@ async (_req, res) =>
     res.json(await db.listMembers(res.locals['actor'].organizationId))
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization-routes.ts#L40).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization-routes.ts#L40).
 
 ## POST /api/organization/members/:id/disable
 
@@ -427,7 +427,7 @@ async (req, res) => {
   }
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization-routes.ts#L67).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization-routes.ts#L67).
 
 ## POST /api/organization/members/:id/recovery-link
 
@@ -466,7 +466,7 @@ async (req, res) => {
   }
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization-routes.ts#L79).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization-routes.ts#L79).
 
 ## GET /api/organization/memberships
 
@@ -483,7 +483,7 @@ async (req, res) =>
     res.json(await service.listMemberships(res.locals['actor'], req.query))
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/tenancy-routes.ts#L73).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/tenancy-routes.ts#L73).
 
 ## PUT /api/organization/memberships/:id/status
 
@@ -500,7 +500,7 @@ async (req, res) =>
     res.json(await service.setMembershipStatus(res.locals['actor'], req.params['id'], req.body))
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/tenancy-routes.ts#L76).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/tenancy-routes.ts#L76).
 
 ## GET /api/organization/profile
 
@@ -516,7 +516,7 @@ Request/response implementation binding (TypeScript, not a copyable HTTP command
 async (_req, res) => res.json(await service.profile(res.locals['actor']))
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/tenancy-routes.ts#L20).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/tenancy-routes.ts#L20).
 
 ## PUT /api/organization/profile
 
@@ -533,7 +533,7 @@ async (req, res) =>
     res.json(await service.updateProfile(res.locals['actor'], req.body))
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/tenancy-routes.ts#L24).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/tenancy-routes.ts#L24).
 
 ## GET /api/organization/setup-progress
 
@@ -550,7 +550,7 @@ async (_req, res) =>
     res.json(await service.setupProgress(res.locals['actor']))
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/tenancy-routes.ts#L21).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/tenancy-routes.ts#L21).
 
 ## GET /api/organization/units
 
@@ -566,7 +566,7 @@ Request/response implementation binding (TypeScript, not a copyable HTTP command
 async (req, res) => res.json(await service.list(res.locals['actor'], req.query))
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/structure-routes.ts#L19).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/structure-routes.ts#L19).
 
 ## POST /api/organization/units
 
@@ -583,7 +583,7 @@ async (req, res) =>
     res.status(201).json(await service.save(res.locals['actor'], req.body))
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/structure-routes.ts#L23).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/structure-routes.ts#L23).
 
 ## PUT /api/organization/units/:id
 
@@ -600,7 +600,7 @@ async (req, res) =>
     res.json(await service.save(res.locals['actor'], req.body, req.params['id']))
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/structure-routes.ts#L35).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/structure-routes.ts#L35).
 
 ## GET /api/organization/units/:id/ancestors
 
@@ -617,7 +617,7 @@ async (req, res) =>
     res.json(await service.ancestors(res.locals['actor'], req.params['id']))
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/structure-routes.ts#L26).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/structure-routes.ts#L26).
 
 ## POST /api/organization/units/:id/archive
 
@@ -637,7 +637,7 @@ async (req, res) => {
   }
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/structure-routes.ts#L38).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/structure-routes.ts#L38).
 
 ## PUT /api/organization/units/:id/head
 
@@ -654,7 +654,7 @@ async (req, res) =>
     res.json(await service.setHeadPosition(res.locals['actor'], req.params['id'], req.body))
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/structure-routes.ts#L32).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/structure-routes.ts#L32).
 
 ## GET /api/organization/units/:id/head-position-options
 
@@ -671,7 +671,7 @@ async (req, res) =>
     res.json(await service.headPositionOptions(res.locals['actor'], req.params['id'], req.query))
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/structure-routes.ts#L29).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/structure-routes.ts#L29).
 
 ## GET /api/organization/units/:id/members
 
@@ -688,7 +688,7 @@ async (req, res) =>
     res.json(await service.members(res.locals['actor'], req.params['id'], req.query))
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/structure-routes.ts#L43).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/structure-routes.ts#L43).
 
 ## POST /api/organization/units/:id/members
 
@@ -707,7 +707,7 @@ async (req, res) => {
   }
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/structure-routes.ts#L46).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/structure-routes.ts#L46).
 
 ## DELETE /api/organization/units/:id/members/:membershipId
 
@@ -726,7 +726,7 @@ async (req, res) => {
   }
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/structure-routes.ts#L50).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/structure-routes.ts#L50).
 
 ## GET /api/organization/units/employee-options
 
@@ -743,7 +743,7 @@ async (req, res) =>
     res.json(await service.employeeOptions(res.locals['actor'], req.query))
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/structure-routes.ts#L20).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/structure-routes.ts#L20).
 
 ## Related documentation
 

@@ -10,7 +10,7 @@ Prerequisites: Node 24, npm, Git and access to the pinned product repository. Th
 npm ci
 npm run check
 git clone https://github.com/Agents-Foundry/employee-agent-platform.git .sources/platform
-git -C .sources/platform checkout 9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4
+git -C .sources/platform checkout d2bc8d7fa3fc185cc4f487bdaa1f11611844763f
 npm run check:source
 ```
 

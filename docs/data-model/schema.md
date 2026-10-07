@@ -12,70 +12,70 @@ The current control plane uses PostgreSQL, with 15 registered migrations. This d
 
 | Table | Ownership | Source |
 | --- | --- | --- |
-| [organizations](#organizations) | Global/auth/catalog or special-scope table; inspect grants/policy | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
-| [users](#users) | Global/auth/catalog or special-scope table; inspect grants/policy | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
-| [employees](#employees) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
-| [organization_memberships](#organization_memberships) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
-| [identities](#identities) | Global/auth/catalog or special-scope table; inspect grants/policy | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
-| [login_transactions](#login_transactions) | Global/auth/catalog or special-scope table; inspect grants/policy | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
-| [password_credentials](#password_credentials) | Global/auth/catalog or special-scope table; inspect grants/policy | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
-| [account_password_credentials](#account_password_credentials) | Global/auth/catalog or special-scope table; inspect grants/policy | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
-| [auth_sessions](#auth_sessions) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
-| [invitations](#invitations) | Global/auth/catalog or special-scope table; inspect grants/policy | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
-| [password_resets](#password_resets) | Global/auth/catalog or special-scope table; inspect grants/policy | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
-| [account_link_invitations](#account_link_invitations) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
-| [catalog_blueprint_versions](#catalog_blueprint_versions) | Global/auth/catalog or special-scope table; inspect grants/policy | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
-| [organization_agent_installations](#organization_agent_installations) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
-| [agents](#agents) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
-| [agent_manifests](#agent_manifests) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
-| [agent_assignments](#agent_assignments) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
-| [admin_agent_batches](#admin_agent_batches) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
-| [provisioning_requests](#provisioning_requests) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
-| [conversations](#conversations) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
-| [messages](#messages) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
-| [approvals](#approvals) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
-| [qa_runs](#qa_runs) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
-| [llm_key_bindings](#llm_key_bindings) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
-| [audit_events](#audit_events) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
-| [organizational_units](#organizational_units) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
-| [organization_change_events](#organization_change_events) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
-| [job_families](#job_families) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
-| [job_disciplines](#job_disciplines) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
-| [roles](#roles) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
-| [job_levels](#job_levels) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
-| [positions](#positions) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
-| [organizational_unit_memberships](#organizational_unit_memberships) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
-| [organization_domains](#organization_domains) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
-| [employee_position_assignments](#employee_position_assignments) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
-| [agent_threads](#agent_threads) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
-| [agent_runs](#agent_runs) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
-| [agent_run_steps](#agent_run_steps) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
-| [agent_events](#agent_events) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
-| [agent_artifacts](#agent_artifacts) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
-| [agent_run_leases](#agent_run_leases) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
-| [runtime_request_nonces](#runtime_request_nonces) | Global/auth/catalog or special-scope table; inspect grants/policy | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
-| [organization_connector_connections](#organization_connector_connections) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
-| [agent_action_requests](#agent_action_requests) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
-| [organization_action_policies](#organization_action_policies) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
-| [agent_action_executions](#agent_action_executions) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
-| [agent_execution_grants](#agent_execution_grants) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
-| [organization_model_budgets](#organization_model_budgets) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0002-model-spending.ts) |
-| [model_usage_reservations](#model_usage_reservations) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0002-model-spending.ts) |
-| [model_prices](#model_prices) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0003-model-prices.ts) |
-| [model_budget_alerts](#model_budget_alerts) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0004-model-budget-alerts.ts) |
-| [organization_alert_webhooks](#organization_alert_webhooks) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0005-alert-webhooks.ts) |
-| [alert_webhook_deliveries](#alert_webhook_deliveries) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0005-alert-webhooks.ts) |
-| [model_quality_results](#model_quality_results) | Global/auth/catalog or special-scope table; inspect grants/policy | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0006-model-quality-results.ts) |
-| [organization_source_control_connections](#organization_source_control_connections) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0011-repository-credentials.ts) |
-| [repository_credential_leases](#repository_credential_leases) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0011-repository-credentials.ts) |
-| [agent_run_checkpoints](#agent_run_checkpoints) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0012-run-recovery.ts) |
-| [agent_artifact_objects](#agent_artifact_objects) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0013-artifact-objects.ts) |
-| [organization_model_credentials](#organization_model_credentials) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0014-model-credentials.ts) |
-| [agent_action_reconciliations](#agent_action_reconciliations) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0015-action-reconciliation.ts) |
+| [organizations](#organizations) | Global/auth/catalog or special-scope table; inspect grants/policy | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
+| [users](#users) | Global/auth/catalog or special-scope table; inspect grants/policy | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
+| [employees](#employees) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
+| [organization_memberships](#organization_memberships) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
+| [identities](#identities) | Global/auth/catalog or special-scope table; inspect grants/policy | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
+| [login_transactions](#login_transactions) | Global/auth/catalog or special-scope table; inspect grants/policy | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
+| [password_credentials](#password_credentials) | Global/auth/catalog or special-scope table; inspect grants/policy | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
+| [account_password_credentials](#account_password_credentials) | Global/auth/catalog or special-scope table; inspect grants/policy | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
+| [auth_sessions](#auth_sessions) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
+| [invitations](#invitations) | Global/auth/catalog or special-scope table; inspect grants/policy | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
+| [password_resets](#password_resets) | Global/auth/catalog or special-scope table; inspect grants/policy | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
+| [account_link_invitations](#account_link_invitations) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
+| [catalog_blueprint_versions](#catalog_blueprint_versions) | Global/auth/catalog or special-scope table; inspect grants/policy | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
+| [organization_agent_installations](#organization_agent_installations) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
+| [agents](#agents) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
+| [agent_manifests](#agent_manifests) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
+| [agent_assignments](#agent_assignments) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
+| [admin_agent_batches](#admin_agent_batches) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
+| [provisioning_requests](#provisioning_requests) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
+| [conversations](#conversations) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
+| [messages](#messages) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
+| [approvals](#approvals) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
+| [qa_runs](#qa_runs) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
+| [llm_key_bindings](#llm_key_bindings) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
+| [audit_events](#audit_events) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
+| [organizational_units](#organizational_units) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
+| [organization_change_events](#organization_change_events) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
+| [job_families](#job_families) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
+| [job_disciplines](#job_disciplines) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
+| [roles](#roles) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
+| [job_levels](#job_levels) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
+| [positions](#positions) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
+| [organizational_unit_memberships](#organizational_unit_memberships) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
+| [organization_domains](#organization_domains) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
+| [employee_position_assignments](#employee_position_assignments) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
+| [agent_threads](#agent_threads) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
+| [agent_runs](#agent_runs) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
+| [agent_run_steps](#agent_run_steps) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
+| [agent_events](#agent_events) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
+| [agent_artifacts](#agent_artifacts) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
+| [agent_run_leases](#agent_run_leases) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
+| [runtime_request_nonces](#runtime_request_nonces) | Global/auth/catalog or special-scope table; inspect grants/policy | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
+| [organization_connector_connections](#organization_connector_connections) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
+| [agent_action_requests](#agent_action_requests) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
+| [organization_action_policies](#organization_action_policies) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
+| [agent_action_executions](#agent_action_executions) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
+| [agent_execution_grants](#agent_execution_grants) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts) |
+| [organization_model_budgets](#organization_model_budgets) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0002-model-spending.ts) |
+| [model_usage_reservations](#model_usage_reservations) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0002-model-spending.ts) |
+| [model_prices](#model_prices) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0003-model-prices.ts) |
+| [model_budget_alerts](#model_budget_alerts) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0004-model-budget-alerts.ts) |
+| [organization_alert_webhooks](#organization_alert_webhooks) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0005-alert-webhooks.ts) |
+| [alert_webhook_deliveries](#alert_webhook_deliveries) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0005-alert-webhooks.ts) |
+| [model_quality_results](#model_quality_results) | Global/auth/catalog or special-scope table; inspect grants/policy | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0006-model-quality-results.ts) |
+| [organization_source_control_connections](#organization_source_control_connections) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0011-repository-credentials.ts) |
+| [repository_credential_leases](#repository_credential_leases) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0011-repository-credentials.ts) |
+| [agent_run_checkpoints](#agent_run_checkpoints) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0012-run-recovery.ts) |
+| [agent_artifact_objects](#agent_artifact_objects) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0013-artifact-objects.ts) |
+| [organization_model_credentials](#organization_model_credentials) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0014-model-credentials.ts) |
+| [agent_action_reconciliations](#agent_action_reconciliations) | Tenant ID on row; verify FORCE RLS in migration | [migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0015-action-reconciliation.ts) |
 
 ## organizations
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -103,7 +103,7 @@ CREATE UNIQUE INDEX organization_code_unique ON organizations(lower(code));
 
 ## users
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -121,7 +121,7 @@ CREATE UNIQUE INDEX users_email_unique ON users(lower(email));
 
 ## employees
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -149,7 +149,7 @@ CREATE UNIQUE INDEX employee_user_tenant_link ON employees(organization_id,id,us
 
 ## organization_memberships
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -180,7 +180,7 @@ CREATE INDEX memberships_user_status ON organization_memberships(user_id,members
 
 ## identities
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -198,7 +198,7 @@ PRIMARY KEY (issuer, subject)
 
 ## login_transactions
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -208,7 +208,7 @@ PRIMARY KEY (issuer, subject)
 
 ## password_credentials
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -225,7 +225,7 @@ FOREIGN KEY (issuer, subject) REFERENCES identities(issuer, subject)
 
 ## account_password_credentials
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -235,7 +235,7 @@ FOREIGN KEY (issuer, subject) REFERENCES identities(issuer, subject)
 
 ## auth_sessions
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -254,7 +254,7 @@ CREATE INDEX account_sessions_by_user ON auth_sessions(user_id,organization_id);
 
 ## invitations
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -265,7 +265,7 @@ CREATE INDEX account_sessions_by_user ON auth_sessions(user_id,organization_id);
 
 ## password_resets
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -276,7 +276,7 @@ CREATE INDEX account_sessions_by_user ON auth_sessions(user_id,organization_id);
 
 ## account_link_invitations
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -303,7 +303,7 @@ CREATE INDEX account_link_pending ON account_link_invitations(organization_id,em
 
 ## catalog_blueprint_versions
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -322,7 +322,7 @@ PRIMARY KEY(blueprint_id,version)
 
 ## organization_agent_installations
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -357,7 +357,7 @@ CREATE UNIQUE INDEX installation_active_name ON organization_agent_installations
 
 ## agents
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -380,7 +380,7 @@ CREATE INDEX agents_installation ON agents(organization_id,installation_id) WHER
 
 ## agent_manifests
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -391,7 +391,7 @@ CREATE INDEX agents_installation ON agents(organization_id,installation_id) WHER
 
 ## agent_assignments
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -409,7 +409,7 @@ FOREIGN KEY (organization_id, created_by) REFERENCES employees(organization_id, 
 
 ## admin_agent_batches
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -426,7 +426,7 @@ PRIMARY KEY (organization_id, request_id)
 
 ## provisioning_requests
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -438,7 +438,7 @@ PRIMARY KEY (organization_id, request_id)
 
 ## conversations
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -459,7 +459,7 @@ CREATE UNIQUE INDEX conversations_tenant_id ON conversations(organization_id,id)
 
 ## messages
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -485,7 +485,7 @@ CREATE INDEX messages_conversation ON messages(organization_id, conversation_id,
 
 ## approvals
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -516,7 +516,7 @@ CREATE INDEX approvals_expiry ON approvals(status,expires_at) WHERE expires_at I
 
 ## qa_runs
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -533,7 +533,7 @@ CREATE INDEX approvals_expiry ON approvals(status,expires_at) WHERE expires_at I
 
 ## llm_key_bindings
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -553,7 +553,7 @@ CHECK (length(secret_ref) > 0)
 
 ## audit_events
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -576,7 +576,7 @@ CREATE INDEX audit_events_tenant ON audit_events(organization_id, seq);
 
 ## organizational_units
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -616,7 +616,7 @@ CREATE UNIQUE INDEX one_unit_per_head_position ON organizational_units(organizat
 
 ## organization_change_events
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -645,7 +645,7 @@ CREATE INDEX organization_changes_time ON organization_change_events(organizatio
 
 ## job_families
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -672,7 +672,7 @@ FOREIGN KEY(organization_id,updated_by) REFERENCES employees(organization_id,id)
 
 ## job_disciplines
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -707,7 +707,7 @@ CREATE INDEX disciplines_family ON job_disciplines(organization_id,job_family_id
 
 ## roles
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -744,7 +744,7 @@ CREATE INDEX roles_discipline ON roles(organization_id,discipline_id,status);
 
 ## job_levels
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -772,7 +772,7 @@ FOREIGN KEY(organization_id,updated_by) REFERENCES employees(organization_id,id)
 
 ## positions
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -815,7 +815,7 @@ CREATE INDEX positions_role ON positions(organization_id,role_id,status);
 
 ## organizational_unit_memberships
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -850,7 +850,7 @@ CREATE INDEX unit_membership_history ON organizational_unit_memberships(organiza
 
 ## organization_domains
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -884,7 +884,7 @@ CREATE INDEX domain_tenant ON organization_domains(organization_id,verification_
 
 ## employee_position_assignments
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -913,7 +913,7 @@ CREATE UNIQUE INDEX position_current_occupant ON employee_position_assignments(o
 
 ## agent_threads
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -945,7 +945,7 @@ CREATE INDEX agent_threads_conversation ON agent_threads(organization_id,convers
 
 ## agent_runs
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -990,7 +990,7 @@ CREATE INDEX agent_runs_queue ON agent_runs(status, created_at);
 
 ## agent_run_steps
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -1016,7 +1016,7 @@ FOREIGN KEY(organization_id,run_id) REFERENCES agent_runs(organization_id,id)
 
 ## agent_events
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -1048,7 +1048,7 @@ FOREIGN KEY(organization_id,step_id) REFERENCES agent_run_steps(organization_id,
 
 ## agent_artifacts
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -1084,7 +1084,7 @@ CREATE INDEX agent_artifacts_run ON agent_artifacts(organization_id,run_id,creat
 
 ## agent_run_leases
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -1116,7 +1116,7 @@ CREATE INDEX agent_run_leases_expiry ON agent_run_leases(lease_expires_at) WHERE
 
 ## runtime_request_nonces
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -1138,7 +1138,7 @@ CREATE INDEX runtime_request_nonces_expiry ON runtime_request_nonces(expires_at)
 
 ## organization_connector_connections
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -1173,7 +1173,7 @@ CREATE UNIQUE INDEX connector_one_active_per_provider ON organization_connector_
 
 ## agent_action_requests
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -1212,7 +1212,7 @@ CREATE INDEX agent_action_requests_run ON agent_action_requests(organization_id,
 
 ## organization_action_policies
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -1232,7 +1232,7 @@ FOREIGN KEY(organization_id,updated_by) REFERENCES employees(organization_id,id)
 
 ## agent_action_executions
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -1255,7 +1255,7 @@ FOREIGN KEY(organization_id,connection_id) REFERENCES organization_connector_con
 
 ## agent_execution_grants
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0001-baseline.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -1277,7 +1277,7 @@ FOREIGN KEY(organization_id,run_id) REFERENCES agent_runs(organization_id,id)
 
 ## organization_model_budgets
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0002-model-spending.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0002-model-spending.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -1300,7 +1300,7 @@ FOREIGN KEY(organization_id,updated_by) REFERENCES employees(organization_id,id)
 
 ## model_usage_reservations
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0002-model-spending.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0002-model-spending.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -1345,7 +1345,7 @@ CREATE INDEX model_usage_run ON model_usage_reservations(organization_id,run_id)
 
 ## model_prices
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0003-model-prices.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0003-model-prices.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -1381,7 +1381,7 @@ CREATE UNIQUE INDEX model_prices_first ON model_prices(organization_id,provider,
 
 ## model_budget_alerts
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0004-model-budget-alerts.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0004-model-budget-alerts.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -1415,7 +1415,7 @@ CREATE INDEX model_budget_alerts_period ON model_budget_alerts(organization_id,p
 
 ## organization_alert_webhooks
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0005-alert-webhooks.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0005-alert-webhooks.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -1440,7 +1440,7 @@ FOREIGN KEY(organization_id,updated_by) REFERENCES employees(organization_id,id)
 
 ## alert_webhook_deliveries
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0005-alert-webhooks.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0005-alert-webhooks.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -1480,7 +1480,7 @@ CREATE INDEX alert_webhook_deliveries_recent ON alert_webhook_deliveries(organiz
 
 ## model_quality_results
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0006-model-quality-results.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0006-model-quality-results.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -1517,7 +1517,7 @@ CREATE INDEX model_quality_results_run_at ON model_quality_results(run_at);
 
 ## organization_source_control_connections
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0011-repository-credentials.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0011-repository-credentials.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -1558,7 +1558,7 @@ CREATE UNIQUE INDEX source_control_one_active_per_host
 
 ## repository_credential_leases
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0011-repository-credentials.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0011-repository-credentials.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -1615,7 +1615,7 @@ CREATE INDEX repository_credential_leases_recent ON repository_credential_leases
 
 ## agent_run_checkpoints
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0012-run-recovery.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0012-run-recovery.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -1648,7 +1648,7 @@ FOREIGN KEY(organization_id,step_id) REFERENCES agent_run_steps(organization_id,
 
 ## agent_artifact_objects
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0013-artifact-objects.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0013-artifact-objects.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -1697,7 +1697,7 @@ CREATE INDEX agent_artifact_objects_unregistered ON agent_artifact_objects(creat
 
 ## organization_model_credentials
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0014-model-credentials.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0014-model-credentials.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |
@@ -1721,7 +1721,7 @@ FOREIGN KEY(organization_id,updated_by) REFERENCES employees(organization_id,id)
 
 ## agent_action_reconciliations
 
-[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/db/migrations/0015-action-reconciliation.ts).
+[Defining migration](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/db/migrations/0015-action-reconciliation.ts).
 
 | Field | Current declared type | Declaration / constraint |
 | --- | --- | --- |

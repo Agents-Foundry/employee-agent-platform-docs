@@ -64,14 +64,14 @@ V2 structure/resolution/issuance/verification and governed execution are impleme
 
 ## Source provenance
 
-Reviewed against platform commit `9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4`. These references support the behavior described; types alone are not evidence that a capability executes.
+Reviewed against platform commit `d2bc8d7fa3fc185cc4f487bdaa1f11611844763f`. These references support the behavior described; types alone are not evidence that a capability executes.
 
-- [packages/contracts/src/manifest-v2.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/manifest-v2.ts)
-- [packages/contracts/src/runtime/v1/schemas.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/schemas.ts)
-- [apps/control-plane-api/src/agents/manifest-v2.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/agents/manifest-v2.ts)
-- [apps/control-plane-api/src/manifest-signing.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/manifest-signing.ts)
-- [apps/agent-runtime/src/manifest-verifier.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/agent-runtime/src/manifest-verifier.ts)
-- [apps/employee-desktop/src/app/verify-manifest.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/employee-desktop/src/app/verify-manifest.ts)
+- [packages/contracts/src/manifest-v2.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/manifest-v2.ts)
+- [packages/contracts/src/runtime/v1/schemas.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/schemas.ts)
+- [apps/control-plane-api/src/agents/manifest-v2.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/agents/manifest-v2.ts)
+- [apps/control-plane-api/src/manifest-signing.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/manifest-signing.ts)
+- [apps/agent-runtime/src/manifest-verifier.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/agent-runtime/src/manifest-verifier.ts)
+- [apps/employee-desktop/src/app/verify-manifest.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/employee-desktop/src/app/verify-manifest.ts)
 
 ## Related documentation
 

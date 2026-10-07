@@ -25,7 +25,7 @@ jobs:
         uses: actions/checkout@v5
         with:
           repository: Agents-Foundry/employee-agent-platform
-          ref: 9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4
+          ref: d2bc8d7fa3fc185cc4f487bdaa1f11611844763f
           path: .sources/platform
           persist-credentials: false
       - run: npm run check:source

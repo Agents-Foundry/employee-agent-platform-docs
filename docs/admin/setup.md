@@ -23,17 +23,21 @@ The supported password-mode path starts with operator-created customer membershi
 
 ## Administration boundaries
 
-Most organization management routes require password mode; Google sign-in does not imply these panels and mutations are enabled. Credential/lease management, artifact download and reconciliation have API support without full management screens. Refer to the [API index](../api/README.md) for each route's actual guard and schema.
+Most organization management routes require password mode; Google sign-in does not imply these panels and mutations are enabled. Credential/lease management and artifact download have API support without full management screens. Reconciliation has an administrator screen. Refer to the [API index](../api/README.md) for each route's actual guard and schema.
+
+## Resolve uncertain writes
+
+Use **Writes to reconcile** in the administrator application. Inspect the external system before recording **Verified applied** or **Verified not applied**. The choice is final and does not retry the write. Follow [failure handling](../operations/failure-handling.md).
 
 ## Source provenance
 
-Reviewed against platform commit `9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4`. These references support the behavior described; types alone are not evidence that a capability executes.
+Reviewed against platform commit `d2bc8d7fa3fc185cc4f487bdaa1f11611844763f`. These references support the behavior described; types alone are not evidence that a capability executes.
 
-- [apps/control-plane-api/src/create-customer.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/create-customer.ts)
-- [apps/control-plane-api/src/organization/tenancy-routes.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/tenancy-routes.ts)
-- [apps/control-plane-web/src/app/organization/setup-progress.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-web/src/app/organization/setup-progress.ts)
-- [apps/control-plane-web/src/app/agent-installations.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-web/src/app/agent-installations.ts)
-- [apps/control-plane-web/src/app/agent-admin.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-web/src/app/agent-admin.ts)
+- [apps/control-plane-api/src/create-customer.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/create-customer.ts)
+- [apps/control-plane-api/src/organization/tenancy-routes.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/tenancy-routes.ts)
+- [apps/control-plane-web/src/app/organization/setup-progress.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-web/src/app/organization/setup-progress.ts)
+- [apps/control-plane-web/src/app/agent-installations.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-web/src/app/agent-installations.ts)
+- [apps/control-plane-web/src/app/agent-admin.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-web/src/app/agent-admin.ts)
 
 ## Related documentation
 

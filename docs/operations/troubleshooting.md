@@ -36,15 +36,19 @@ Record source/deployment commit, run/step/action IDs, status reason, last livene
 
 No shipped generic 'repair run' API safely rewrites event history, checkpoint binding or consumed grants. Do not directly UPDATE protected tables to fabricate completion. Documentation gaps belong in the backlog; an actual provider outage or unimplemented adapter requires engineering or operator action.
 
+## Pilot smoke and live evidence
+
+A refused smoke run names its missing setting or unsafe scope. Configure separate employee/admin test accounts, disposable resources and the protected `pilot` environment as described in [pilot smoke](pilot-smoke.md). A successful code check with `operationalProofsPassed=false` needs fresh host and smoke reports for the exact deployed commit; do not change the readiness file to bypass that gate. See the [pilot runbook](pilot-runbook.md).
+
 ## Source provenance
 
-Reviewed against platform commit `9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4`. These references support the behavior described; types alone are not evidence that a capability executes.
+Reviewed against platform commit `d2bc8d7fa3fc185cc4f487bdaa1f11611844763f`. These references support the behavior described; types alone are not evidence that a capability executes.
 
-- [apps/control-plane-api/src/app.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/app.ts)
-- [apps/control-plane-api/src/runtime/runtime-transport-service.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/runtime/runtime-transport-service.ts)
-- [apps/execution-runtime/src/execution-service.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/execution-runtime/src/execution-service.ts)
-- [apps/agent-runtime/src/errors.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/agent-runtime/src/errors.ts)
-- [apps/control-plane-api/src/actions/action-reconciliation.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/actions/action-reconciliation.ts)
+- [apps/control-plane-api/src/app.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/app.ts)
+- [apps/control-plane-api/src/runtime/runtime-transport-service.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/runtime/runtime-transport-service.ts)
+- [apps/execution-runtime/src/execution-service.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/execution-runtime/src/execution-service.ts)
+- [apps/agent-runtime/src/errors.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/agent-runtime/src/errors.ts)
+- [apps/control-plane-api/src/actions/action-reconciliation.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/actions/action-reconciliation.ts)
 
 ## Related documentation
 

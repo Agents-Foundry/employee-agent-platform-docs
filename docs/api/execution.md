@@ -4,19 +4,20 @@
 
 **Prerequisites:** Read [HTTP conventions](README.md), sign in for browser API calls, or configure the signed workload identity for runtime calls.
 
-This reference is extracted from route registrations at `9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4`. Handler bindings below identify actual input validators, service calls and response expressions; referenced service schemas supply the full field bounds. Authentication middleware and service authorization still apply. See [request validators](request-schemas.md) and [wire contracts](contracts.md).
+This reference is extracted from route registrations at `d2bc8d7fa3fc185cc4f487bdaa1f11611844763f`. Handler bindings below identify actual input validators, service calls and response expressions; referenced service schemas supply the full field bounds. Authentication middleware and service authorization still apply. See [request validators](request-schemas.md) and [wire contracts](contracts.md).
 
 ## Endpoints
 
 | Method | Path | Access | Source |
 | --- | --- | --- | --- |
-| GET | `/api/execution/v1/artifact-content/:token` | Authenticated actor; service ownership/role checks | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/execution/execution-routes.ts#L129) |
-| POST | `/api/execution/v1/artifacts/:id/retrievals` | Authenticated actor; service ownership/role checks | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/execution/execution-routes.ts#L119) |
-| POST | `/api/execution/v1/runs` | Authenticated actor; service ownership/role checks | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/execution/execution-routes.ts#L85) |
-| GET | `/api/execution/v1/runs/:id` | Authenticated actor; service ownership/role checks | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/execution/execution-routes.ts#L70) |
-| POST | `/api/execution/v1/runs/:id/cancel` | Authenticated actor; service ownership/role checks | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/execution/execution-routes.ts#L111) |
-| GET | `/api/execution/v1/runs/:id/events` | Authenticated actor; service ownership/role checks | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/execution/execution-routes.ts#L73) |
-| GET | `/api/execution/v1/threads/:id` | Authenticated actor; service ownership/role checks | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/execution/execution-routes.ts#L65) |
+| GET | `/api/execution/v1/artifact-content/:token` | Authenticated actor; service ownership/role checks | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/execution/execution-routes.ts#L132) |
+| POST | `/api/execution/v1/artifacts/:id/retrievals` | Authenticated actor; service ownership/role checks | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/execution/execution-routes.ts#L122) |
+| POST | `/api/execution/v1/runs` | Authenticated actor; service ownership/role checks | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/execution/execution-routes.ts#L88) |
+| GET | `/api/execution/v1/runs/:id` | Authenticated actor; service ownership/role checks | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/execution/execution-routes.ts#L70) |
+| GET | `/api/execution/v1/runs/:id/actions` | Authenticated actor; service ownership/role checks | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/execution/execution-routes.ts#L73) |
+| POST | `/api/execution/v1/runs/:id/cancel` | Authenticated actor; service ownership/role checks | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/execution/execution-routes.ts#L114) |
+| GET | `/api/execution/v1/runs/:id/events` | Authenticated actor; service ownership/role checks | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/execution/execution-routes.ts#L76) |
+| GET | `/api/execution/v1/threads/:id` | Authenticated actor; service ownership/role checks | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/execution/execution-routes.ts#L65) |
 
 ## GET /api/execution/v1/artifact-content/:token
 
@@ -45,7 +46,7 @@ async (req, res) => {
   }
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/execution/execution-routes.ts#L129).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/execution/execution-routes.ts#L132).
 
 ## POST /api/execution/v1/artifacts/:id/retrievals
 
@@ -70,7 +71,7 @@ async (req, res) => {
   }
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/execution/execution-routes.ts#L119).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/execution/execution-routes.ts#L122).
 
 ## POST /api/execution/v1/runs
 
@@ -111,7 +112,7 @@ async (req, res) => {
   }
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/execution/execution-routes.ts#L85).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/execution/execution-routes.ts#L88).
 
 ## GET /api/execution/v1/runs/:id
 
@@ -129,7 +130,25 @@ async (req, res) => {
   }
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/execution/execution-routes.ts#L70).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/execution/execution-routes.ts#L70).
+
+## GET /api/execution/v1/runs/:id/actions
+
+- **Authorization:** Authenticated actor; service ownership/role checks.
+- **Parameters:** `id`; body/query bindings are shown below.
+- **Explicit handler HTTP statuses:** 200 on normal JSON response; shared middleware/service errors also apply.
+- **Handler-local error codes:** No additional literal error code in this handler; consult service and common errors.
+- **Input validators:** Service validation or route has no parsed body/query.
+
+Request/response implementation binding (TypeScript, not a copyable HTTP command):
+
+```typescript
+async (req, res) => {
+    res.json(await service.listActions(res.locals['actor'], id(req.params['id'], 'RUN_NOT_FOUND')));
+  }
+```
+
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/execution/execution-routes.ts#L73).
 
 ## POST /api/execution/v1/runs/:id/cancel
 
@@ -151,7 +170,7 @@ async (req, res) => {
   }
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/execution/execution-routes.ts#L111).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/execution/execution-routes.ts#L114).
 
 ## GET /api/execution/v1/runs/:id/events
 
@@ -177,7 +196,7 @@ async (req, res) => {
   }
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/execution/execution-routes.ts#L73).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/execution/execution-routes.ts#L76).
 
 ## GET /api/execution/v1/threads/:id
 
@@ -197,7 +216,7 @@ async (req, res) => {
   }
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/execution/execution-routes.ts#L65).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/execution/execution-routes.ts#L65).
 
 ## Related documentation
 

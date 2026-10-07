@@ -6,7 +6,7 @@ import { pathToFileURL } from 'node:url';
 
 const root = process.cwd();
 const source = path.resolve(process.argv[2] ?? '.sources/platform');
-const sha = '9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4';
+const sha = 'd2bc8d7fa3fc185cc4f487bdaa1f11611844763f';
 const base = `https://github.com/Agents-Foundry/employee-agent-platform/blob/${sha}/`;
 const walk = (dir) => fs.readdirSync(dir, { withFileTypes: true }).flatMap(e => e.isDirectory() ? walk(path.join(dir,e.name)) : [path.join(dir,e.name)]);
 const rel = p => path.relative(source,p).replaceAll('\\','/');
@@ -14,7 +14,7 @@ const files = walk(source).filter(p=>!p.includes(`${path.sep}.git${path.sep}`));
 const textFiles = files.filter(p=>/\.(ts|json|md|ya?ml|mjs|mts|rs|toml|html|scss|css)$/.test(p)||path.basename(p)==='.env.example'||p.endsWith('Dockerfile'));
 const inventory = Object.fromEntries(textFiles.map(p=>[rel(p),createHash('sha256').update(fs.readFileSync(p,'utf8').replaceAll('\r\n','\n')).digest('hex')]));
 const write=(p,s)=>{fs.mkdirSync(path.dirname(p),{recursive:true});fs.writeFileSync(p,s.trim()+'\n');};
-write('source-inventory.json',JSON.stringify({schemaVersion:1,repository:'Agents-Foundry/employee-agent-platform',commit:sha,inspectedDate:'2026-10-03',files:inventory},null,2));
+write('source-inventory.json',JSON.stringify({schemaVersion:1,repository:'Agents-Foundry/employee-agent-platform',commit:sha,inspectedDate:'2026-10-07',files:inventory},null,2));
 const trees = textFiles.filter(p=>p.endsWith('.ts')).map(p=>({file:rel(p),tree:ts.createSourceFile(rel(p),fs.readFileSync(p,'utf8'),ts.ScriptTarget.Latest,true)}));
 const constants=new Map();
 function unwrap(n){while(n&&(ts.isAsExpression(n)||ts.isParenthesizedExpression(n)||ts.isSatisfiesExpression(n)))n=n.expression;return n;}
@@ -71,7 +71,7 @@ for(const {file,tree} of trees.filter(x=>x.file.startsWith('apps/')&&x.file.incl
 const refPage=(title,items)=>`# ${title}\n\n**Audience:** Developers and API consumers. **Implementation status:** Implemented contracts; availability of execution depends on the implementation matrix.\n\n**Prerequisites:** Read the [HTTP conventions](README.md) and relevant endpoint page.\n\nExtracted at \`${sha}\`. These are literal source declarations, not evidence that a corresponding engine exists. Schemas express required fields, defaults, enum values, refinements and unknown-field rejection. Type-only structures still require runtime validation and authorization.\n\n`+items.map((x,i)=>`## ${x.name} (${i+1})\n\n[Source](${base+x.file}#L${x.line}).\n\n\`\`\`typescript\n${x.body}\n\`\`\`\n`).join('\n')+'\n## Related documentation\n\n[API index](README.md) · [Implementation status](../reference/implementation-status.md)\n';
 write('docs/api/request-schemas.md',refPage('Request and protocol validation schemas',schemaBlocks));
 write('docs/api/contracts.md',refPage('Wire and domain contract reference',contractBlocks));
-const tests=files.filter(p=>/\.(spec|live)\.ts$/.test(p));
+const tests=files.filter(p=>/\.(spec|live|smoke)\.ts$/.test(p));
 write('docs/reference/tests.md',`# Test evidence inventory\n\n**Audience:** QA and developers. **Implementation status:** Implemented suites, not a claim that they ran in this documentation task.\n\n**Prerequisites:** [Developer setup](../developer/local-development.md).\n\nInventory at \`${sha}\`. Titles are source evidence; execution results belong in CI/readiness artifacts.\n\n| Test file | Test declarations (static count) |\n| --- | --- |\n`+tests.map(p=>`| [${rel(p)}](${base+rel(p)}) | ${[...fs.readFileSync(p,'utf8').matchAll(/\b(?:it|test)(?:\.\w+)?\s*\(/g)].length} |`).join('\n')+'\n\n[QA strategy](../qa/test-strategy.md) · [Pilot readiness](../qa/pilot-readiness.md)\n');
 const env=new Map();
 for(const p of textFiles.filter(p=>/\.(ts|mjs)$/.test(p))){const s=fs.readFileSync(p,'utf8');for(const m of s.matchAll(/(?:process\.env|\benv)\[['"]([A-Z][A-Z0-9_]+)['"]\]/g)){if(!env.has(m[1]))env.set(m[1],new Set());env.get(m[1]).add(rel(p));}}

@@ -1,8 +1,8 @@
-# Observability and alert signals
+# Observability, dashboards and alert signals
 
-**Audience:** Operators. **Implementation status:** Partially Implemented.
+**Audience:** Operators. **Implementation status:** Implemented.
 
-**Prerequisites:** Read the platform overview and have access to the relevant organization or source checkout.
+**Prerequisites:** A configured controlled-pilot deployment and the relevant operator or organization administrator access.
 
 Traces and metrics for operating the platform. The design and the full metric list are in
 [ADR 0035](../adr/0035-observability.md); this page is the operator's view.
@@ -58,18 +58,37 @@ Set on each process (control plane, agent runtime, execution runtime):
 | `af_database_retries_total{reason="connection"}`                     | The database is dropping connections                               |
 | `af_telemetry_dropped_total`                                         | Telemetry is being lost (collector down, or a caller sent content) |
 
-No dashboards or alert rules are shipped.
+## Dashboards and alerts
+
+Dashboards and alert rules are defined once, against the metric catalog, in
+`packages/operations` ([ADR 0039](../adr/0039-pilot-operations.md)), and rendered into
+`operations/`:
+
+| File                     | For                                                                  |
+| ------------------------ | -------------------------------------------------------------------- |
+| `operations.json`        | Any backend: the provider-neutral panels and alerts, with thresholds |
+| `prometheus-rules.yaml`  | Prometheus-compatible alerting (Prometheus, Mimir, Thanos, Cortex)   |
+| `grafana-dashboard.json` | A Grafana dashboard over the same queries                            |
+
+The thresholds in those files are recommendations. A deployment sets its own in a JSON file
+(start from `operations/alert-thresholds.example.json`) and renders again:
+
+```bash
+npm run ops:render -- --thresholds /etc/agents-foundry/alert-thresholds.json --out ./rendered
+```
+
+A deployment may change an alert's `threshold`, `for` and `severity`, or set `enabled: false`;
+it cannot change what an alert measures. An unknown alert or setting stops the render. Queries
+use catalog metrics and labels only, and never a label that could carry an identity, a
+location or content. Each alert names the section of the
+[pilot runbook](pilot-runbook.md) to follow.
 
 ## Source provenance
 
-Reviewed against platform commit `9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4`. These references support the behavior described; types alone are not evidence that a capability executes.
+Reviewed against platform commit `d2bc8d7fa3fc185cc4f487bdaa1f11611844763f`.
 
-- [docs/observability.md](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/docs/observability.md)
-- [packages/telemetry/src/telemetry.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/telemetry/src/telemetry.ts)
-- [packages/telemetry/src/metrics.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/telemetry/src/metrics.ts)
-- [packages/telemetry/src/attributes.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/telemetry/src/attributes.ts)
-- [apps/control-plane-api/test/observability.spec.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/test/observability.spec.ts)
+- [docs/observability.md](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/docs/observability.md)
 
 ## Related documentation
 
-[Documentation index](../README.md) · [Implementation status](../reference/implementation-status.md)
+[Documentation index](../README.md) · [Pilot operations](pilot-operations.md)

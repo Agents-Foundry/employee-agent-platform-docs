@@ -22,8 +22,8 @@ Status is based on implementation and tests at the inspected commit, not on mark
 | Vault and S3-compatible adapters | Partially Implemented | Adapter/tests implemented; live pilot services not qualified by repository tests | [Artifacts](../operations/artifacts.md) |
 | Recovery/checkpoints | Implemented | Up to ten-minute detection; bodies not app-encrypted | [Recovery](../runtime/checkpoints-and-recovery.md) |
 | Spending/prices/alerts/webhooks/model quality | Implemented | Explicit budgets/pricing, bounded quality runs; outbound webhooks opt-in | [Spending](../operations/model-spending.md) |
-| Observability | Partially Implemented | OTLP and metrics implemented; no shipped dashboards/alert rules/live collector proof | [Operations](../operations/observability.md) |
-| Generic-run/evidence/reconciliation management UI | Partially Implemented | Supported APIs with missing screens; employee UX is QA-focused | [Employee](../employee/workspace.md) |
+| Observability | Implemented | OTLP/metrics plus monitoring renderer, Grafana dashboard and Prometheus rules; live collector qualification remains deployment-specific | [Operations](../operations/observability.md) |
+| Generic-run/evidence management UI | Partially Implemented | Reconciliation screen implemented; generic-run and artifact download surfaces remain incomplete; employee UX is QA-focused | [Employee](../employee/workspace.md) |
 | Tauri shell | Partially Implemented | Native wrapper, bundle disabled, no local kernel or OS model-key integration | [Desktop](../deployment/desktop.md) |
 | Employee BYOK execution | Planned | Refused by current server; device-local design only | [Secrets](../security/secrets-and-credentials.md) |
 | MCP, executable Skill Runtime, memory, context condensation and model streaming | Planned | Declarative fields do not execute these systems | [Gaps](../roadmap/architecture-gaps.md) |
@@ -33,15 +33,19 @@ Status is based on implementation and tests at the inspected commit, not on mark
 
 No measured onboarding-time claim, investor-readiness declaration, compliance certification or complete production-hosting promise is derived from the code. Consult evidence-derived pilot readiness for the actual test status at a deployment commit.
 
+## Pilot operational evidence
+
+[Host validation](../operations/pilot-operations.md), [live smoke](../operations/pilot-smoke.md) and [readiness](../qa/pilot-readiness.md) are implemented. Documentation publication is not proof that a deployed environment passed them.
+
 ## Source provenance
 
-Reviewed against platform commit `9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4`. These references support the behavior described; types alone are not evidence that a capability executes.
+Reviewed against platform commit `d2bc8d7fa3fc185cc4f487bdaa1f11611844763f`. These references support the behavior described; types alone are not evidence that a capability executes.
 
-- [apps/control-plane-api/src/database.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/database.ts)
-- [packages/catalog/src/index.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/catalog/src/index.ts)
-- [apps/agent-runtime/src/main.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/agent-runtime/src/main.ts)
-- [apps/execution-runtime/src/main.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/execution-runtime/src/main.ts)
-- [pilot-readiness/assessment.json](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/pilot-readiness/assessment.json)
+- [apps/control-plane-api/src/database.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/database.ts)
+- [packages/catalog/src/index.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/catalog/src/index.ts)
+- [apps/agent-runtime/src/main.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/agent-runtime/src/main.ts)
+- [apps/execution-runtime/src/main.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/execution-runtime/src/main.ts)
+- [pilot-readiness/assessment.json](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/pilot-readiness/assessment.json)
 
 ## Related documentation
 

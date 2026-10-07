@@ -1,12 +1,12 @@
 # Documentation foundation: implementation and completeness report
 
-Verified on 2026-10-03 against **employee-agent-platform@9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4**. This documentation foundation is submitted on **docs/platform-documentation-foundation** for review. It changes documentation/tooling only. The initially empty private docs repository received a minimal README bootstrap on main to provide a PR base; the substantive foundation is on this review branch.
+Verified on 2026-10-07 against **employee-agent-platform@d2bc8d7fa3fc185cc4f487bdaa1f11611844763f**. This documentation foundation is submitted on **docs/platform-documentation-foundation** for review. It changes documentation/tooling only. The initially empty private docs repository received a minimal README bootstrap on main to provide a PR base; the substantive foundation is on this review branch.
 
 ## Repositories inspected
 
 | Repository | Evidence and responsibility |
 | --- | --- |
-| [employee-agent-platform](https://github.com/Agents-Foundry/employee-agent-platform) | Current fetched/pinned source: five applications, shared packages, routes/contracts, migrations, catalog, policy, tests, scripts/workflows, sandbox Dockerfile, Tauri config, existing guides and 38 ADRs |
+| [employee-agent-platform](https://github.com/Agents-Foundry/employee-agent-platform) | Current fetched/pinned source: five applications, shared packages, routes/contracts, migrations, catalog, policy, tests, scripts/workflows, sandbox Dockerfile, Tauri config, existing guides and 39 ADRs |
 | [employee-agent-website](https://github.com/Agents-Foundry/employee-agent-website) | 4cc111021cf60b5a4b676a26659fbc51431a5ef3; static build/package/site-config, README and GitHub Pages workflow; marketing surface without product authorization authority |
 | [employee-agent-platform-docs](https://github.com/Agents-Foundry/employee-agent-platform-docs) | Initial empty/private state, default branch and permissions; current foundation/navigation/checks |
 
@@ -267,3 +267,7 @@ employee-agent-platform-docs/
 ├── README.md
 └── source-inventory.json
 ```
+
+## Published baseline refresh — 7 October 2026
+
+Current source baseline: `d2bc8d7fa3fc185cc4f487bdaa1f11611844763f`. Updated operational guides, new ADR 0039, reconciliation screen instructions, live smoke configuration and code-versus-deployment readiness. Generated references and source validation target the same commit. Original foundation history above describes its initial review.

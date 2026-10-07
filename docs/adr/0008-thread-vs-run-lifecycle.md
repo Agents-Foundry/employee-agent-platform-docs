@@ -34,6 +34,6 @@ approval decision without restarting.
 
 ## Source provenance
 
-[Original decision at inspected commit](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/docs/adr/0008-thread-vs-run-lifecycle.md).
+[Original decision at inspected commit](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/docs/adr/0008-thread-vs-run-lifecycle.md).
 
 [Current architecture](../architecture/overview.md) · [ADR index](README.md)

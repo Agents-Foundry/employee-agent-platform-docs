@@ -190,7 +190,7 @@ these actions:
 - are executed once, through `actions/execute`.
 
 The Action Gateway re-authorizes each execution before dispatch. See
-[action-gateway.md](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/docs/action-gateway.md).
+[action-gateway.md](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/docs/action-gateway.md).
 
 The control-plane-only event `approval.expired` records an unanswered approval passing its
 deadline. The paused run is then cancelled (`APPROVAL_EXPIRED`).
@@ -211,13 +211,13 @@ are. Resources in another tenant, or owned by another employee, return 404.
 
 ## Source provenance
 
-Reviewed against platform commit `9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4`. These references support the behavior described; types alone are not evidence that a capability executes.
+Reviewed against platform commit `d2bc8d7fa3fc185cc4f487bdaa1f11611844763f`. These references support the behavior described; types alone are not evidence that a capability executes.
 
-- [docs/runtime-protocol.md](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/docs/runtime-protocol.md)
-- [packages/contracts/src/runtime/v1/protocol.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/protocol.ts)
-- [packages/contracts/src/runtime/v1/transport.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/transport.ts)
-- [apps/control-plane-api/src/runtime/runtime-routes.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/runtime/runtime-routes.ts)
-- [apps/control-plane-api/test/runtime-transport.spec.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/test/runtime-transport.spec.ts)
+- [docs/runtime-protocol.md](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/docs/runtime-protocol.md)
+- [packages/contracts/src/runtime/v1/protocol.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/protocol.ts)
+- [packages/contracts/src/runtime/v1/transport.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/transport.ts)
+- [apps/control-plane-api/src/runtime/runtime-routes.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/runtime/runtime-routes.ts)
+- [apps/control-plane-api/test/runtime-transport.spec.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/test/runtime-transport.spec.ts)
 
 ## Related documentation
 

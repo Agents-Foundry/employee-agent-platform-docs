@@ -78,6 +78,6 @@ in quality is found by chance, and one run's score can't be told from noise.
 
 **Current command correction:** The preserved record's local trend command lacks a workspace selector. The actual root package does not export that script. From the product root, use `npm run eval:quality:trend --workspace @agents-foundry/control-plane-api -- --history /absolute/path/to/quality-history.jsonl`. The original decision text remains historical evidence, not a copyable root command.
 
-[Original decision at inspected commit](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/docs/adr/0025-scheduled-quality-runs.md).
+[Original decision at inspected commit](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/docs/adr/0025-scheduled-quality-runs.md).
 
 [Current architecture](../architecture/overview.md) · [ADR index](README.md)

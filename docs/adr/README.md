@@ -49,6 +49,8 @@ ADR-0034 contains an explicit current correction for its desktop OS-credential-s
 
 ## New decisions and ADR backlog
 
+[ADR 0039: Operating the controlled pilot](0039-pilot-operations.md) — Accepted, 2026-10-07. Adds reconciliation screens, monitoring definitions, live validation, guarded smoke and deployment evidence gates.
+
 Propose a new numbered decision with Status, Context, Decision, Alternatives Considered and Consequences, identifying approvers and source changes. Mark a proposal Proposed until accepted; do not convert this documentation author's recommendations into historical approval.
 
 Candidate decisions need product-owner review: production topology and restore guarantees; MCP credential/action governance; executable skill loading; desktop key custody/BYOK; distributed execution placement. Investigations and priorities are in the [documentation backlog](../../DOCUMENTATION_BACKLOG.md) and [architecture gaps](../roadmap/architecture-gaps.md).

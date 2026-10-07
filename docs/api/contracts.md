@@ -4,11 +4,11 @@
 
 **Prerequisites:** Read the [HTTP conventions](README.md) and relevant endpoint page.
 
-Extracted at `9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4`. These are literal source declarations, not evidence that a corresponding engine exists. Schemas express required fields, defaults, enum values, refinements and unknown-field rejection. Type-only structures still require runtime validation and authorization.
+Extracted at `d2bc8d7fa3fc185cc4f487bdaa1f11611844763f`. These are literal source declarations, not evidence that a corresponding engine exists. Schemas express required fields, defaults, enum values, refinements and unknown-field rejection. Type-only structures still require runtime validation and authorization.
 
 ## ConnectorProvider (1)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/actions.ts#L6).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/actions.ts#L6).
 
 ```typescript
 export type ConnectorProvider = (typeof connectorProviders)[number];
@@ -16,7 +16,7 @@ export type ConnectorProvider = (typeof connectorProviders)[number];
 
 ## ConnectorConnectionSettings (2)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/actions.ts#L14).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/actions.ts#L14).
 
 ```typescript
 export interface ConnectorConnectionSettings {
@@ -31,7 +31,7 @@ export interface ConnectorConnectionSettings {
 
 ## ConnectorConnection (3)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/actions.ts#L24).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/actions.ts#L24).
 
 ```typescript
 export interface ConnectorConnection {
@@ -51,7 +51,7 @@ export interface ConnectorConnection {
 
 ## ConnectorConnectionInput (4)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/actions.ts#L38).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/actions.ts#L38).
 
 ```typescript
 export interface ConnectorConnectionInput {
@@ -65,7 +65,7 @@ export interface ConnectorConnectionInput {
 
 ## OrganizationPolicyOutcome (5)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/actions.ts#L47).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/actions.ts#L47).
 
 ```typescript
 export type OrganizationPolicyOutcome = 'REQUIRE_APPROVAL' | 'DENY';
@@ -73,7 +73,7 @@ export type OrganizationPolicyOutcome = 'REQUIRE_APPROVAL' | 'DENY';
 
 ## OrganizationActionPolicy (6)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/actions.ts#L49).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/actions.ts#L49).
 
 ```typescript
 export interface OrganizationActionPolicy {
@@ -88,7 +88,7 @@ export interface OrganizationActionPolicy {
 
 ## GovernedActionSummary (7)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/actions.ts#L59).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/actions.ts#L59).
 
 ```typescript
 export interface GovernedActionSummary {
@@ -104,31 +104,63 @@ export interface GovernedActionSummary {
 
 ## ActionApprovalStatus (8)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/actions.ts#L70).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/actions.ts#L70).
 
 ```typescript
 export type ActionApprovalStatus = 'PENDING' | 'APPROVED' | 'REJECTED' | 'EXPIRED';
 ```
 
-## ArtifactType (9)
+## ActionReconciliationReason (9)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/artifacts.ts#L20).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/actions.ts#L73).
+
+```typescript
+export type ActionReconciliationReason = 'CONNECTOR_OUTCOME_UNKNOWN' | 'DISPATCH_INTERRUPTED';
+```
+
+## ActionReconciliation (10)
+
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/actions.ts#L80).
+
+```typescript
+export interface ActionReconciliation {
+  requestId: string;
+  runId: string;
+  threadId: string;
+  stepId: string | null;
+  action: string;
+  /** What the write was aimed at, for example an issue-tracker project or a repository. */
+  target: { type: string; id: string } | null;
+  /** The summary an approver saw, redacted. Null when none can be written safely. */
+  summary: string | null;
+  reason: ActionReconciliationReason;
+  state: 'REQUIRED' | 'APPLIED' | 'NOT_APPLIED';
+  createdAt: string;
+  resolvedBy?: string;
+  resolvedAt?: string;
+  note?: string;
+}
+```
+
+## ArtifactType (11)
+
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/artifacts.ts#L20).
 
 ```typescript
 export type ArtifactType = (typeof artifactTypes)[number];
 ```
 
-## ArtifactRetentionPolicy (10)
+## ArtifactRetentionPolicy (12)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/artifacts.ts#L28).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/artifacts.ts#L28).
 
 ```typescript
 export type ArtifactRetentionPolicy = (typeof artifactRetentionPolicies)[number];
 ```
 
-## ArtifactRegistration (11)
+## ArtifactRegistration (13)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/artifacts.ts#L38).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/artifacts.ts#L38).
 
 ```typescript
 export interface ArtifactRegistration {
@@ -143,9 +175,9 @@ export interface ArtifactRegistration {
 }
 ```
 
-## Artifact (12)
+## Artifact (14)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/artifacts.ts#L49).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/artifacts.ts#L49).
 
 ```typescript
 export interface Artifact extends ArtifactRegistration {
@@ -158,17 +190,17 @@ export interface Artifact extends ArtifactRegistration {
 }
 ```
 
-## ArtifactContentState (13)
+## ArtifactContentState (15)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/artifacts.ts#L62).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/artifacts.ts#L62).
 
 ```typescript
 export type ArtifactContentState = 'AVAILABLE' | 'DELETED' | 'UNMANAGED';
 ```
 
-## ArtifactContent (14)
+## ArtifactContent (16)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/artifacts.ts#L64).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/artifacts.ts#L64).
 
 ```typescript
 export interface ArtifactContent {
@@ -180,17 +212,17 @@ export interface ArtifactContent {
 }
 ```
 
-## ArtifactSummary (15)
+## ArtifactSummary (17)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/artifacts.ts#L73).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/artifacts.ts#L73).
 
 ```typescript
 export type ArtifactSummary = Omit<Artifact, 'storageReference'> & { content?: ArtifactContent };
 ```
 
-## ArtifactUploadAuthorization (16)
+## ArtifactUploadAuthorization (18)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/artifacts.ts#L103).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/artifacts.ts#L103).
 
 ```typescript
 export interface ArtifactUploadAuthorization {
@@ -202,9 +234,9 @@ export interface ArtifactUploadAuthorization {
 }
 ```
 
-## ArtifactUploadDescriptor (17)
+## ArtifactUploadDescriptor (19)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/artifacts.ts#L112).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/artifacts.ts#L112).
 
 ```typescript
 export interface ArtifactUploadDescriptor {
@@ -217,9 +249,9 @@ export interface ArtifactUploadDescriptor {
 }
 ```
 
-## ArtifactUpload (18)
+## ArtifactUpload (20)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/artifacts.ts#L122).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/artifacts.ts#L122).
 
 ```typescript
 export interface ArtifactUpload {
@@ -230,9 +262,9 @@ export interface ArtifactUpload {
 }
 ```
 
-## ArtifactRetrieval (19)
+## ArtifactRetrieval (21)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/artifacts.ts#L133).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/artifacts.ts#L133).
 
 ```typescript
 export interface ArtifactRetrieval {
@@ -242,9 +274,9 @@ export interface ArtifactRetrieval {
 }
 ```
 
-## EvidenceReference (20)
+## EvidenceReference (22)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/artifacts.ts#L140).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/artifacts.ts#L140).
 
 ```typescript
 export interface EvidenceReference {
@@ -253,9 +285,9 @@ export interface EvidenceReference {
 }
 ```
 
-## SkillDefinition (21)
+## SkillDefinition (23)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/catalog.ts#L7).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/catalog.ts#L7).
 
 ```typescript
 export interface SkillDefinition {
@@ -270,25 +302,25 @@ export interface SkillDefinition {
 }
 ```
 
-## ToolExecutionLocation (22)
+## ToolExecutionLocation (24)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/catalog.ts#L18).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/catalog.ts#L18).
 
 ```typescript
 export type ToolExecutionLocation = 'LOCAL' | 'EXECUTION_RUNTIME' | 'CONTROL_PLANE';
 ```
 
-## ToolSideEffects (23)
+## ToolSideEffects (25)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/catalog.ts#L19).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/catalog.ts#L19).
 
 ```typescript
 export type ToolSideEffects = 'NONE' | 'LOCAL_WRITE' | 'EXTERNAL_WRITE';
 ```
 
-## ToolDefinition (24)
+## ToolDefinition (26)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/catalog.ts#L22).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/catalog.ts#L22).
 
 ```typescript
 export interface ToolDefinition {
@@ -304,9 +336,9 @@ export interface ToolDefinition {
 }
 ```
 
-## WorkflowStepDefinition (25)
+## WorkflowStepDefinition (27)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/catalog.ts#L34).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/catalog.ts#L34).
 
 ```typescript
 export interface WorkflowStepDefinition {
@@ -318,9 +350,9 @@ export interface WorkflowStepDefinition {
 }
 ```
 
-## WorkflowDefinition (26)
+## WorkflowDefinition (28)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/catalog.ts#L42).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/catalog.ts#L42).
 
 ```typescript
 export interface WorkflowDefinition {
@@ -332,9 +364,9 @@ export interface WorkflowDefinition {
 }
 ```
 
-## ConnectorRequirementDefinition (27)
+## ConnectorRequirementDefinition (29)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/catalog.ts#L51).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/catalog.ts#L51).
 
 ```typescript
 export interface ConnectorRequirementDefinition {
@@ -344,9 +376,9 @@ export interface ConnectorRequirementDefinition {
 }
 ```
 
-## McpRequirementDefinition (28)
+## McpRequirementDefinition (30)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/catalog.ts#L57).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/catalog.ts#L57).
 
 ```typescript
 export interface McpRequirementDefinition {
@@ -355,17 +387,17 @@ export interface McpRequirementDefinition {
 }
 ```
 
-## QuestionScope (29)
+## QuestionScope (31)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/catalog.ts#L63).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/catalog.ts#L63).
 
 ```typescript
 export type QuestionScope = 'INSTALLATION' | 'AGENT';
 ```
 
-## CatalogQuestion (30)
+## CatalogQuestion (32)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/catalog.ts#L65).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/catalog.ts#L65).
 
 ```typescript
 export interface CatalogQuestion extends BlueprintQuestion {
@@ -373,9 +405,9 @@ export interface CatalogQuestion extends BlueprintQuestion {
 }
 ```
 
-## AgentBlueprintVersionDefinition (31)
+## AgentBlueprintVersionDefinition (33)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/catalog.ts#L69).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/catalog.ts#L69).
 
 ```typescript
 export interface AgentBlueprintVersionDefinition {
@@ -402,9 +434,9 @@ export interface AgentBlueprintVersionDefinition {
 }
 ```
 
-## CatalogDefinitions (32)
+## CatalogDefinitions (34)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/catalog.ts#L92).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/catalog.ts#L92).
 
 ```typescript
 export interface CatalogDefinitions {
@@ -417,9 +449,9 @@ export interface CatalogDefinitions {
 }
 ```
 
-## EvaluationWorld (33)
+## EvaluationWorld (35)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/catalog.ts#L105).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/catalog.ts#L105).
 
 ```typescript
 export interface EvaluationWorld {
@@ -431,9 +463,9 @@ export interface EvaluationWorld {
 }
 ```
 
-## EvaluationExecutionResult (34)
+## EvaluationExecutionResult (36)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/catalog.ts#L118).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/catalog.ts#L118).
 
 ```typescript
 export interface EvaluationExecutionResult {
@@ -444,9 +476,9 @@ export interface EvaluationExecutionResult {
 }
 ```
 
-## EvaluationStepExpectation (35)
+## EvaluationStepExpectation (37)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/catalog.ts#L126).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/catalog.ts#L126).
 
 ```typescript
 export interface EvaluationStepExpectation {
@@ -461,9 +493,9 @@ export interface EvaluationStepExpectation {
 }
 ```
 
-## EvaluationStep (36)
+## EvaluationStep (38)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/catalog.ts#L137).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/catalog.ts#L137).
 
 ```typescript
 export interface EvaluationStep {
@@ -473,9 +505,9 @@ export interface EvaluationStep {
 }
 ```
 
-## EvaluationScenario (37)
+## EvaluationScenario (39)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/catalog.ts#L148).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/catalog.ts#L148).
 
 ```typescript
 export interface EvaluationScenario {
@@ -502,9 +534,9 @@ export interface EvaluationScenario {
 }
 ```
 
-## QualityCheck (38)
+## QualityCheck (40)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/catalog.ts#L175).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/catalog.ts#L175).
 
 ```typescript
 export type QualityCheck = { id: string; weight: number; required?: boolean } & (
@@ -520,9 +552,9 @@ export type QualityCheck = { id: string; weight: number; required?: boolean } & 
 );
 ```
 
-## QualityCriterion (39)
+## QualityCriterion (41)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/catalog.ts#L188).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/catalog.ts#L188).
 
 ```typescript
 export interface QualityCriterion {
@@ -532,9 +564,9 @@ export interface QualityCriterion {
 }
 ```
 
-## QualityTask (40)
+## QualityTask (42)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/catalog.ts#L198).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/catalog.ts#L198).
 
 ```typescript
 export interface QualityTask {
@@ -557,9 +589,9 @@ export interface QualityTask {
 }
 ```
 
-## EvaluationSuiteDefinition (41)
+## EvaluationSuiteDefinition (43)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/catalog.ts#L217).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/catalog.ts#L217).
 
 ```typescript
 export interface EvaluationSuiteDefinition {
@@ -574,9 +606,9 @@ export interface EvaluationSuiteDefinition {
 }
 ```
 
-## ResolvedBlueprintBundle (42)
+## ResolvedBlueprintBundle (44)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/catalog.ts#L229).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/catalog.ts#L229).
 
 ```typescript
 export interface ResolvedBlueprintBundle {
@@ -590,9 +622,9 @@ export interface ResolvedBlueprintBundle {
 }
 ```
 
-## CatalogBlueprintSummary (43)
+## CatalogBlueprintSummary (45)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/catalog.ts#L239).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/catalog.ts#L239).
 
 ```typescript
 export interface CatalogBlueprintSummary {
@@ -607,17 +639,17 @@ export interface CatalogBlueprintSummary {
 }
 ```
 
-## InstallationStatus (44)
+## InstallationStatus (46)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/catalog.ts#L250).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/catalog.ts#L250).
 
 ```typescript
 export type InstallationStatus = 'ACTIVE' | 'RETIRED';
 ```
 
-## OrganizationAgentInstallation (45)
+## OrganizationAgentInstallation (47)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/catalog.ts#L252).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/catalog.ts#L252).
 
 ```typescript
 export interface OrganizationAgentInstallation {
@@ -637,9 +669,9 @@ export interface OrganizationAgentInstallation {
 }
 ```
 
-## AgentInstallationInput (46)
+## AgentInstallationInput (48)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/catalog.ts#L268).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/catalog.ts#L268).
 
 ```typescript
 export interface AgentInstallationInput {
@@ -650,25 +682,25 @@ export interface AgentInstallationInput {
 }
 ```
 
-## SourceControlProvider (47)
+## SourceControlProvider (49)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/credentials.ts#L7).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/credentials.ts#L7).
 
 ```typescript
 export type SourceControlProvider = (typeof sourceControlProviders)[number];
 ```
 
-## CredentialMode (48)
+## CredentialMode (50)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/credentials.ts#L17).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/credentials.ts#L17).
 
 ```typescript
 export type CredentialMode = (typeof credentialModes)[number];
 ```
 
-## SourceControlConnection (49)
+## SourceControlConnection (51)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/credentials.ts#L20).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/credentials.ts#L20).
 
 ```typescript
 export interface SourceControlConnection {
@@ -695,9 +727,9 @@ export interface SourceControlConnection {
 }
 ```
 
-## SourceControlConnectionInput (50)
+## SourceControlConnectionInput (52)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/credentials.ts#L43).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/credentials.ts#L43).
 
 ```typescript
 export interface SourceControlConnectionInput {
@@ -713,17 +745,17 @@ export interface SourceControlConnectionInput {
 }
 ```
 
-## CredentialLeaseStatus (51)
+## CredentialLeaseStatus (53)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/credentials.ts#L62).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/credentials.ts#L62).
 
 ```typescript
 export type CredentialLeaseStatus = (typeof credentialLeaseStatuses)[number];
 ```
 
-## CredentialLease (52)
+## CredentialLease (54)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/credentials.ts#L68).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/credentials.ts#L68).
 
 ```typescript
 export interface CredentialLease {
@@ -751,9 +783,9 @@ export interface CredentialLease {
 }
 ```
 
-## GrantCredentialBinding (53)
+## GrantCredentialBinding (55)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/credentials.ts#L96).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/credentials.ts#L96).
 
 ```typescript
 export interface GrantCredentialBinding {
@@ -763,9 +795,9 @@ export interface GrantCredentialBinding {
 }
 ```
 
-## CredentialRedeemRequest (54)
+## CredentialRedeemRequest (56)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/credentials.ts#L108).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/credentials.ts#L108).
 
 ```typescript
 export interface CredentialRedeemRequest {
@@ -775,9 +807,9 @@ export interface CredentialRedeemRequest {
 }
 ```
 
-## RepositoryCredential (55)
+## RepositoryCredential (57)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/credentials.ts#L115).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/credentials.ts#L115).
 
 ```typescript
 export interface RepositoryCredential {
@@ -787,9 +819,9 @@ export interface RepositoryCredential {
 }
 ```
 
-## CredentialRedeemResponse (56)
+## CredentialRedeemResponse (58)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/credentials.ts#L121).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/credentials.ts#L121).
 
 ```typescript
 export interface CredentialRedeemResponse {
@@ -800,17 +832,17 @@ export interface CredentialRedeemResponse {
 }
 ```
 
-## CredentialReleaseOutcome (57)
+## CredentialReleaseOutcome (59)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/credentials.ts#L135).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/credentials.ts#L135).
 
 ```typescript
 export type CredentialReleaseOutcome = (typeof credentialReleaseOutcomes)[number];
 ```
 
-## CredentialReleaseRequest (58)
+## CredentialReleaseRequest (60)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/credentials.ts#L138).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/credentials.ts#L138).
 
 ```typescript
 export interface CredentialReleaseRequest {
@@ -820,9 +852,9 @@ export interface CredentialReleaseRequest {
 }
 ```
 
-## CredentialReleaseResponse (59)
+## CredentialReleaseResponse (61)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/credentials.ts#L144).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/credentials.ts#L144).
 
 ```typescript
 export interface CredentialReleaseResponse {
@@ -831,9 +863,9 @@ export interface CredentialReleaseResponse {
 }
 ```
 
-## ModelCredentialBinding (60)
+## ModelCredentialBinding (62)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/credentials.ts#L153).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/credentials.ts#L153).
 
 ```typescript
 export interface ModelCredentialBinding {
@@ -846,17 +878,17 @@ export interface ModelCredentialBinding {
 }
 ```
 
-## ExecutionOperationKind (61)
+## ExecutionOperationKind (63)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution-runtime/v1/protocol.ts#L23).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution-runtime/v1/protocol.ts#L23).
 
 ```typescript
 export type ExecutionOperationKind = ExecutionOperation['kind'];
 ```
 
-## ExecutionGrantPayload (62)
+## ExecutionGrantPayload (64)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution-runtime/v1/protocol.ts#L29).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution-runtime/v1/protocol.ts#L29).
 
 ```typescript
 export interface ExecutionGrantPayload {
@@ -890,9 +922,9 @@ export interface ExecutionGrantPayload {
 }
 ```
 
-## SignedExecutionGrant (63)
+## SignedExecutionGrant (65)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution-runtime/v1/protocol.ts#L64).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution-runtime/v1/protocol.ts#L64).
 
 ```typescript
 export interface SignedExecutionGrant {
@@ -903,9 +935,9 @@ export interface SignedExecutionGrant {
 }
 ```
 
-## ExecuteOperationRequest (64)
+## ExecuteOperationRequest (66)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution-runtime/v1/protocol.ts#L71).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution-runtime/v1/protocol.ts#L71).
 
 ```typescript
 export interface ExecuteOperationRequest {
@@ -915,9 +947,9 @@ export interface ExecuteOperationRequest {
 }
 ```
 
-## ExecuteOperationResponse (65)
+## ExecuteOperationResponse (67)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution-runtime/v1/protocol.ts#L77).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution-runtime/v1/protocol.ts#L77).
 
 ```typescript
 export interface ExecuteOperationResponse {
@@ -931,9 +963,9 @@ export interface ExecuteOperationResponse {
 }
 ```
 
-## ExecutionArtifactUploadRequest (66)
+## ExecutionArtifactUploadRequest (68)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution-runtime/v1/protocol.ts#L92).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution-runtime/v1/protocol.ts#L92).
 
 ```typescript
 export interface ExecutionArtifactUploadRequest {
@@ -943,17 +975,17 @@ export interface ExecutionArtifactUploadRequest {
 }
 ```
 
-## Iso8601 (67)
+## Iso8601 (69)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution.ts#L5).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution.ts#L5).
 
 ```typescript
 export type Iso8601 = string;
 ```
 
-## RuntimeCorrelation (68)
+## RuntimeCorrelation (70)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution.ts#L8).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution.ts#L8).
 
 ```typescript
 export interface RuntimeCorrelation {
@@ -968,9 +1000,9 @@ export interface RuntimeCorrelation {
 }
 ```
 
-## WorkItemReference (69)
+## WorkItemReference (71)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution.ts#L20).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution.ts#L20).
 
 ```typescript
 export interface WorkItemReference {
@@ -980,17 +1012,17 @@ export interface WorkItemReference {
 }
 ```
 
-## TaskInputValue (70)
+## TaskInputValue (72)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution.ts#L26).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution.ts#L26).
 
 ```typescript
 export type TaskInputValue = string | number | boolean | string[];
 ```
 
-## TaskSpec (71)
+## TaskSpec (73)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution.ts#L29).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution.ts#L29).
 
 ```typescript
 export interface TaskSpec {
@@ -1001,17 +1033,17 @@ export interface TaskSpec {
 }
 ```
 
-## ThreadStatus (72)
+## ThreadStatus (74)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution.ts#L37).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution.ts#L37).
 
 ```typescript
 export type ThreadStatus = (typeof threadStatuses)[number];
 ```
 
-## Thread (73)
+## Thread (75)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution.ts#L40).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution.ts#L40).
 
 ```typescript
 export interface Thread {
@@ -1027,25 +1059,25 @@ export interface Thread {
 }
 ```
 
-## AgentRunStatus (74)
+## AgentRunStatus (76)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution.ts#L60).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution.ts#L60).
 
 ```typescript
 export type AgentRunStatus = (typeof agentRunStatuses)[number];
 ```
 
-## ManifestApiVersion (75)
+## ManifestApiVersion (77)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution.ts#L63).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution.ts#L63).
 
 ```typescript
 export type ManifestApiVersion = (typeof manifestApiVersions)[number];
 ```
 
-## ManifestReference (76)
+## ManifestReference (78)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution.ts#L65).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution.ts#L65).
 
 ```typescript
 export interface ManifestReference {
@@ -1055,9 +1087,9 @@ export interface ManifestReference {
 }
 ```
 
-## AgentRun (77)
+## AgentRun (79)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution.ts#L72).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution.ts#L72).
 
 ```typescript
 export interface AgentRun {
@@ -1081,25 +1113,25 @@ export interface AgentRun {
 }
 ```
 
-## RunStepKind (78)
+## RunStepKind (80)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution.ts#L93).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution.ts#L93).
 
 ```typescript
 export type RunStepKind = (typeof runStepKinds)[number];
 ```
 
-## RunStepStatus (79)
+## RunStepStatus (81)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution.ts#L104).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution.ts#L104).
 
 ```typescript
 export type RunStepStatus = (typeof runStepStatuses)[number];
 ```
 
-## RunStep (80)
+## RunStep (82)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution.ts#L106).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution.ts#L106).
 
 ```typescript
 export interface RunStep {
@@ -1117,41 +1149,41 @@ export interface RunStep {
 }
 ```
 
-## ControlPlaneEventType (81)
+## ControlPlaneEventType (83)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution.ts#L152).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution.ts#L152).
 
 ```typescript
 export type ControlPlaneEventType = (typeof controlPlaneEventTypes)[number];
 ```
 
-## RuntimeEventType (82)
+## RuntimeEventType (84)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution.ts#L153).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution.ts#L153).
 
 ```typescript
 export type RuntimeEventType = (typeof runtimeEventTypes)[number];
 ```
 
-## AgentEventType (83)
+## AgentEventType (85)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution.ts#L154).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution.ts#L154).
 
 ```typescript
 export type AgentEventType = ControlPlaneEventType | RuntimeEventType;
 ```
 
-## AgentEventSource (84)
+## AgentEventSource (86)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution.ts#L160).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution.ts#L160).
 
 ```typescript
 export type AgentEventSource = 'CONTROL_PLANE' | 'RUNTIME';
 ```
 
-## AgentEvent (85)
+## AgentEvent (87)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution.ts#L163).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution.ts#L163).
 
 ```typescript
 export interface AgentEvent {
@@ -1170,9 +1202,9 @@ export interface AgentEvent {
 }
 ```
 
-## ExecutionError (86)
+## ExecutionError (88)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution.ts#L178).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution.ts#L178).
 
 ```typescript
 export interface ExecutionError {
@@ -1181,9 +1213,9 @@ export interface ExecutionError {
 }
 ```
 
-## ToolCall (87)
+## ToolCall (89)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution.ts#L183).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution.ts#L183).
 
 ```typescript
 export interface ToolCall {
@@ -1198,9 +1230,9 @@ export interface ToolCall {
 }
 ```
 
-## ToolResult (88)
+## ToolResult (90)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution.ts#L194).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution.ts#L194).
 
 ```typescript
 export interface ToolResult {
@@ -1214,17 +1246,17 @@ export interface ToolResult {
 }
 ```
 
-## ApprovalRisk (89)
+## ApprovalRisk (91)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution.ts#L205).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution.ts#L205).
 
 ```typescript
 export type ApprovalRisk = (typeof approvalRisks)[number];
 ```
 
-## ApprovalRequest (90)
+## ApprovalRequest (92)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution.ts#L208).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution.ts#L208).
 
 ```typescript
 export interface ApprovalRequest {
@@ -1248,17 +1280,17 @@ export interface ApprovalRequest {
 }
 ```
 
-## WorkspaceState (91)
+## WorkspaceState (93)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution.ts#L236).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution.ts#L236).
 
 ```typescript
 export type WorkspaceState = (typeof workspaceStates)[number];
 ```
 
-## RepositoryMapping (92)
+## RepositoryMapping (94)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution.ts#L238).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution.ts#L238).
 
 ```typescript
 export interface RepositoryMapping {
@@ -1268,9 +1300,9 @@ export interface RepositoryMapping {
 }
 ```
 
-## Workspace (93)
+## Workspace (95)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution.ts#L245).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution.ts#L245).
 
 ```typescript
 export interface Workspace {
@@ -1287,9 +1319,9 @@ export interface Workspace {
 }
 ```
 
-## WorkspaceBinding (94)
+## WorkspaceBinding (96)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution.ts#L259).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution.ts#L259).
 
 ```typescript
 export interface WorkspaceBinding {
@@ -1299,9 +1331,9 @@ export interface WorkspaceBinding {
 }
 ```
 
-## ResourceLimits (95)
+## ResourceLimits (97)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution.ts#L265).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution.ts#L265).
 
 ```typescript
 export interface ResourceLimits {
@@ -1313,9 +1345,9 @@ export interface ResourceLimits {
 }
 ```
 
-## ExecutionOperation (96)
+## ExecutionOperation (98)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution.ts#L273).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution.ts#L273).
 
 ```typescript
 export type ExecutionOperation =
@@ -1338,9 +1370,9 @@ export type ExecutionOperation =
   | { kind: 'dependencies.install'; path: string; registryUrl: string };
 ```
 
-## ExecutionRequest (97)
+## ExecutionRequest (99)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution.ts#L292).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution.ts#L292).
 
 ```typescript
 export interface ExecutionRequest {
@@ -1352,9 +1384,9 @@ export interface ExecutionRequest {
 }
 ```
 
-## ExecutionResult (98)
+## ExecutionResult (100)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution.ts#L300).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution.ts#L300).
 
 ```typescript
 export interface ExecutionResult {
@@ -1367,9 +1399,9 @@ export interface ExecutionResult {
 }
 ```
 
-## RuntimeSession (99)
+## RuntimeSession (101)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution.ts#L310).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution.ts#L310).
 
 ```typescript
 export interface RuntimeSession {
@@ -1383,9 +1415,9 @@ export interface RuntimeSession {
 }
 ```
 
-## ThreadDetail (100)
+## ThreadDetail (102)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution.ts#L321).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution.ts#L321).
 
 ```typescript
 export interface ThreadDetail {
@@ -1394,9 +1426,9 @@ export interface ThreadDetail {
 }
 ```
 
-## RunApprovalSummary (101)
+## RunApprovalSummary (103)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution.ts#L326).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution.ts#L326).
 
 ```typescript
 export interface RunApprovalSummary {
@@ -1411,9 +1443,9 @@ export interface RunApprovalSummary {
 }
 ```
 
-## AgentRunDetail (102)
+## AgentRunDetail (104)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution.ts#L337).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution.ts#L337).
 
 ```typescript
 export interface AgentRunDetail {
@@ -1424,9 +1456,32 @@ export interface AgentRunDetail {
 }
 ```
 
-## AgentEventPage (103)
+## RunActionSummary (105)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution.ts#L344).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution.ts#L348).
+
+```typescript
+export interface RunActionSummary {
+  requestId: string;
+  action: string;
+  toolId: string;
+  stepId: string;
+  decision: 'ALLOWED' | 'DENIED' | 'APPROVAL_REQUIRED';
+  /** The decision's reason code, for example `ACTION_RECONCILIATION_REQUIRED`. */
+  reason: string;
+  /** For execution-runtime actions, the operation the grant authorized. */
+  operationKind: ExecutionOperation['kind'] | null;
+  /** A checkout the control plane authenticated with a brokered credential (ADR 0031). */
+  credentialed: boolean;
+  outcome: 'PENDING' | 'IN_PROGRESS' | 'SUCCEEDED' | 'FAILED' | 'DENIED';
+  errorCode: string | null;
+  createdAt: Iso8601;
+}
+```
+
+## AgentEventPage (106)
+
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution.ts#L365).
 
 ```typescript
 export interface AgentEventPage {
@@ -1435,25 +1490,25 @@ export interface AgentEventPage {
 }
 ```
 
-## Identifier (104)
+## Identifier (107)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/index.ts#L1).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/index.ts#L1).
 
 ```typescript
 export type Identifier = string;
 ```
 
-## UserRole (105)
+## UserRole (108)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/index.ts#L20).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/index.ts#L20).
 
 ```typescript
 export type UserRole = 'ADMIN' | 'EMPLOYEE';
 ```
 
-## Actor (106)
+## Actor (109)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/index.ts#L21).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/index.ts#L21).
 
 ```typescript
 export interface Actor {
@@ -1463,9 +1518,9 @@ export interface Actor {
 }
 ```
 
-## AccountMembership (107)
+## AccountMembership (110)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/index.ts#L27).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/index.ts#L27).
 
 ```typescript
 export interface AccountMembership {
@@ -1476,9 +1531,9 @@ export interface AccountMembership {
 }
 ```
 
-## AccountLinkPreview (108)
+## AccountLinkPreview (111)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/index.ts#L34).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/index.ts#L34).
 
 ```typescript
 export interface AccountLinkPreview {
@@ -1489,9 +1544,9 @@ export interface AccountLinkPreview {
 }
 ```
 
-## PublicAuthConfig (109)
+## PublicAuthConfig (112)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/index.ts#L41).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/index.ts#L41).
 
 ```typescript
 export type PublicAuthConfig =
@@ -1503,33 +1558,33 @@ export type PublicAuthConfig =
     };
 ```
 
-## KeySource (110)
+## KeySource (113)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/index.ts#L48).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/index.ts#L48).
 
 ```typescript
 export type KeySource = 'EMPLOYEE_BYOK' | 'ORGANIZATION_MANAGED';
 ```
 
-## ApprovalStatus (111)
+## ApprovalStatus (114)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/index.ts#L49).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/index.ts#L49).
 
 ```typescript
 export type ApprovalStatus = 'PENDING' | 'APPROVED' | 'REJECTED';
 ```
 
-## QaRunStatus (112)
+## QaRunStatus (115)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/index.ts#L51).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/index.ts#L51).
 
 ```typescript
 export type QaRunStatus = 'AWAITING_APPROVAL' | 'READY' | 'REJECTED';
 ```
 
-## Organization (113)
+## Organization (116)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/index.ts#L53).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/index.ts#L53).
 
 ```typescript
 export interface Organization {
@@ -1539,9 +1594,9 @@ export interface Organization {
 }
 ```
 
-## Employee (114)
+## Employee (117)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/index.ts#L59).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/index.ts#L59).
 
 ```typescript
 export interface Employee {
@@ -1554,9 +1609,9 @@ export interface Employee {
 }
 ```
 
-## AgentDefinition (115)
+## AgentDefinition (118)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/index.ts#L68).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/index.ts#L68).
 
 ```typescript
 export interface AgentDefinition {
@@ -1571,9 +1626,9 @@ export interface AgentDefinition {
 }
 ```
 
-## BlueprintQuestion (116)
+## BlueprintQuestion (119)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/index.ts#L79).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/index.ts#L79).
 
 ```typescript
 export interface BlueprintQuestion {
@@ -1585,9 +1640,9 @@ export interface BlueprintQuestion {
 }
 ```
 
-## AgentBlueprint (117)
+## AgentBlueprint (120)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/index.ts#L87).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/index.ts#L87).
 
 ```typescript
 export interface AgentBlueprint {
@@ -1602,9 +1657,9 @@ export interface AgentBlueprint {
 }
 ```
 
-## ManifestCapability (118)
+## ManifestCapability (121)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/index.ts#L98).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/index.ts#L98).
 
 ```typescript
 export interface ManifestCapability {
@@ -1613,9 +1668,9 @@ export interface ManifestCapability {
 }
 ```
 
-## ProvisioningInput (119)
+## ProvisioningInput (122)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/index.ts#L103).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/index.ts#L103).
 
 ```typescript
 export interface ProvisioningInput {
@@ -1628,9 +1683,9 @@ export interface ProvisioningInput {
 }
 ```
 
-## ProvisioningRequest (120)
+## ProvisioningRequest (123)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/index.ts#L112).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/index.ts#L112).
 
 ```typescript
 export interface ProvisioningRequest extends ProvisioningInput {
@@ -1647,9 +1702,9 @@ export interface ProvisioningRequest extends ProvisioningInput {
 }
 ```
 
-## AdminAgentInput (121)
+## AdminAgentInput (124)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/index.ts#L125).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/index.ts#L125).
 
 ```typescript
 export interface AdminAgentInput extends ProvisioningInput {
@@ -1661,9 +1716,9 @@ export interface AdminAgentInput extends ProvisioningInput {
 }
 ```
 
-## AgentAssignment (122)
+## AgentAssignment (125)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/index.ts#L132).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/index.ts#L132).
 
 ```typescript
 export interface AgentAssignment {
@@ -1676,9 +1731,9 @@ export interface AgentAssignment {
 }
 ```
 
-## AgentManifestPayload (123)
+## AgentManifestPayload (126)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/index.ts#L141).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/index.ts#L141).
 
 ```typescript
 export interface AgentManifestPayload {
@@ -1697,9 +1752,9 @@ export interface AgentManifestPayload {
 }
 ```
 
-## SignedManifest (124)
+## SignedManifest (127)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/index.ts#L156).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/index.ts#L156).
 
 ```typescript
 export interface SignedManifest<P> {
@@ -1710,41 +1765,41 @@ export interface SignedManifest<P> {
 }
 ```
 
-## SignedAgentManifest (125)
+## SignedAgentManifest (128)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/index.ts#L164).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/index.ts#L164).
 
 ```typescript
 export type SignedAgentManifest = SignedManifest<AgentManifestPayload>;
 ```
 
-## SignedAgentManifestV2 (126)
+## SignedAgentManifestV2 (129)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/index.ts#L165).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/index.ts#L165).
 
 ```typescript
 export type SignedAgentManifestV2 = SignedManifest<AgentManifestV2Payload>;
 ```
 
-## AnyAgentManifestPayload (127)
+## AnyAgentManifestPayload (130)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/index.ts#L166).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/index.ts#L166).
 
 ```typescript
 export type AnyAgentManifestPayload = AgentManifestPayload | AgentManifestV2Payload;
 ```
 
-## AnySignedAgentManifest (128)
+## AnySignedAgentManifest (131)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/index.ts#L167).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/index.ts#L167).
 
 ```typescript
 export type AnySignedAgentManifest = SignedAgentManifest | SignedAgentManifestV2;
 ```
 
-## ManifestVerificationKey (129)
+## ManifestVerificationKey (132)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/index.ts#L169).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/index.ts#L169).
 
 ```typescript
 export interface ManifestVerificationKey {
@@ -1754,9 +1809,9 @@ export interface ManifestVerificationKey {
 }
 ```
 
-## LifecycleEvent (130)
+## LifecycleEvent (133)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/index.ts#L175).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/index.ts#L175).
 
 ```typescript
 export interface LifecycleEvent {
@@ -1783,9 +1838,9 @@ export interface LifecycleEvent {
 }
 ```
 
-## KeyPolicy (131)
+## KeyPolicy (134)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/index.ts#L198).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/index.ts#L198).
 
 ```typescript
 export interface KeyPolicy {
@@ -1795,9 +1850,9 @@ export interface KeyPolicy {
 }
 ```
 
-## Conversation (132)
+## Conversation (135)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/index.ts#L204).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/index.ts#L204).
 
 ```typescript
 export interface Conversation {
@@ -1811,9 +1866,9 @@ export interface Conversation {
 }
 ```
 
-## ConversationMessage (133)
+## ConversationMessage (136)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/index.ts#L214).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/index.ts#L214).
 
 ```typescript
 export interface ConversationMessage {
@@ -1825,9 +1880,9 @@ export interface ConversationMessage {
 }
 ```
 
-## Approval (134)
+## Approval (137)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/index.ts#L222).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/index.ts#L222).
 
 ```typescript
 export interface Approval {
@@ -1851,9 +1906,9 @@ export interface Approval {
 }
 ```
 
-## QaRun (135)
+## QaRun (138)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/index.ts#L243).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/index.ts#L243).
 
 ```typescript
 export interface QaRun {
@@ -1870,9 +1925,9 @@ export interface QaRun {
 }
 ```
 
-## BootstrapResponse (136)
+## BootstrapResponse (139)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/index.ts#L256).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/index.ts#L256).
 
 ```typescript
 export interface BootstrapResponse {
@@ -1883,9 +1938,9 @@ export interface BootstrapResponse {
 }
 ```
 
-## ConversationDetail (137)
+## ConversationDetail (140)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/index.ts#L263).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/index.ts#L263).
 
 ```typescript
 export interface ConversationDetail extends Conversation {
@@ -1893,9 +1948,9 @@ export interface ConversationDetail extends Conversation {
 }
 ```
 
-## QaRunRequest (138)
+## QaRunRequest (141)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/index.ts#L267).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/index.ts#L267).
 
 ```typescript
 export interface QaRunRequest {
@@ -1908,17 +1963,17 @@ export interface QaRunRequest {
 }
 ```
 
-## QaRunMode (139)
+## QaRunMode (142)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/index.ts#L277).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/index.ts#L277).
 
 ```typescript
 export type QaRunMode = 'LEGACY_STATIC_PLAN' | 'GENERIC_RUNTIME';
 ```
 
-## QaRunResponse (140)
+## QaRunResponse (143)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/index.ts#L280).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/index.ts#L280).
 
 ```typescript
 export interface QaRunResponse {
@@ -1930,9 +1985,9 @@ export interface QaRunResponse {
 }
 ```
 
-## GenericQaRunResponse (141)
+## GenericQaRunResponse (144)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/index.ts#L293).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/index.ts#L293).
 
 ```typescript
 export interface GenericQaRunResponse {
@@ -1941,25 +1996,25 @@ export interface GenericQaRunResponse {
 }
 ```
 
-## QaRunResult (142)
+## QaRunResult (145)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/index.ts#L298).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/index.ts#L298).
 
 ```typescript
 export type QaRunResult = QaRunResponse | GenericQaRunResponse;
 ```
 
-## JobKind (143)
+## JobKind (146)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/jobs.ts#L2).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/jobs.ts#L2).
 
 ```typescript
 export type JobKind = (typeof jobKinds)[number];
 ```
 
-## JobRecord (144)
+## JobRecord (147)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/jobs.ts#L3).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/jobs.ts#L3).
 
 ```typescript
 export interface JobRecord {
@@ -1983,9 +2038,9 @@ export interface JobRecord {
 }
 ```
 
-## VersionedReference (145)
+## VersionedReference (148)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/manifest-v2.ts#L5).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/manifest-v2.ts#L5).
 
 ```typescript
 export interface VersionedReference {
@@ -1995,9 +2050,9 @@ export interface VersionedReference {
 }
 ```
 
-## ConnectorRequirement (146)
+## ConnectorRequirement (149)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/manifest-v2.ts#L11).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/manifest-v2.ts#L11).
 
 ```typescript
 export interface ConnectorRequirement {
@@ -2007,9 +2062,9 @@ export interface ConnectorRequirement {
 }
 ```
 
-## AgentManifestV2Payload (147)
+## AgentManifestV2Payload (150)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/manifest-v2.ts#L17).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/manifest-v2.ts#L17).
 
 ```typescript
 export interface AgentManifestV2Payload {
@@ -2045,9 +2100,9 @@ export interface AgentManifestV2Payload {
 }
 ```
 
-## ManifestSubject (148)
+## ManifestSubject (151)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/manifest.ts#L21).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/manifest.ts#L21).
 
 ```typescript
 export interface ManifestSubject {
@@ -2060,9 +2115,9 @@ export interface ManifestSubject {
 }
 ```
 
-## QualityRunPoint (149)
+## QualityRunPoint (152)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/model-quality.ts#L4).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/model-quality.ts#L4).
 
 ```typescript
 export interface QualityRunPoint {
@@ -2076,17 +2131,17 @@ export interface QualityRunPoint {
 }
 ```
 
-## QualitySeriesStatus (150)
+## QualitySeriesStatus (153)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/model-quality.ts#L14).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/model-quality.ts#L14).
 
 ```typescript
 export type QualitySeriesStatus = 'NEW' | 'STEADY' | 'IMPROVED' | 'REGRESSED';
 ```
 
-## QualitySeries (151)
+## QualitySeries (154)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/model-quality.ts#L16).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/model-quality.ts#L16).
 
 ```typescript
 export interface QualitySeries {
@@ -2107,9 +2162,9 @@ export interface QualitySeries {
 }
 ```
 
-## ModelQualityOverview (152)
+## ModelQualityOverview (155)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/model-quality.ts#L34).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/model-quality.ts#L34).
 
 ```typescript
 export interface ModelQualityOverview {
@@ -2121,9 +2176,9 @@ export interface ModelQualityOverview {
 }
 ```
 
-## OrganizationModelBudget (153)
+## OrganizationModelBudget (156)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/model-spending.ts#L5).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/model-spending.ts#L5).
 
 ```typescript
 export interface OrganizationModelBudget {
@@ -2149,9 +2204,9 @@ export interface OrganizationModelBudget {
 }
 ```
 
-## OrganizationModelBudgetInput (154)
+## OrganizationModelBudgetInput (157)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/model-spending.ts#L28).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/model-spending.ts#L28).
 
 ```typescript
 export interface OrganizationModelBudgetInput {
@@ -2165,9 +2220,9 @@ export interface OrganizationModelBudgetInput {
 }
 ```
 
-## ModelBudgetAlert (155)
+## ModelBudgetAlert (158)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/model-spending.ts#L42).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/model-spending.ts#L42).
 
 ```typescript
 export interface ModelBudgetAlert {
@@ -2188,9 +2243,9 @@ export interface ModelBudgetAlert {
 }
 ```
 
-## ModelBudgetAlertList (156)
+## ModelBudgetAlertList (159)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/model-spending.ts#L59).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/model-spending.ts#L59).
 
 ```typescript
 export interface ModelBudgetAlertList {
@@ -2199,9 +2254,9 @@ export interface ModelBudgetAlertList {
 }
 ```
 
-## ModelPrice (157)
+## ModelPrice (160)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/model-spending.ts#L65).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/model-spending.ts#L65).
 
 ```typescript
 export interface ModelPrice {
@@ -2217,9 +2272,9 @@ export interface ModelPrice {
 }
 ```
 
-## ModelPriceBook (158)
+## ModelPriceBook (161)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/model-spending.ts#L77).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/model-spending.ts#L77).
 
 ```typescript
 export interface ModelPriceBook {
@@ -2228,9 +2283,9 @@ export interface ModelPriceBook {
 }
 ```
 
-## ModelPriceInput (159)
+## ModelPriceInput (162)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/model-spending.ts#L86).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/model-spending.ts#L86).
 
 ```typescript
 export interface ModelPriceInput {
@@ -2242,9 +2297,9 @@ export interface ModelPriceInput {
 }
 ```
 
-## ModelPriceRemoval (160)
+## ModelPriceRemoval (163)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/model-spending.ts#L95).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/model-spending.ts#L95).
 
 ```typescript
 export interface ModelPriceRemoval {
@@ -2254,9 +2309,9 @@ export interface ModelPriceRemoval {
 }
 ```
 
-## ModelUsageTotals (161)
+## ModelUsageTotals (164)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/model-spending.ts#L101).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/model-spending.ts#L101).
 
 ```typescript
 export interface ModelUsageTotals {
@@ -2270,9 +2325,9 @@ export interface ModelUsageTotals {
 }
 ```
 
-## ModelUsageReport (162)
+## ModelUsageReport (165)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/model-spending.ts#L111).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/model-spending.ts#L111).
 
 ```typescript
 export interface ModelUsageReport extends ModelUsageTotals {
@@ -2293,17 +2348,17 @@ export interface ModelUsageReport extends ModelUsageTotals {
 }
 ```
 
-## UnitType (163)
+## UnitType (166)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/organization.ts#L13).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/organization.ts#L13).
 
 ```typescript
 export type UnitType = (typeof unitTypes)[number];
 ```
 
-## OrganizationUnitInput (164)
+## OrganizationUnitInput (167)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/organization.ts#L14).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/organization.ts#L14).
 
 ```typescript
 export interface OrganizationUnitInput {
@@ -2315,9 +2370,9 @@ export interface OrganizationUnitInput {
 }
 ```
 
-## OrganizationUnit (165)
+## OrganizationUnit (168)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/organization.ts#L21).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/organization.ts#L21).
 
 ```typescript
 export interface OrganizationUnit extends OrganizationUnitInput {
@@ -2334,9 +2389,9 @@ export interface OrganizationUnit extends OrganizationUnitInput {
 }
 ```
 
-## Page (166)
+## Page (169)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/organization.ts#L33).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/organization.ts#L33).
 
 ```typescript
 export interface Page<T> {
@@ -2347,9 +2402,9 @@ export interface Page<T> {
 }
 ```
 
-## UnitMembership (167)
+## UnitMembership (170)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/organization.ts#L39).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/organization.ts#L39).
 
 ```typescript
 export interface UnitMembership {
@@ -2364,9 +2419,9 @@ export interface UnitMembership {
 }
 ```
 
-## RuntimeEventDecision (168)
+## RuntimeEventDecision (171)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/run-lifecycle.ts#L55).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/run-lifecycle.ts#L55).
 
 ```typescript
 export type RuntimeEventDecision =
@@ -2374,17 +2429,17 @@ export type RuntimeEventDecision =
   | { accepted: false; code: 'RUN_TERMINAL' | 'ILLEGAL_RUN_TRANSITION' | 'RUN_NOT_RUNNING' };
 ```
 
-## RuntimeProtocolVersion (169)
+## RuntimeProtocolVersion (172)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/protocol.ts#L16).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/protocol.ts#L16).
 
 ```typescript
 export type RuntimeProtocolVersion = typeof RUNTIME_PROTOCOL_V1;
 ```
 
-## RunSubmitCommand (170)
+## RunSubmitCommand (173)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/protocol.ts#L26).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/protocol.ts#L26).
 
 ```typescript
 export interface RunSubmitCommand extends CommandBase {
@@ -2406,9 +2461,9 @@ export interface RunSubmitCommand extends CommandBase {
 }
 ```
 
-## RunResumeCommand (171)
+## RunResumeCommand (174)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/protocol.ts#L45).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/protocol.ts#L45).
 
 ```typescript
 export interface RunResumeCommand extends CommandBase {
@@ -2418,9 +2473,9 @@ export interface RunResumeCommand extends CommandBase {
 }
 ```
 
-## RunCancelCommand (172)
+## RunCancelCommand (175)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/protocol.ts#L51).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/protocol.ts#L51).
 
 ```typescript
 export interface RunCancelCommand extends CommandBase {
@@ -2430,9 +2485,9 @@ export interface RunCancelCommand extends CommandBase {
 }
 ```
 
-## RunRecoverCommand (173)
+## RunRecoverCommand (176)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/protocol.ts#L61).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/protocol.ts#L61).
 
 ```typescript
 export interface RunRecoverCommand extends CommandBase {
@@ -2444,18 +2499,18 @@ export interface RunRecoverCommand extends CommandBase {
 }
 ```
 
-## RuntimeCommand (174)
+## RuntimeCommand (177)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/protocol.ts#L69).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/protocol.ts#L69).
 
 ```typescript
 export type RuntimeCommand =
   RunSubmitCommand | RunResumeCommand | RunCancelCommand | RunRecoverCommand;
 ```
 
-## RuntimeEventPayloads (175)
+## RuntimeEventPayloads (178)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/protocol.ts#L73).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/protocol.ts#L73).
 
 ```typescript
 export interface RuntimeEventPayloads {
@@ -2496,9 +2551,9 @@ export interface RuntimeEventPayloads {
 }
 ```
 
-## RuntimeEventEnvelope (176)
+## RuntimeEventEnvelope (179)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/protocol.ts#L110).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/protocol.ts#L110).
 
 ```typescript
 export type RuntimeEventEnvelope = {
@@ -2519,9 +2574,9 @@ export type RuntimeEventEnvelope = {
 }[RuntimeEventType];
 ```
 
-## RuntimeLease (177)
+## RuntimeLease (180)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/transport.ts#L64).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/transport.ts#L64).
 
 ```typescript
 export interface RuntimeLease {
@@ -2532,9 +2587,9 @@ export interface RuntimeLease {
 }
 ```
 
-## RuntimeClaimResponse (178)
+## RuntimeClaimResponse (181)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/transport.ts#L72).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/transport.ts#L72).
 
 ```typescript
 export interface RuntimeClaimResponse {
@@ -2543,9 +2598,9 @@ export interface RuntimeClaimResponse {
 }
 ```
 
-## RuntimeActionRequest (179)
+## RuntimeActionRequest (182)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/transport.ts#L81).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/transport.ts#L81).
 
 ```typescript
 export interface RuntimeActionRequest {
@@ -2567,9 +2622,9 @@ export interface RuntimeActionRequest {
 }
 ```
 
-## RuntimeActionExecuteRequest (180)
+## RuntimeActionExecuteRequest (183)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/transport.ts#L100).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/transport.ts#L100).
 
 ```typescript
 export interface RuntimeActionExecuteRequest {
@@ -2579,17 +2634,17 @@ export interface RuntimeActionExecuteRequest {
 }
 ```
 
-## RuntimeActionGrantRequest (181)
+## RuntimeActionGrantRequest (184)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/transport.ts#L110).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/transport.ts#L110).
 
 ```typescript
 export type RuntimeActionGrantRequest = RuntimeActionExecuteRequest;
 ```
 
-## RuntimeActionExecution (182)
+## RuntimeActionExecution (185)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/transport.ts#L112).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/transport.ts#L112).
 
 ```typescript
 export interface RuntimeActionExecution {
@@ -2601,9 +2656,9 @@ export interface RuntimeActionExecution {
 }
 ```
 
-## RuntimeActionDecision (183)
+## RuntimeActionDecision (186)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/transport.ts#L120).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/transport.ts#L120).
 
 ```typescript
 export type RuntimeActionDecision =
@@ -2619,9 +2674,9 @@ export type RuntimeActionDecision =
     };
 ```
 
-## RuntimeModelReservationRequest (184)
+## RuntimeModelReservationRequest (187)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/transport.ts#L136).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/transport.ts#L136).
 
 ```typescript
 export interface RuntimeModelReservationRequest {
@@ -2638,9 +2693,9 @@ export interface RuntimeModelReservationRequest {
 }
 ```
 
-## RuntimeModelReservation (185)
+## RuntimeModelReservation (188)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/transport.ts#L149).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/transport.ts#L149).
 
 ```typescript
 export type RuntimeModelReservation =
@@ -2658,9 +2713,9 @@ export type RuntimeModelReservation =
     };
 ```
 
-## RuntimeModelSettlementRequest (186)
+## RuntimeModelSettlementRequest (189)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/transport.ts#L164).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/transport.ts#L164).
 
 ```typescript
 export interface RuntimeModelSettlementRequest {
@@ -2672,9 +2727,9 @@ export interface RuntimeModelSettlementRequest {
 }
 ```
 
-## RuntimeModelSettlement (187)
+## RuntimeModelSettlement (190)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/transport.ts#L172).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/transport.ts#L172).
 
 ```typescript
 export interface RuntimeModelSettlement {
@@ -2683,9 +2738,9 @@ export interface RuntimeModelSettlement {
 }
 ```
 
-## RuntimeHeartbeatRequest (188)
+## RuntimeHeartbeatRequest (191)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/transport.ts#L181).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/transport.ts#L181).
 
 ```typescript
 export interface RuntimeHeartbeatRequest {
@@ -2694,9 +2749,9 @@ export interface RuntimeHeartbeatRequest {
 }
 ```
 
-## RuntimeHeartbeat (189)
+## RuntimeHeartbeat (192)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/transport.ts#L186).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/transport.ts#L186).
 
 ```typescript
 export interface RuntimeHeartbeat {
@@ -2705,9 +2760,9 @@ export interface RuntimeHeartbeat {
 }
 ```
 
-## RunCheckpointBinding (190)
+## RunCheckpointBinding (193)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/transport.ts#L192).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/transport.ts#L192).
 
 ```typescript
 export interface RunCheckpointBinding {
@@ -2725,9 +2780,9 @@ export interface RunCheckpointBinding {
 }
 ```
 
-## RuntimeCheckpointSaveRequest (191)
+## RuntimeCheckpointSaveRequest (194)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/transport.ts#L211).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/transport.ts#L211).
 
 ```typescript
 export interface RuntimeCheckpointSaveRequest {
@@ -2742,9 +2797,9 @@ export interface RuntimeCheckpointSaveRequest {
 }
 ```
 
-## RuntimeCheckpointAck (192)
+## RuntimeCheckpointAck (195)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/transport.ts#L222).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/transport.ts#L222).
 
 ```typescript
 export interface RuntimeCheckpointAck {
@@ -2753,9 +2808,9 @@ export interface RuntimeCheckpointAck {
 }
 ```
 
-## RuntimeCheckpointLoadRequest (193)
+## RuntimeCheckpointLoadRequest (196)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/transport.ts#L227).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/transport.ts#L227).
 
 ```typescript
 export interface RuntimeCheckpointLoadRequest {
@@ -2764,9 +2819,9 @@ export interface RuntimeCheckpointLoadRequest {
 }
 ```
 
-## RuntimeCheckpointRecord (194)
+## RuntimeCheckpointRecord (197)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/transport.ts#L233).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/transport.ts#L233).
 
 ```typescript
 export interface RuntimeCheckpointRecord {
@@ -2778,9 +2833,9 @@ export interface RuntimeCheckpointRecord {
 }
 ```
 
-## RuntimeModelCredentialRequest (195)
+## RuntimeModelCredentialRequest (198)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/transport.ts#L245).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/transport.ts#L245).
 
 ```typescript
 export interface RuntimeModelCredentialRequest {
@@ -2790,9 +2845,9 @@ export interface RuntimeModelCredentialRequest {
 }
 ```
 
-## RuntimeModelCredential (196)
+## RuntimeModelCredential (199)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/transport.ts#L252).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/transport.ts#L252).
 
 ```typescript
 export interface RuntimeModelCredential {
@@ -2801,9 +2856,9 @@ export interface RuntimeModelCredential {
 }
 ```
 
-## RuntimeArtifactUploadRequest (197)
+## RuntimeArtifactUploadRequest (200)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/transport.ts#L262).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/transport.ts#L262).
 
 ```typescript
 export interface RuntimeArtifactUploadRequest {
@@ -2814,9 +2869,9 @@ export interface RuntimeArtifactUploadRequest {
 }
 ```
 
-## RuntimeEventAck (198)
+## RuntimeEventAck (201)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/transport.ts#L270).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/transport.ts#L270).
 
 ```typescript
 export interface RuntimeEventAck {
@@ -2827,9 +2882,9 @@ export interface RuntimeEventAck {
 }
 ```
 
-## OrganizationProfile (199)
+## OrganizationProfile (202)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/tenancy.ts#L1).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/tenancy.ts#L1).
 
 ```typescript
 export interface OrganizationProfile {
@@ -2849,9 +2904,9 @@ export interface OrganizationProfile {
 }
 ```
 
-## TenantDomain (200)
+## TenantDomain (203)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/tenancy.ts#L16).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/tenancy.ts#L16).
 
 ```typescript
 export interface TenantDomain {
@@ -2867,9 +2922,9 @@ export interface TenantDomain {
 }
 ```
 
-## EmploymentRecord (201)
+## EmploymentRecord (204)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/tenancy.ts#L27).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/tenancy.ts#L27).
 
 ```typescript
 export interface EmploymentRecord {
@@ -2890,9 +2945,9 @@ export interface EmploymentRecord {
 }
 ```
 
-## OrganizationMembership (202)
+## OrganizationMembership (205)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/tenancy.ts#L43).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/tenancy.ts#L43).
 
 ```typescript
 export interface OrganizationMembership {
@@ -2907,18 +2962,18 @@ export interface OrganizationMembership {
 }
 ```
 
-## SetupStepId (203)
+## SetupStepId (206)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/tenancy.ts#L54).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/tenancy.ts#L54).
 
 ```typescript
 export type SetupStepId =
   'profile' | 'structure' | 'positions' | 'people' | 'assignments' | 'employee_access' | 'domain';
 ```
 
-## SetupStep (204)
+## SetupStep (207)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/tenancy.ts#L56).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/tenancy.ts#L56).
 
 ```typescript
 export interface SetupStep {
@@ -2928,9 +2983,9 @@ export interface SetupStep {
 }
 ```
 
-## SetupProgress (205)
+## SetupProgress (208)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/tenancy.ts#L61).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/tenancy.ts#L61).
 
 ```typescript
 export interface SetupProgress {
@@ -2940,17 +2995,17 @@ export interface SetupProgress {
 }
 ```
 
-## WebhookEventType (206)
+## WebhookEventType (209)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/webhooks.ts#L28).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/webhooks.ts#L28).
 
 ```typescript
 export type WebhookEventType = 'model.budget.alert' | 'webhook.test';
 ```
 
-## WebhookEvent (207)
+## WebhookEvent (210)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/webhooks.ts#L31).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/webhooks.ts#L31).
 
 ```typescript
 export type WebhookEvent =
@@ -2970,9 +3025,9 @@ export type WebhookEvent =
     };
 ```
 
-## AlertWebhook (208)
+## AlertWebhook (211)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/webhooks.ts#L47).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/webhooks.ts#L47).
 
 ```typescript
 export interface AlertWebhook {
@@ -2992,9 +3047,9 @@ export interface AlertWebhook {
 }
 ```
 
-## AlertWebhookDelivery (209)
+## AlertWebhookDelivery (212)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/webhooks.ts#L63).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/webhooks.ts#L63).
 
 ```typescript
 export interface AlertWebhookDelivery {
@@ -3015,9 +3070,9 @@ export interface AlertWebhookDelivery {
 }
 ```
 
-## AlertWebhookList (210)
+## AlertWebhookList (213)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/webhooks.ts#L80).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/webhooks.ts#L80).
 
 ```typescript
 export interface AlertWebhookList {
@@ -3029,9 +3084,9 @@ export interface AlertWebhookList {
 }
 ```
 
-## AlertWebhookInput (211)
+## AlertWebhookInput (214)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/webhooks.ts#L89).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/webhooks.ts#L89).
 
 ```typescript
 export interface AlertWebhookInput {
@@ -3040,9 +3095,9 @@ export interface AlertWebhookInput {
 }
 ```
 
-## AlertWebhookStatusInput (212)
+## AlertWebhookStatusInput (215)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/webhooks.ts#L95).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/webhooks.ts#L95).
 
 ```typescript
 export interface AlertWebhookStatusInput {

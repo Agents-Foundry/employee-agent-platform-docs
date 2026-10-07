@@ -4,15 +4,15 @@
 
 **Prerequisites:** Read [HTTP conventions](README.md), sign in for browser API calls, or configure the signed workload identity for runtime calls.
 
-This reference is extracted from route registrations at `9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4`. Handler bindings below identify actual input validators, service calls and response expressions; referenced service schemas supply the full field bounds. Authentication middleware and service authorization still apply. See [request validators](request-schemas.md) and [wire contracts](contracts.md).
+This reference is extracted from route registrations at `d2bc8d7fa3fc185cc4f487bdaa1f11611844763f`. Handler bindings below identify actual input validators, service calls and response expressions; referenced service schemas supply the full field bounds. Authentication middleware and service authorization still apply. See [request validators](request-schemas.md) and [wire contracts](contracts.md).
 
 ## Endpoints
 
 | Method | Path | Access | Source |
 | --- | --- | --- | --- |
-| GET | `/execution/v1/health` | Private service network; public health within that boundary | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/execution-runtime/src/server.ts#L1) |
-| POST | `/execution/v1/operations` | Control-plane-signed single-use grant; private service network | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/execution-runtime/src/server.ts#L1) |
-| GET | `/metrics` | Operator bearer token; conditional route | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/execution-runtime/src/server.ts#L1) |
+| GET | `/execution/v1/health` | Private service network; public health within that boundary | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/execution-runtime/src/server.ts#L1) |
+| POST | `/execution/v1/operations` | Control-plane-signed single-use grant; private service network | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/execution-runtime/src/server.ts#L1) |
+| GET | `/metrics` | Operator bearer token; conditional route | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/execution-runtime/src/server.ts#L1) |
 
 ## GET /execution/v1/health
 
@@ -28,7 +28,7 @@ Request/response implementation binding (TypeScript, not a copyable HTTP command
 Health returns { status, provider, isolation, enforces }.
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/execution-runtime/src/server.ts#L1).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/execution-runtime/src/server.ts#L1).
 
 ## POST /execution/v1/operations
 
@@ -44,7 +44,7 @@ Request/response implementation binding (TypeScript, not a copyable HTTP command
 Request: { protocol: 'agents-foundry/execution/v1', grant, operation }. Response: ExecuteOperationResponse; result.status is SUCCEEDED | FAILED | TIMED_OUT | DENIED. HTTP 200 does not imply operation success.
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/execution-runtime/src/server.ts#L1).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/execution-runtime/src/server.ts#L1).
 
 ## GET /metrics
 
@@ -60,7 +60,7 @@ Request/response implementation binding (TypeScript, not a copyable HTTP command
 Exists only with execution metrics configuration. Response is Prometheus text, not JSON.
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/execution-runtime/src/server.ts#L1).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/execution-runtime/src/server.ts#L1).
 
 ## Related documentation
 

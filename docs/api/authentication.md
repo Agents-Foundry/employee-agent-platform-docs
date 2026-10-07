@@ -4,24 +4,24 @@
 
 **Prerequisites:** Read [HTTP conventions](README.md), sign in for browser API calls, or configure the signed workload identity for runtime calls.
 
-This reference is extracted from route registrations at `9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4`. Handler bindings below identify actual input validators, service calls and response expressions; referenced service schemas supply the full field bounds. Authentication middleware and service authorization still apply. See [request validators](request-schemas.md) and [wire contracts](contracts.md).
+This reference is extracted from route registrations at `d2bc8d7fa3fc185cc4f487bdaa1f11611844763f`. Handler bindings below identify actual input validators, service calls and response expressions; referenced service schemas supply the full field bounds. Authentication middleware and service authorization still apply. See [request validators](request-schemas.md) and [wire contracts](contracts.md).
 
 ## Endpoints
 
 | Method | Path | Access | Source |
 | --- | --- | --- | --- |
-| POST | `/api/auth/activate` | Authentication lifecycle; per-route guards | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/auth.ts#L457) |
-| GET | `/api/auth/callback` | Authentication lifecycle; per-route guards | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/auth.ts#L401) |
-| GET | `/api/auth/config` | Authentication lifecycle; per-route guards | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/auth.ts#L178) |
-| POST | `/api/auth/link-account` | Authentication lifecycle; per-route guards | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/auth.ts#L566) |
-| GET | `/api/auth/link-preview` | Authentication lifecycle; per-route guards | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/auth.ts#L550) |
-| GET | `/api/auth/login` | Authentication lifecycle; per-route guards | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/auth.ts#L358) |
-| POST | `/api/auth/logout` | Authentication lifecycle; per-route guards | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/auth.ts#L451) |
-| GET | `/api/auth/memberships` | Authentication lifecycle; per-route guards | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/auth.ts#L522) |
-| POST | `/api/auth/password` | Authentication lifecycle; per-route guards | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/auth.ts#L257) |
-| POST | `/api/auth/reset-password` | Authentication lifecycle; per-route guards | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/auth.ts#L457) |
-| GET | `/api/auth/session` | Authenticated actor; service ownership/role checks | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/app.ts#L174) |
-| POST | `/api/auth/switch` | Authentication lifecycle; per-route guards | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/auth.ts#L531) |
+| POST | `/api/auth/activate` | Authentication lifecycle; per-route guards | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/auth.ts#L457) |
+| GET | `/api/auth/callback` | Authentication lifecycle; per-route guards | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/auth.ts#L401) |
+| GET | `/api/auth/config` | Authentication lifecycle; per-route guards | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/auth.ts#L178) |
+| POST | `/api/auth/link-account` | Authentication lifecycle; per-route guards | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/auth.ts#L566) |
+| GET | `/api/auth/link-preview` | Authentication lifecycle; per-route guards | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/auth.ts#L550) |
+| GET | `/api/auth/login` | Authentication lifecycle; per-route guards | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/auth.ts#L358) |
+| POST | `/api/auth/logout` | Authentication lifecycle; per-route guards | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/auth.ts#L451) |
+| GET | `/api/auth/memberships` | Authentication lifecycle; per-route guards | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/auth.ts#L522) |
+| POST | `/api/auth/password` | Authentication lifecycle; per-route guards | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/auth.ts#L257) |
+| POST | `/api/auth/reset-password` | Authentication lifecycle; per-route guards | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/auth.ts#L457) |
+| GET | `/api/auth/session` | Authenticated actor; service ownership/role checks | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/app.ts#L174) |
+| POST | `/api/auth/switch` | Authentication lifecycle; per-route guards | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/auth.ts#L531) |
 
 ## POST /api/auth/activate
 
@@ -80,7 +80,7 @@ async (req, res) => {
     }
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/auth.ts#L457).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/auth.ts#L457).
 
 ## GET /api/auth/callback
 
@@ -145,7 +145,7 @@ async (req, res) => {
   }
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/auth.ts#L401).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/auth.ts#L401).
 
 ## GET /api/auth/config
 
@@ -164,7 +164,7 @@ Request/response implementation binding (TypeScript, not a copyable HTTP command
   }
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/auth.ts#L178).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/auth.ts#L178).
 
 ## POST /api/auth/link-account
 
@@ -203,7 +203,7 @@ async (req, res) => {
   }
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/auth.ts#L566).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/auth.ts#L566).
 
 ## GET /api/auth/link-preview
 
@@ -234,7 +234,7 @@ async (req, res) => {
   }
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/auth.ts#L550).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/auth.ts#L550).
 
 ## GET /api/auth/login
 
@@ -292,7 +292,7 @@ async (req, res) => {
   }
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/auth.ts#L358).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/auth.ts#L358).
 
 ## POST /api/auth/logout
 
@@ -313,7 +313,7 @@ async (req, res) => {
   }
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/auth.ts#L451).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/auth.ts#L451).
 
 ## GET /api/auth/memberships
 
@@ -337,7 +337,7 @@ async (_req, res) => {
   }
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/auth.ts#L522).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/auth.ts#L522).
 
 ## POST /api/auth/password
 
@@ -347,9 +347,9 @@ async (_req, res) => {
 - **Handler-local error codes:** `INVALID_CREDENTIALS`, `LOGIN_RATE_LIMITED`.
 - **Input validators:** Service validation or route has no parsed body/query.
 
-The complete login/transaction handler is intentionally linked rather than excerpted incompletely: [request, response and branch guards](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/auth.ts#L257).
+The complete login/transaction handler is intentionally linked rather than excerpted incompletely: [request, response and branch guards](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/auth.ts#L257).
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/auth.ts#L257).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/auth.ts#L257).
 
 ## POST /api/auth/reset-password
 
@@ -408,7 +408,7 @@ async (req, res) => {
     }
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/auth.ts#L457).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/auth.ts#L457).
 
 ## GET /api/auth/session
 
@@ -425,7 +425,7 @@ async (_request, response) =>
     response.json(response.locals['actor'])
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/app.ts#L174).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/app.ts#L174).
 
 ## POST /api/auth/switch
 
@@ -459,7 +459,7 @@ async (req, res) => {
   }
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/auth.ts#L531).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/auth.ts#L531).
 
 ## Related documentation
 

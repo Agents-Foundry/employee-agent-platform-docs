@@ -101,6 +101,10 @@ Prerequisites vary by guide. Start with the [introduction](getting-started/intro
 
 ## Operations
 
+- [Pilot operations and host validation](operations/pilot-operations.md)
+- [Controlled pilot smoke test](operations/pilot-smoke.md)
+- [Pilot operator runbook](operations/pilot-runbook.md)
+
 - [Artifacts, evidence storage and retention](operations/artifacts.md)
 - [Failure handling and write reconciliation](operations/failure-handling.md)
 - [Model spending, prices, alerts and quality history](operations/model-spending.md)
@@ -141,7 +145,7 @@ Prerequisites vary by guide. Start with the [introduction](getting-started/intro
 
 ## Historical decisions
 
-[ADR index: all 38 original decisions](adr/README.md). Read current correction notes before treating an earlier decision as evidence of implementation.
+[ADR index: all 39 decisions](adr/README.md). Read current correction notes before treating an earlier decision as evidence of implementation.
 
 ## Repository resources
 

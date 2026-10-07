@@ -4,19 +4,19 @@
 
 **Prerequisites:** Read [HTTP conventions](README.md), sign in for browser API calls, or configure the signed workload identity for runtime calls.
 
-This reference is extracted from route registrations at `9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4`. Handler bindings below identify actual input validators, service calls and response expressions; referenced service schemas supply the full field bounds. Authentication middleware and service authorization still apply. See [request validators](request-schemas.md) and [wire contracts](contracts.md).
+This reference is extracted from route registrations at `d2bc8d7fa3fc185cc4f487bdaa1f11611844763f`. Handler bindings below identify actual input validators, service calls and response expressions; referenced service schemas supply the full field bounds. Authentication middleware and service authorization still apply. See [request validators](request-schemas.md) and [wire contracts](contracts.md).
 
 ## Endpoints
 
 | Method | Path | Access | Source |
 | --- | --- | --- | --- |
-| GET | `/api/catalog/v1/blueprints` | Authenticated actor; service ownership/role checks | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/catalog/catalog-routes.ts#L20) |
-| GET | `/api/catalog/v1/blueprints/:id/versions/:version` | Authenticated actor; service ownership/role checks | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/catalog/catalog-routes.ts#L21) |
-| GET | `/api/catalog/v1/quality` | Authenticated actor; service ownership/role checks | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/catalog/catalog-routes.ts#L25) |
-| GET | `/api/organization/agent-installations` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/catalog/catalog-routes.ts#L38) |
-| POST | `/api/organization/agent-installations` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/catalog/catalog-routes.ts#L41) |
-| PUT | `/api/organization/agent-installations/:id` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/catalog/catalog-routes.ts#L44) |
-| POST | `/api/organization/agent-installations/:id/retire` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/catalog/catalog-routes.ts#L47) |
+| GET | `/api/catalog/v1/blueprints` | Authenticated actor; service ownership/role checks | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/catalog/catalog-routes.ts#L20) |
+| GET | `/api/catalog/v1/blueprints/:id/versions/:version` | Authenticated actor; service ownership/role checks | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/catalog/catalog-routes.ts#L21) |
+| GET | `/api/catalog/v1/quality` | Authenticated actor; service ownership/role checks | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/catalog/catalog-routes.ts#L25) |
+| GET | `/api/organization/agent-installations` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/catalog/catalog-routes.ts#L38) |
+| POST | `/api/organization/agent-installations` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/catalog/catalog-routes.ts#L41) |
+| PUT | `/api/organization/agent-installations/:id` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/catalog/catalog-routes.ts#L44) |
+| POST | `/api/organization/agent-installations/:id/retire` | Password-mode organization admin; service authorization | [handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/catalog/catalog-routes.ts#L47) |
 
 ## GET /api/catalog/v1/blueprints
 
@@ -32,7 +32,7 @@ Request/response implementation binding (TypeScript, not a copyable HTTP command
 async (_req, res) => res.json(await catalog.summaries())
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/catalog/catalog-routes.ts#L20).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/catalog/catalog-routes.ts#L20).
 
 ## GET /api/catalog/v1/blueprints/:id/versions/:version
 
@@ -49,7 +49,7 @@ async (req, res) =>
     res.json(await catalog.bundle(String(req.params['id']), String(req.params['version']), 404))
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/catalog/catalog-routes.ts#L21).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/catalog/catalog-routes.ts#L21).
 
 ## GET /api/catalog/v1/quality
 
@@ -66,7 +66,7 @@ async (req, res) =>
     res.json(await quality.overview(res.locals['actor'], req.query))
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/catalog/catalog-routes.ts#L25).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/catalog/catalog-routes.ts#L25).
 
 ## GET /api/organization/agent-installations
 
@@ -83,7 +83,7 @@ async (req, res) =>
     res.json(await installations.list(res.locals['actor'], req.query))
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/catalog/catalog-routes.ts#L38).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/catalog/catalog-routes.ts#L38).
 
 ## POST /api/organization/agent-installations
 
@@ -100,7 +100,7 @@ async (req, res) =>
     res.status(201).json(await installations.create(res.locals['actor'], req.body))
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/catalog/catalog-routes.ts#L41).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/catalog/catalog-routes.ts#L41).
 
 ## PUT /api/organization/agent-installations/:id
 
@@ -117,7 +117,7 @@ async (req, res) =>
     res.json(await installations.update(res.locals['actor'], String(req.params['id']), req.body))
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/catalog/catalog-routes.ts#L44).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/catalog/catalog-routes.ts#L44).
 
 ## POST /api/organization/agent-installations/:id/retire
 
@@ -136,7 +136,7 @@ async (req, res) => {
   }
 ```
 
-[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/catalog/catalog-routes.ts#L47).
+[Source handler](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/catalog/catalog-routes.ts#L47).
 
 ## Related documentation
 

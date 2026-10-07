@@ -1,5 +1,5 @@
 {
-  "commit": "9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4",
+  "commit": "d2bc8d7fa3fc185cc4f487bdaa1f11611844763f",
   "migrations": [
     "apps/control-plane-api/src/db/migrations/0001-baseline.ts",
     "apps/control-plane-api/src/db/migrations/0002-model-spending.ts",

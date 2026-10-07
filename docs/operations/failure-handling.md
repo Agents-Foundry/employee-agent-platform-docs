@@ -1,8 +1,8 @@
 # Failure handling and write reconciliation
 
-**Audience:** Operators, administrators. **Implementation status:** Implemented.
+**Audience:** Operators and administrators. **Implementation status:** Implemented.
 
-**Prerequisites:** Read the platform overview and have access to the relevant organization or source checkout.
+**Prerequisites:** A configured controlled-pilot deployment and the relevant operator or organization administrator access.
 
 What the platform does when a component stops at a bad moment, and what an operator or an
 administrator has to do. The decisions are in
@@ -36,6 +36,11 @@ may or may not have applied it. The platform does not guess and does not send it
   thread, and for that exact payload anywhere in the organization;
 - an administrator checks the external system and records what they found.
 
+Administrators do this in the admin web app under **Writes to reconcile**
+([ADR 0039](../adr/0039-pilot-operations.md)), which shows each write's target and the request's
+summary, never its payload, and records the outcome once after a confirmation. The same API
+is available:
+
 ```bash
 # What is waiting (organization administrators, password mode)
 GET  /api/organization/action-reconciliations
@@ -66,13 +71,10 @@ Each drill states which outcome it proves, and none may send a governed write tw
 
 ## Source provenance
 
-Reviewed against platform commit `9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4`. These references support the behavior described; types alone are not evidence that a capability executes.
+Reviewed against platform commit `d2bc8d7fa3fc185cc4f487bdaa1f11611844763f`.
 
-- [docs/failure-handling.md](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/docs/failure-handling.md)
-- [apps/control-plane-api/src/actions/action-reconciliation.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/actions/action-reconciliation.ts)
-- [apps/control-plane-api/test/failure-drills.spec.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/test/failure-drills.spec.ts)
-- [apps/execution-runtime/test/failure-drills.spec.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/execution-runtime/test/failure-drills.spec.ts)
+- [docs/failure-handling.md](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/docs/failure-handling.md)
 
 ## Related documentation
 
-[Documentation index](../README.md) · [Implementation status](../reference/implementation-status.md)
+[Documentation index](../README.md) · [Pilot operations](pilot-operations.md)

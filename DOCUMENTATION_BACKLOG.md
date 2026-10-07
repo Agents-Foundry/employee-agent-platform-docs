@@ -12,7 +12,7 @@ This backlog tracks missing information or operational evidence. It is separate 
 | API contract tooling | Complete query/response/service-error machine schema and OpenAPI generation | employee-agent-platform / docs | Add source annotations or shared schemas with authorization tests; current route/type reference remains source linked | P1 |
 | Source drift | Automatic product PR documentation-impact signal | employee-agent-platform / docs | Add product-side checklist/path checks; pinned docs CI already exists | P1 |
 | Schema verification | Live PostgreSQL introspection diff and execution SQLite migration versioning | employee-agent-platform / docs | Compare migrated disposable database constraints/policies to static dictionary in product CI | P1 |
-| Screenshot UX guides | Stable generic-run/credential/reconciliation/download screens | employee-agent-platform | Implement/test UI flows before writing screen-specific instructions | P1 |
+| Screenshot UX guides | Stable generic-run/credential/download screens | employee-agent-platform | Implement/test UI flows before writing screen-specific instructions | P1 |
 | Desktop distribution | Signed installers, updater, native authentication callback and support matrix | employee-agent-platform | Establish release pipeline and supported OS prerequisites, then document installation | P1 |
 | Missing capabilities | MCP, executable skills, BYOK, memory, cloud IaC | employee-agent-platform | Implement and approve contracts/trust boundaries before creating configuration guides | P2 |
 | ADR maintenance | Author-approved correction/supersession of ADR-0034 key-storage claim | employee-agent-platform / docs | Preserve history and propose a new ADR; current code correction is already annotated | P1 |

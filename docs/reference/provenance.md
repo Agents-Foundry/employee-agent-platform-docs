@@ -4,15 +4,15 @@
 
 **Prerequisites:** Read the platform overview and have access to the relevant organization or source checkout.
 
-The implementation baseline is **9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4**, inspected on 2026-10-03. A fetched Git archive of that commit was reviewed separately from the user's older working checkout; uncommitted product/website work was not used as platform evidence or changed.
+The implementation baseline is **d2bc8d7fa3fc185cc4f487bdaa1f11611844763f**, inspected on 2026-10-07. A fetched Git archive of that commit was reviewed separately from the user's older working checkout; uncommitted product/website work was not used as platform evidence or changed.
 
 ## Repository evidence
 
 | Repository | Inspected evidence | Interpretation |
 | --- | --- | --- |
-| employee-agent-platform | Application source; contracts; catalog definitions; policy engine; migration registry/SQL; tests; package scripts; CI; sandbox Dockerfile; Tauri config; existing docs/38 ADRs | Authority for current executable behavior |
+| employee-agent-platform | Application source; contracts; catalog definitions; policy engine; migration registry/SQL; tests; package scripts; CI; sandbox Dockerfile; Tauri config; existing docs/39 ADRs | Authority for current executable behavior |
 | employee-agent-website | Commit 4cc111021cf60b5a4b676a26659fbc51431a5ef3; README/package; public-build.mjs/site-config.mjs; Pages workflow | Static marketing/deployment responsibility; no runtime/security authority |
-| employee-agent-platform-docs | Initially empty private repository; organization permissions; this review branch | Documentation and checks; does not deploy product services |
+| employee-agent-platform-docs | Public documentation repository; published guides and Pages workflow | Documentation and checks; does not deploy product services |
 
 `source-inventory.json` records normalized SHA-256 hashes of relevant text files. Indexing a file is not a claim that every line received a manual security audit. Authored pages cite the specific inspected files; generated reference pages enumerate source declarations.
 
@@ -38,13 +38,17 @@ Pin updates require regeneration plus review of runtime/authorization behavior, 
 
 ## Source provenance
 
-Reviewed against platform commit `9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4`. These references support the behavior described; types alone are not evidence that a capability executes.
+Reviewed against platform commit `d2bc8d7fa3fc185cc4f487bdaa1f11611844763f`. These references support the behavior described; types alone are not evidence that a capability executes.
 
-- [package.json](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/package.json)
-- [.github/workflows/ci.yml](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/.github/workflows/ci.yml)
-- [docs/architecture-v2.md](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/docs/architecture-v2.md)
-- [docs/architecture-v2-gap-analysis.md](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/docs/architecture-v2-gap-analysis.md)
+- [package.json](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/package.json)
+- [.github/workflows/ci.yml](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/.github/workflows/ci.yml)
+- [docs/architecture-v2.md](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/docs/architecture-v2.md)
+- [docs/architecture-v2-gap-analysis.md](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/docs/architecture-v2-gap-analysis.md)
 
 ## Related documentation
 
 [Documentation index](../README.md) · [Implementation status](implementation-status.md)
+
+## Baseline refresh — 7 October 2026
+
+Reviewed the changes from the previous docs baseline through `d2bc8d7fa3fc185cc4f487bdaa1f11611844763f`: reconciliation UI and safe action summaries, database/Vault probes, monitoring definitions, host validation, smoke orchestration, operational proof freshness and the repaired workflow. Regenerated API/contracts/schema/test/environment references and refreshed source hashes. Live smoke and infrastructure probes were not run during this documentation-only update.

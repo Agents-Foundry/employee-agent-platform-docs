@@ -4,7 +4,7 @@ Agents Foundry assigns AI agents to employees within an organization's structure
 
 This repository is the technical knowledge base for developers, administrators, employees, operators, security reviewers and implementation partners. It documents current code and identifies architecture gaps separately. It does not treat the public website or a declarative manifest field as evidence of an implemented capability.
 
-**Verified implementation:** `employee-agent-platform@9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4`, inspected 2026-10-03. See [provenance and verification](docs/reference/provenance.md) and the [implementation matrix](docs/reference/implementation-status.md).
+**Verified implementation:** `employee-agent-platform@d2bc8d7fa3fc185cc4f487bdaa1f11611844763f`, inspected 2026-10-07. See [provenance and verification](docs/reference/provenance.md) and the [implementation matrix](docs/reference/implementation-status.md).
 
 ## Architecture at a glance
 
@@ -54,3 +54,7 @@ npm run check
 Source example validation additionally needs the exact pinned product checkout. Follow [CONTRIBUTING](CONTRIBUTING.md) for checkout, regeneration and review commands. CI checks Markdown, internal links, source references, Mermaid syntax and schema/signature-resolved examples.
 
 Open questions and missing operational evidence belong in the [documentation backlog](DOCUMENTATION_BACKLOG.md). Missing executable capabilities belong in [architecture gaps](docs/roadmap/architecture-gaps.md). The [foundation report](IMPLEMENTATION_REPORT.md) records coverage, validation limits and the final file tree.
+
+## October 2026 operational update
+
+The latest baseline adds [host validation](docs/operations/pilot-operations.md), [protected live smoke tests](docs/operations/pilot-smoke.md), [administrator reconciliation](docs/operations/failure-handling.md), shipped monitoring definitions and a [pilot runbook](docs/operations/pilot-runbook.md). Readiness now separates code proofs from fresh deployment evidence. [Technical wiki](https://github.com/Agents-Foundry/employee-agent-platform/wiki).

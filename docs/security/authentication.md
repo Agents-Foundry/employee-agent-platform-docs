@@ -22,17 +22,17 @@ Password hashing is asynchronous scrypt with random salts. Sign-in failures are 
 
 All configured app/API authentication URLs must use matching hostnames and schemes. Production requires HTTPS. Google callback path is exactly `/api/auth/callback`; localhost ports may differ for development. Configure the verified Google subject allow-list at `IDENTITY_DIRECTORY_PATH`; no first-user administrator elevation occurs. Directory changes are loaded on restart; use secure offboarding rather than assuming provider suspension instantly revokes a still-valid local session.
 
-Detailed provider setup is preserved at the pinned [Google Workspace source guide](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/docs/google-workspace.md). Its historical production-limit statements must be read with the current secret-broker and RLS implementation matrix.
+Detailed provider setup is preserved at the pinned [Google Workspace source guide](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/docs/google-workspace.md). Its historical production-limit statements must be read with the current secret-broker and RLS implementation matrix.
 
 ## Source provenance
 
-Reviewed against platform commit `9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4`. These references support the behavior described; types alone are not evidence that a capability executes.
+Reviewed against platform commit `d2bc8d7fa3fc185cc4f487bdaa1f11611844763f`. These references support the behavior described; types alone are not evidence that a capability executes.
 
-- [apps/control-plane-api/src/auth.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/auth.ts)
-- [apps/control-plane-api/src/passwords.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/passwords.ts)
-- [apps/control-plane-api/src/identity-directory.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/identity-directory.ts)
-- [apps/control-plane-api/test/auth.spec.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/test/auth.spec.ts)
-- [apps/control-plane-api/test/password.spec.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/test/password.spec.ts)
+- [apps/control-plane-api/src/auth.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/auth.ts)
+- [apps/control-plane-api/src/passwords.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/passwords.ts)
+- [apps/control-plane-api/src/identity-directory.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/identity-directory.ts)
+- [apps/control-plane-api/test/auth.spec.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/test/auth.spec.ts)
+- [apps/control-plane-api/test/password.spec.ts](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/test/password.spec.ts)
 
 ## Related documentation
 

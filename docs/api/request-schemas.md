@@ -4,11 +4,11 @@
 
 **Prerequisites:** Read the [HTTP conventions](README.md) and relevant endpoint page.
 
-Extracted at `9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4`. These are literal source declarations, not evidence that a corresponding engine exists. Schemas express required fields, defaults, enum values, refinements and unknown-field rejection. Type-only structures still require runtime validation and authorization.
+Extracted at `d2bc8d7fa3fc185cc4f487bdaa1f11611844763f`. These are literal source declarations, not evidence that a corresponding engine exists. Schemas express required fields, defaults, enum values, refinements and unknown-field rejection. Type-only structures still require runtime validation and authorization.
 
 ## uuid (1)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/agent-runtime/src/checkpoints.ts#L75).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/agent-runtime/src/checkpoints.ts#L75).
 
 ```typescript
 z.uuid()
@@ -16,7 +16,7 @@ z.uuid()
 
 ## checkpointSchema (2)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/agent-runtime/src/checkpoints.ts#L76).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/agent-runtime/src/checkpoints.ts#L76).
 
 ```typescript
 z
@@ -41,7 +41,7 @@ z
 
 ## uuid (3)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/agent-runtime/src/kernel/native-kernel.ts#L44).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/agent-runtime/src/kernel/native-kernel.ts#L44).
 
 ```typescript
 z.uuid()
@@ -49,7 +49,7 @@ z.uuid()
 
 ## stateSchema (4)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/agent-runtime/src/kernel/native-kernel.ts#L45).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/agent-runtime/src/kernel/native-kernel.ts#L45).
 
 ```typescript
 z.object({
@@ -79,7 +79,7 @@ z.object({
 
 ## inputSchema (5)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/agent-runtime/src/tools/artifact-tool.ts#L15).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/agent-runtime/src/tools/artifact-tool.ts#L15).
 
 ```typescript
 z
@@ -97,7 +97,7 @@ z
 
 ## createSchema (6)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/agent-runtime/src/tools/issue-tracker-tool.ts#L5).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/agent-runtime/src/tools/issue-tracker-tool.ts#L5).
 
 ```typescript
 z
@@ -118,7 +118,7 @@ z
 
 ## readSchema (7)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/agent-runtime/src/tools/issue-tracker-tool.ts#L19).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/agent-runtime/src/tools/issue-tracker-tool.ts#L19).
 
 ```typescript
 z
@@ -128,7 +128,7 @@ z
 
 ## inputSchema (8)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/agent-runtime/src/tools/issue-tracker-tool.ts#L22).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/agent-runtime/src/tools/issue-tracker-tool.ts#L22).
 
 ```typescript
 z.union([readSchema, createSchema])
@@ -136,7 +136,7 @@ z.union([readSchema, createSchema])
 
 ## inputSchema (9)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/agent-runtime/src/tools/source-control-tool.ts#L5).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/agent-runtime/src/tools/source-control-tool.ts#L5).
 
 ```typescript
 z
@@ -156,7 +156,7 @@ z
 
 ## overrideSchema (10)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/actions/action-policy-service.ts#L29).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/actions/action-policy-service.ts#L29).
 
 ```typescript
 z
@@ -170,7 +170,7 @@ z
 
 ## resolutionSchema (11)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/actions/action-reconciliation.ts#L24).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/actions/action-reconciliation.ts#L52).
 
 ```typescript
 z
@@ -183,7 +183,7 @@ z
 
 ## issueDraft (12)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/actions/action-registry.ts#L83).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/actions/action-registry.ts#L83).
 
 ```typescript
 z
@@ -198,7 +198,7 @@ z
 
 ## issueReference (13)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/actions/action-registry.ts#L112).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/actions/action-registry.ts#L112).
 
 ```typescript
 z
@@ -208,7 +208,7 @@ z
 
 ## pullRequest (14)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/actions/action-registry.ts#L146).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/actions/action-registry.ts#L146).
 
 ```typescript
 z
@@ -230,7 +230,7 @@ z
 
 ## actionParam (15)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/actions/action-routes.ts#L8).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/actions/action-routes.ts#L8).
 
 ```typescript
 z.string().regex(/^[a-z][a-z0-9_]*(?:\.[a-z][a-z0-9_]*){1,5}$/)
@@ -238,7 +238,7 @@ z.string().regex(/^[a-z][a-z0-9_]*(?:\.[a-z][a-z0-9_]*){1,5}$/)
 
 ## { version } (16)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/actions/action-routes.ts#L39).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/actions/action-routes.ts#L39).
 
 ```typescript
 z.object({ version: z.number().int().positive() }).strict().parse(req.body)
@@ -246,7 +246,7 @@ z.object({ version: z.number().int().positive() }).strict().parse(req.body)
 
 ## jiraSettings (17)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/actions/connector-service.ts#L17).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/actions/connector-service.ts#L17).
 
 ```typescript
 z
@@ -262,7 +262,7 @@ z
 
 ## githubSettings (18)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/actions/connector-service.ts#L27).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/actions/connector-service.ts#L27).
 
 ```typescript
 z
@@ -278,7 +278,7 @@ z
 
 ## common (19)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/actions/connector-service.ts#L36).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/actions/connector-service.ts#L36).
 
 ```typescript
 {
@@ -290,7 +290,7 @@ z
 
 ## createSchema (20)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/actions/connector-service.ts#L41).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/actions/connector-service.ts#L41).
 
 ```typescript
 z.discriminatedUnion('provider', [
@@ -301,7 +301,7 @@ z.discriminatedUnion('provider', [
 
 ## provisioningSchema (21)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/app.ts#L28).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/app.ts#L28).
 
 ```typescript
 z
@@ -329,7 +329,7 @@ z
 
 ## createConversationSchema (22)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/app.ts#L50).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/app.ts#L50).
 
 ```typescript
 z.object({
@@ -341,7 +341,7 @@ z.object({
 
 ## addMessageSchema (23)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/app.ts#L56).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/app.ts#L56).
 
 ```typescript
 z.object({
@@ -352,7 +352,7 @@ z.object({
 
 ## qaRunSchema (24)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/app.ts#L61).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/app.ts#L61).
 
 ```typescript
 z.object({
@@ -371,7 +371,7 @@ z.object({
 
 ## approvalDecisionSchema (25)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/app.ts#L74).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/app.ts#L74).
 
 ```typescript
 z.object({
@@ -381,7 +381,7 @@ z.object({
 
 ## input (26)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/app.ts#L219).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/app.ts#L219).
 
 ```typescript
 provisioningSchema
@@ -402,7 +402,7 @@ provisioningSchema
 
 ## input (27)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/app.ts#L265).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/app.ts#L265).
 
 ```typescript
 z
@@ -416,7 +416,7 @@ z
 
 ## required (28)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/auth.ts#L65).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/auth.ts#L65).
 
 ```typescript
 (name: string) => z.string().trim().min(1).parse(env[name])
@@ -424,7 +424,7 @@ z
 
 ## { id_token } (29)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/auth.ts#L136).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/auth.ts#L136).
 
 ```typescript
 z
@@ -434,7 +434,7 @@ z
 
 ## input (30)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/auth.ts#L259).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/auth.ts#L259).
 
 ```typescript
 z
@@ -449,7 +449,7 @@ z
 
 ## input (31)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/auth.ts#L467).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/auth.ts#L467).
 
 ```typescript
 z
@@ -467,7 +467,7 @@ z
 
 ## input (32)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/auth.ts#L532).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/auth.ts#L532).
 
 ```typescript
 z.object({ organizationId: z.string().uuid() }).strict().safeParse(req.body)
@@ -475,7 +475,7 @@ z.object({ organizationId: z.string().uuid() }).strict().safeParse(req.body)
 
 ## input (33)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/auth.ts#L569).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/auth.ts#L569).
 
 ```typescript
 z
@@ -486,7 +486,7 @@ z
 
 ## index (34)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/catalog/catalog-registry.ts#L50).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/catalog/catalog-registry.ts#L50).
 
 ```typescript
 <T extends { id: string; version: string }>(
@@ -513,7 +513,7 @@ z
 
 ## bundleSchema (35)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/catalog/catalog-registry.ts#L108).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/catalog/catalog-registry.ts#L108).
 
 ```typescript
 z
@@ -528,7 +528,7 @@ z
 
 ## { version } (36)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/catalog/catalog-routes.ts#L48).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/catalog/catalog-routes.ts#L48).
 
 ```typescript
 z.object({ version: z.number().int().positive() }).strict().parse(req.body)
@@ -536,7 +536,7 @@ z.object({ version: z.number().int().positive() }).strict().parse(req.body)
 
 ## name (37)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/catalog/installation-service.ts#L11).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/catalog/installation-service.ts#L11).
 
 ```typescript
 z.string().trim().min(1).max(120)
@@ -544,7 +544,7 @@ z.string().trim().min(1).max(120)
 
 ## semver (38)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/catalog/installation-service.ts#L12).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/catalog/installation-service.ts#L12).
 
 ```typescript
 z.string().regex(/^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/)
@@ -552,7 +552,7 @@ z.string().regex(/^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/)
 
 ## configuration (39)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/catalog/installation-service.ts#L13).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/catalog/installation-service.ts#L13).
 
 ```typescript
 z.record(z.string().max(60), z.unknown())
@@ -560,7 +560,7 @@ z.record(z.string().max(60), z.unknown())
 
 ## createInput (40)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/catalog/installation-service.ts#L14).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/catalog/installation-service.ts#L14).
 
 ```typescript
 z
@@ -575,7 +575,7 @@ z
 
 ## updateInput (41)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/catalog/installation-service.ts#L22).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/catalog/installation-service.ts#L22).
 
 ```typescript
 z
@@ -590,7 +590,7 @@ z
 
 ## listQuery (42)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/catalog/installation-service.ts#L30).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/catalog/installation-service.ts#L30).
 
 ```typescript
 z
@@ -600,7 +600,7 @@ z
 
 ## input (43)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/create-customer.ts#L12).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/create-customer.ts#L12).
 
 ```typescript
 z
@@ -622,7 +622,7 @@ z
 
 ## { version } (44)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/credentials/credential-routes.ts#L38).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/credentials/credential-routes.ts#L38).
 
 ```typescript
 z.object({ version: z.number().int().positive() }).strict().parse(req.body)
@@ -630,7 +630,7 @@ z.object({ version: z.number().int().positive() }).strict().parse(req.body)
 
 ## createSchema (45)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/credentials/source-control-connections.ts#L23).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/credentials/source-control-connections.ts#L23).
 
 ```typescript
 z
@@ -667,7 +667,7 @@ z
 
 ## eventQuery (46)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/execution/execution-routes.ts#L8).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/execution/execution-routes.ts#L8).
 
 ```typescript
 z
@@ -680,7 +680,7 @@ z
 
 ## startRunSchema (47)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/execution/execution-routes.ts#L15).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/execution/execution-routes.ts#L15).
 
 ```typescript
 z
@@ -698,7 +698,7 @@ z
 
 ## id (48)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/execution/execution-routes.ts#L60).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/execution/execution-routes.ts#L60).
 
 ```typescript
 (value: unknown, missing: string) => {
@@ -710,7 +710,7 @@ z
 
 ## parsed (49)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/execution/execution-routes.ts#L61).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/execution/execution-routes.ts#L61).
 
 ```typescript
 z.uuid().safeParse(value)
@@ -718,7 +718,7 @@ z.uuid().safeParse(value)
 
 ## entry (50)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/identity-directory.ts#L6).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/identity-directory.ts#L6).
 
 ```typescript
 z
@@ -743,7 +743,7 @@ z
 
 ## { version } (51)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/job-routes.ts#L30).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/job-routes.ts#L30).
 
 ```typescript
 z.object({ version: z.number().int().positive() }).strict().parse(req.body)
@@ -751,7 +751,7 @@ z.object({ version: z.number().int().positive() }).strict().parse(req.body)
 
 ## uuid (52)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/job-service.ts#L13).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/job-service.ts#L13).
 
 ```typescript
 z.string().uuid()
@@ -759,7 +759,7 @@ z.string().uuid()
 
 ## base (53)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/job-service.ts#L14).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/job-service.ts#L14).
 
 ```typescript
 z
@@ -777,7 +777,7 @@ z
 
 ## schemas (54)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/job-service.ts#L25).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/job-service.ts#L25).
 
 ```typescript
 {
@@ -796,7 +796,7 @@ z
 
 ## querySchema (55)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/job-service.ts#L74).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/job-service.ts#L74).
 
 ```typescript
 z
@@ -812,7 +812,7 @@ z
 
 ## input (56)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/job-service.ts#L206).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/job-service.ts#L206).
 
 ```typescript
 (
@@ -822,7 +822,7 @@ z
 
 ## { version } (57)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/structure-routes.ts#L39).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/structure-routes.ts#L39).
 
 ```typescript
 z.object({ version: z.number().int().positive() }).strict().parse(req.body)
@@ -830,7 +830,7 @@ z.object({ version: z.number().int().positive() }).strict().parse(req.body)
 
 ## id (58)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/structure-service.ts#L12).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/structure-service.ts#L12).
 
 ```typescript
 z.string().uuid()
@@ -838,7 +838,7 @@ z.string().uuid()
 
 ## unitInput (59)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/structure-service.ts#L13).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/structure-service.ts#L13).
 
 ```typescript
 z
@@ -858,7 +858,7 @@ z
 
 ## listInput (60)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/structure-service.ts#L26).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/structure-service.ts#L26).
 
 ```typescript
 z
@@ -876,7 +876,7 @@ z
 
 ## input (61)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/structure-service.ts#L196).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/structure-service.ts#L196).
 
 ```typescript
 (
@@ -886,7 +886,7 @@ z
 
 ## { positionId, version } (62)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/structure-service.ts#L312).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/structure-service.ts#L312).
 
 ```typescript
 z
@@ -897,7 +897,7 @@ z
 
 ## { page, pageSize, status } (63)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/structure-service.ts#L347).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/structure-service.ts#L347).
 
 ```typescript
 z
@@ -912,7 +912,7 @@ z
 
 ## input (64)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/structure-service.ts#L414).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/structure-service.ts#L414).
 
 ```typescript
 z
@@ -928,7 +928,7 @@ z
 
 ## id (65)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/tenancy-service.ts#L24).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/tenancy-service.ts#L24).
 
 ```typescript
 z.string().uuid()
@@ -936,7 +936,7 @@ z.string().uuid()
 
 ## text (66)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/tenancy-service.ts#L25).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/tenancy-service.ts#L25).
 
 ```typescript
 (max: number) => z.string().trim().max(max)
@@ -944,7 +944,7 @@ z.string().uuid()
 
 ## profileInput (67)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/tenancy-service.ts#L26).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/tenancy-service.ts#L26).
 
 ```typescript
 z
@@ -981,7 +981,7 @@ z
 
 ## employeeInput (68)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/tenancy-service.ts#L56).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/tenancy-service.ts#L56).
 
 ```typescript
 z
@@ -999,7 +999,7 @@ z
 
 ## pageInput (69)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/tenancy-service.ts#L67).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/tenancy-service.ts#L67).
 
 ```typescript
 z
@@ -1014,7 +1014,7 @@ z
 
 ## domainInput (70)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/tenancy-service.ts#L75).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/tenancy-service.ts#L75).
 
 ```typescript
 z
@@ -1027,7 +1027,7 @@ z
 
 ## input (71)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/tenancy-service.ts#L479).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/tenancy-service.ts#L479).
 
 ```typescript
 employeeInput
@@ -1040,7 +1040,7 @@ employeeInput
 
 ## input (72)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/tenancy-service.ts#L523).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/tenancy-service.ts#L523).
 
 ```typescript
 z
@@ -1051,7 +1051,7 @@ z
 
 ## input (73)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization/tenancy-service.ts#L604).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization/tenancy-service.ts#L604).
 
 ```typescript
 z
@@ -1062,7 +1062,7 @@ z
 
 ## memberInput (74)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization-routes.ts#L7).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization-routes.ts#L7).
 
 ```typescript
 z
@@ -1076,7 +1076,7 @@ z
 
 ## { purpose } (75)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization-routes.ts#L81).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization-routes.ts#L81).
 
 ```typescript
 z
@@ -1087,7 +1087,7 @@ z
 
 ## id (76)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/organization-routes.ts#L85).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/organization-routes.ts#L85).
 
 ```typescript
 z.string().uuid().parse(req.params['id'])
@@ -1095,7 +1095,7 @@ z.string().uuid().parse(req.params['id'])
 
 ## text (77)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/quality/quality-history.ts#L22).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/quality/quality-history.ts#L22).
 
 ```typescript
 z.string().min(1).max(200)
@@ -1103,7 +1103,7 @@ z.string().min(1).max(200)
 
 ## historyRecordSchema (78)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/quality/quality-history.ts#L23).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/quality/quality-history.ts#L23).
 
 ```typescript
 z
@@ -1132,7 +1132,7 @@ z
 
 ## overviewQuery (79)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/quality/quality-service.ts#L8).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/quality/quality-service.ts#L8).
 
 ```typescript
 z
@@ -1148,7 +1148,7 @@ z
 
 ## [organizationId, employeeId, purpose] (80)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/recover-member.ts#L9).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/recover-member.ts#L9).
 
 ```typescript
 z
@@ -1158,7 +1158,7 @@ z
 
 ## identitySchema (81)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/runtime/runtime-identity.ts#L29).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/runtime/runtime-identity.ts#L29).
 
 ```typescript
 z
@@ -1184,7 +1184,7 @@ z
 
 ## registrySchema (82)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/runtime/runtime-identity.ts#L48).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/runtime/runtime-identity.ts#L48).
 
 ```typescript
 z.array(identitySchema).max(100)
@@ -1192,7 +1192,7 @@ z.array(identitySchema).max(100)
 
 ## { version } (83)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/secrets/model-credential-routes.ts#L28).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/secrets/model-credential-routes.ts#L28).
 
 ```typescript
 z.object({ version: z.number().int().positive() }).strict().parse(req.body)
@@ -1200,7 +1200,7 @@ z.object({ version: z.number().int().positive() }).strict().parse(req.body)
 
 ## bindingSchema (84)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/secrets/model-credentials.ts#L13).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/secrets/model-credentials.ts#L13).
 
 ```typescript
 z
@@ -1214,7 +1214,7 @@ z
 
 ## alertId (85)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/spending/model-budget-alerts.ts#L31).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/spending/model-budget-alerts.ts#L31).
 
 ```typescript
 z.string().uuid()
@@ -1222,7 +1222,7 @@ z.string().uuid()
 
 ## price (86)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/spending/model-prices.ts#L14).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/spending/model-prices.ts#L14).
 
 ```typescript
 z.number().int().min(0).max(MAX_PRICE)
@@ -1230,7 +1230,7 @@ z.number().int().min(0).max(MAX_PRICE)
 
 ## provider (87)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/spending/model-prices.ts#L15).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/spending/model-prices.ts#L15).
 
 ```typescript
 z.string().regex(/^[a-zA-Z0-9._-]{1,80}$/)
@@ -1238,7 +1238,7 @@ z.string().regex(/^[a-zA-Z0-9._-]{1,80}$/)
 
 ## model (88)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/spending/model-prices.ts#L16).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/spending/model-prices.ts#L16).
 
 ```typescript
 z.string().regex(/^[a-zA-Z0-9._:/-]{1,160}$/)
@@ -1246,7 +1246,7 @@ z.string().regex(/^[a-zA-Z0-9._:/-]{1,160}$/)
 
 ## priceInput (89)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/spending/model-prices.ts#L17).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/spending/model-prices.ts#L17).
 
 ```typescript
 z
@@ -1262,7 +1262,7 @@ z
 
 ## removalInput (90)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/spending/model-prices.ts#L26).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/spending/model-prices.ts#L26).
 
 ```typescript
 z.object({ provider, model, expectedPriceId: z.string().uuid() }).strict()
@@ -1270,7 +1270,7 @@ z.object({ provider, model, expectedPriceId: z.string().uuid() }).strict()
 
 ## limit (91)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/spending/model-spending-service.ts#L43).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/spending/model-spending-service.ts#L43).
 
 ```typescript
 z.number().int().positive().max(MAX_LIMIT).nullable()
@@ -1278,7 +1278,7 @@ z.number().int().positive().max(MAX_LIMIT).nullable()
 
 ## costLimit (92)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/spending/model-spending-service.ts#L44).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/spending/model-spending-service.ts#L44).
 
 ```typescript
 z.number().int().positive().max(MAX_COST_LIMIT).nullable()
@@ -1286,7 +1286,7 @@ z.number().int().positive().max(MAX_COST_LIMIT).nullable()
 
 ## budgetInput (93)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/spending/model-spending-service.ts#L45).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/spending/model-spending-service.ts#L45).
 
 ```typescript
 z
@@ -1311,7 +1311,7 @@ z
 
 ## createInput (94)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/webhooks/alert-webhook-service.ts#L44).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/webhooks/alert-webhook-service.ts#L44).
 
 ```typescript
 z
@@ -1321,7 +1321,7 @@ z
 
 ## statusInput (95)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/webhooks/alert-webhook-service.ts#L47).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/webhooks/alert-webhook-service.ts#L47).
 
 ```typescript
 z
@@ -1331,7 +1331,7 @@ z
 
 ## webhookId (96)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/apps/control-plane-api/src/webhooks/alert-webhook-service.ts#L50).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/apps/control-plane-api/src/webhooks/alert-webhook-service.ts#L50).
 
 ```typescript
 z.string().uuid()
@@ -1339,7 +1339,7 @@ z.string().uuid()
 
 ## slug (97)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/catalog-schemas.ts#L11).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/catalog-schemas.ts#L11).
 
 ```typescript
 z.string().regex(/^[a-z0-9][a-z0-9._-]{0,99}$/)
@@ -1347,7 +1347,7 @@ z.string().regex(/^[a-z0-9][a-z0-9._-]{0,99}$/)
 
 ## semver (98)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/catalog-schemas.ts#L12).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/catalog-schemas.ts#L12).
 
 ```typescript
 z.string().regex(/^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/)
@@ -1355,7 +1355,7 @@ z.string().regex(/^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/)
 
 ## action (99)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/catalog-schemas.ts#L13).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/catalog-schemas.ts#L13).
 
 ```typescript
 z.string().regex(/^[a-z][a-z0-9_]*(\.[a-z][a-z0-9_]*)+$/)
@@ -1363,7 +1363,7 @@ z.string().regex(/^[a-z][a-z0-9_]*(\.[a-z][a-z0-9_]*)+$/)
 
 ## capability (100)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/catalog-schemas.ts#L14).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/catalog-schemas.ts#L14).
 
 ```typescript
 z.string().regex(/^[a-z][A-Za-z0-9]*(\.[a-z][A-Za-z0-9_]*)+$/)
@@ -1371,7 +1371,7 @@ z.string().regex(/^[a-z][A-Za-z0-9]*(\.[a-z][A-Za-z0-9_]*)+$/)
 
 ## text (101)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/catalog-schemas.ts#L15).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/catalog-schemas.ts#L15).
 
 ```typescript
 (max: number) => z.string().trim().min(1).max(max)
@@ -1379,7 +1379,7 @@ z.string().regex(/^[a-z][A-Za-z0-9]*(\.[a-z][A-Za-z0-9_]*)+$/)
 
 ## reference (102)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/catalog-schemas.ts#L16).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/catalog-schemas.ts#L16).
 
 ```typescript
 z.object({ id: slug, version: semver }).strict()
@@ -1387,7 +1387,7 @@ z.object({ id: slug, version: semver }).strict()
 
 ## skillDefinitionSchema (103)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/catalog-schemas.ts#L19).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/catalog-schemas.ts#L19).
 
 ```typescript
 z
@@ -1409,7 +1409,7 @@ z
 
 ## toolDefinitionSchema (104)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/catalog-schemas.ts#L35).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/catalog-schemas.ts#L35).
 
 ```typescript
 z
@@ -1428,7 +1428,7 @@ z
 
 ## workflowDefinitionSchema (105)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/catalog-schemas.ts#L48).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/catalog-schemas.ts#L48).
 
 ```typescript
 z
@@ -1450,7 +1450,7 @@ z
 
 ## question (106)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/catalog-schemas.ts#L64).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/catalog-schemas.ts#L64).
 
 ```typescript
 z
@@ -1471,7 +1471,7 @@ z
 
 ## issueKey (107)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/catalog-schemas.ts#L79).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/catalog-schemas.ts#L79).
 
 ```typescript
 z.string().regex(/^[A-Z][A-Z0-9]{1,9}-[1-9]\d{0,8}$/)
@@ -1479,7 +1479,7 @@ z.string().regex(/^[A-Z][A-Z0-9]{1,9}-[1-9]\d{0,8}$/)
 
 ## relativePath (108)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/catalog-schemas.ts#L80).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/catalog-schemas.ts#L80).
 
 ```typescript
 z.string().regex(/^[A-Za-z0-9._-]+(\/[A-Za-z0-9._-]+)*$/)
@@ -1487,7 +1487,7 @@ z.string().regex(/^[A-Za-z0-9._-]+(\/[A-Za-z0-9._-]+)*$/)
 
 ## answers (109)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/catalog-schemas.ts#L81).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/catalog-schemas.ts#L81).
 
 ```typescript
 z.record(z.string(), z.union([z.string(), z.array(z.string())]))
@@ -1495,7 +1495,7 @@ z.record(z.string(), z.union([z.string(), z.array(z.string())]))
 
 ## evaluationTask (110)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/catalog-schemas.ts#L82).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/catalog-schemas.ts#L82).
 
 ```typescript
 z
@@ -1510,7 +1510,7 @@ z
 
 ## blueprintVersions (111)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/catalog-schemas.ts#L90).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/catalog-schemas.ts#L90).
 
 ```typescript
 z.array(semver).min(1).max(20).refine(unique).optional()
@@ -1518,7 +1518,7 @@ z.array(semver).min(1).max(20).refine(unique).optional()
 
 ## weight (112)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/catalog-schemas.ts#L91).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/catalog-schemas.ts#L91).
 
 ```typescript
 z.number().positive().max(100)
@@ -1526,7 +1526,7 @@ z.number().positive().max(100)
 
 ## needles (113)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/catalog-schemas.ts#L92).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/catalog-schemas.ts#L92).
 
 ```typescript
 z.array(text(200)).min(1).max(20).optional()
@@ -1534,7 +1534,7 @@ z.array(text(200)).min(1).max(20).optional()
 
 ## check (114)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/catalog-schemas.ts#L93).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/catalog-schemas.ts#L93).
 
 ```typescript
 <T extends z.ZodRawShape>(shape: T) =>
@@ -1543,7 +1543,7 @@ z.array(text(200)).min(1).max(20).optional()
 
 ## qualityTaskSchema (115)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/catalog-schemas.ts#L96).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/catalog-schemas.ts#L96).
 
 ```typescript
 z
@@ -1610,7 +1610,7 @@ z
 
 ## evaluationSuiteSchema (116)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/catalog-schemas.ts#L157).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/catalog-schemas.ts#L157).
 
 ```typescript
 z
@@ -1705,7 +1705,7 @@ z
 
 ## blueprintVersionSchema (117)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/catalog-schemas.ts#L246).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/catalog-schemas.ts#L246).
 
 ```typescript
 z
@@ -1767,7 +1767,7 @@ z
 
 ## uuid (118)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution-runtime/v1/schemas.ts#L39).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution-runtime/v1/schemas.ts#L39).
 
 ```typescript
 z.uuid()
@@ -1775,7 +1775,7 @@ z.uuid()
 
 ## recordId (119)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution-runtime/v1/schemas.ts#L42).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution-runtime/v1/schemas.ts#L42).
 
 ```typescript
 z.string().regex(/^[A-Za-z0-9_.:-]{1,120}$/)
@@ -1783,7 +1783,7 @@ z.string().regex(/^[A-Za-z0-9_.:-]{1,120}$/)
 
 ## timestamp (120)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution-runtime/v1/schemas.ts#L43).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution-runtime/v1/schemas.ts#L43).
 
 ```typescript
 z.iso.datetime({ offset: true })
@@ -1791,7 +1791,7 @@ z.iso.datetime({ offset: true })
 
 ## digest (121)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution-runtime/v1/schemas.ts#L44).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution-runtime/v1/schemas.ts#L44).
 
 ```typescript
 z.string().regex(/^[a-f0-9]{64}$/)
@@ -1799,7 +1799,7 @@ z.string().regex(/^[a-f0-9]{64}$/)
 
 ## slug (122)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution-runtime/v1/schemas.ts#L45).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution-runtime/v1/schemas.ts#L45).
 
 ```typescript
 z.string().regex(/^[a-z0-9][a-z0-9._-]{0,99}$/)
@@ -1807,7 +1807,7 @@ z.string().regex(/^[a-z0-9][a-z0-9._-]{0,99}$/)
 
 ## executionOperationSchema (123)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution-runtime/v1/schemas.ts#L85).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution-runtime/v1/schemas.ts#L85).
 
 ```typescript
 z.discriminatedUnion('kind', [
@@ -1864,7 +1864,7 @@ z.discriminatedUnion('kind', [
 
 ## limitsSchema (124)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution-runtime/v1/schemas.ts#L147).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution-runtime/v1/schemas.ts#L147).
 
 ```typescript
 z
@@ -1885,7 +1885,7 @@ z
 
 ## signedExecutionGrantSchema (125)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution-runtime/v1/schemas.ts#L162).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution-runtime/v1/schemas.ts#L162).
 
 ```typescript
 z
@@ -1943,7 +1943,7 @@ z
 
 ## requestSchema (126)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution-runtime/v1/schemas.ts#L221).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution-runtime/v1/schemas.ts#L221).
 
 ```typescript
 z
@@ -1957,7 +1957,7 @@ z
 
 ## errorSchema (127)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution-runtime/v1/schemas.ts#L240).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution-runtime/v1/schemas.ts#L240).
 
 ```typescript
 z
@@ -1967,7 +1967,7 @@ z
 
 ## responseSchema (128)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution-runtime/v1/schemas.ts#L243).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution-runtime/v1/schemas.ts#L243).
 
 ```typescript
 z
@@ -1997,7 +1997,7 @@ z
 
 ## redeemRequestSchema (129)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution-runtime/v1/schemas.ts#L269).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution-runtime/v1/schemas.ts#L269).
 
 ```typescript
 z.object({ leaseId: uuid, grant: z.unknown() }).strict()
@@ -2005,7 +2005,7 @@ z.object({ leaseId: uuid, grant: z.unknown() }).strict()
 
 ## redeemResponseSchema (130)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution-runtime/v1/schemas.ts#L278).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution-runtime/v1/schemas.ts#L278).
 
 ```typescript
 z
@@ -2029,7 +2029,7 @@ z
 
 ## releaseRequestSchema (131)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution-runtime/v1/schemas.ts#L303).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution-runtime/v1/schemas.ts#L303).
 
 ```typescript
 z
@@ -2039,7 +2039,7 @@ z
 
 ## executionArtifactUploadSchema (132)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution-runtime/v1/schemas.ts#L321).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution-runtime/v1/schemas.ts#L321).
 
 ```typescript
 z
@@ -2053,7 +2053,7 @@ z
 
 ## executionArtifactAuthorizeSchema (133)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution-runtime/v1/schemas.ts#L329).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution-runtime/v1/schemas.ts#L329).
 
 ```typescript
 z
@@ -2063,7 +2063,7 @@ z
 
 ## executionArtifactCompleteSchema (134)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/execution-runtime/v1/schemas.ts#L340).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/execution-runtime/v1/schemas.ts#L340).
 
 ```typescript
 z
@@ -2073,7 +2073,7 @@ z
 
 ## recordId (135)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/schemas.ts#L81).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/schemas.ts#L81).
 
 ```typescript
 z.string().regex(/^[A-Za-z0-9_.:-]{1,120}$/)
@@ -2081,7 +2081,7 @@ z.string().regex(/^[A-Za-z0-9_.:-]{1,120}$/)
 
 ## uuid (136)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/schemas.ts#L82).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/schemas.ts#L82).
 
 ```typescript
 z.uuid()
@@ -2089,7 +2089,7 @@ z.uuid()
 
 ## timestamp (137)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/schemas.ts#L83).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/schemas.ts#L83).
 
 ```typescript
 z.iso.datetime({ offset: true })
@@ -2097,7 +2097,7 @@ z.iso.datetime({ offset: true })
 
 ## shortText (138)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/schemas.ts#L84).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/schemas.ts#L84).
 
 ```typescript
 z.string().trim().min(1).max(200)
@@ -2105,7 +2105,7 @@ z.string().trim().min(1).max(200)
 
 ## digest (139)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/schemas.ts#L85).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/schemas.ts#L85).
 
 ```typescript
 z.string().regex(/^[a-f0-9]{64}$/)
@@ -2113,7 +2113,7 @@ z.string().regex(/^[a-f0-9]{64}$/)
 
 ## semver (140)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/schemas.ts#L86).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/schemas.ts#L86).
 
 ```typescript
 z.string().regex(/^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/)
@@ -2121,7 +2121,7 @@ z.string().regex(/^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/)
 
 ## slug (141)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/schemas.ts#L87).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/schemas.ts#L87).
 
 ```typescript
 z.string().regex(/^[a-z0-9][a-z0-9._-]{0,99}$/)
@@ -2129,7 +2129,7 @@ z.string().regex(/^[a-z0-9][a-z0-9._-]{0,99}$/)
 
 ## errorSchema (142)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/schemas.ts#L88).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/schemas.ts#L88).
 
 ```typescript
 z
@@ -2139,7 +2139,7 @@ z
 
 ## answers (143)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/schemas.ts#L91).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/schemas.ts#L91).
 
 ```typescript
 z.record(
@@ -2150,7 +2150,7 @@ z.record(
 
 ## capability (144)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/schemas.ts#L95).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/schemas.ts#L95).
 
 ```typescript
 z
@@ -2160,7 +2160,7 @@ z
 
 ## keySource (145)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/schemas.ts#L98).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/schemas.ts#L98).
 
 ```typescript
 z.enum(['EMPLOYEE_BYOK', 'ORGANIZATION_MANAGED'])
@@ -2168,7 +2168,7 @@ z.enum(['EMPLOYEE_BYOK', 'ORGANIZATION_MANAGED'])
 
 ## correlationSchema (146)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/schemas.ts#L100).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/schemas.ts#L100).
 
 ```typescript
 z
@@ -2187,7 +2187,7 @@ z
 
 ## taskSpecSchema (147)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/schemas.ts#L113).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/schemas.ts#L113).
 
 ```typescript
 z
@@ -2215,7 +2215,7 @@ z
 
 ## artifactRegistrationSchema (148)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/schemas.ts#L135).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/schemas.ts#L135).
 
 ```typescript
 z
@@ -2243,7 +2243,7 @@ z
 
 ## payloadSchemas (149)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/schemas.ts#L157).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/schemas.ts#L157).
 
 ```typescript
 {
@@ -2291,7 +2291,7 @@ z
 
 ## envelopeSchema (150)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/schemas.ts#L199).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/schemas.ts#L199).
 
 ```typescript
 z
@@ -2312,7 +2312,7 @@ z
 
 ## manifestV1Schema (151)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/schemas.ts#L260).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/schemas.ts#L260).
 
 ```typescript
 z
@@ -2341,7 +2341,7 @@ z
 
 ## versionedReference (152)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/schemas.ts#L283).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/schemas.ts#L283).
 
 ```typescript
 z.object({ id: slug, version: semver }).strict()
@@ -2349,7 +2349,7 @@ z.object({ id: slug, version: semver }).strict()
 
 ## manifestV2PayloadSchema (153)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/schemas.ts#L285).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/schemas.ts#L285).
 
 ```typescript
 z
@@ -2405,7 +2405,7 @@ z
 
 ## signature (154)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/schemas.ts#L335).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/schemas.ts#L335).
 
 ```typescript
 {
@@ -2420,7 +2420,7 @@ z
 
 ## signedManifestV2Schema (155)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/schemas.ts#L343).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/schemas.ts#L343).
 
 ```typescript
 z
@@ -2430,7 +2430,7 @@ z
 
 ## signedManifestV1Schema (156)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/schemas.ts#L346).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/schemas.ts#L346).
 
 ```typescript
 z
@@ -2440,7 +2440,7 @@ z
 
 ## commandBase (157)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/schemas.ts#L369).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/schemas.ts#L369).
 
 ```typescript
 {
@@ -2453,7 +2453,7 @@ z
 
 ## commandSchema (158)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/schemas.ts#L375).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/schemas.ts#L375).
 
 ```typescript
 z.discriminatedUnion('type', [
@@ -2513,7 +2513,7 @@ z.discriminatedUnion('type', [
 
 ## actionName (159)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/schemas.ts#L456).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/schemas.ts#L456).
 
 ```typescript
 z.string().regex(/^[a-z][a-z0-9_]*(?:\.[a-z][a-z0-9_]*){1,5}$/)
@@ -2521,7 +2521,7 @@ z.string().regex(/^[a-z][a-z0-9_]*(?:\.[a-z][a-z0-9_]*){1,5}$/)
 
 ## risk (160)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/schemas.ts#L457).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/schemas.ts#L457).
 
 ```typescript
 z.enum(['LOW', 'MEDIUM', 'HIGH', 'CRITICAL'])
@@ -2529,7 +2529,7 @@ z.enum(['LOW', 'MEDIUM', 'HIGH', 'CRITICAL'])
 
 ## actionRequestSchema (161)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/schemas.ts#L458).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/schemas.ts#L458).
 
 ```typescript
 z
@@ -2552,7 +2552,7 @@ z
 
 ## decisionBase (162)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/schemas.ts#L487).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/schemas.ts#L487).
 
 ```typescript
 { requestId: uuid, risk, reason: z.string().max(500) }
@@ -2560,7 +2560,7 @@ z
 
 ## actionDecisionSchema (163)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/schemas.ts#L488).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/schemas.ts#L488).
 
 ```typescript
 z.discriminatedUnion('decision', [
@@ -2574,7 +2574,7 @@ z.discriminatedUnion('decision', [
 
 ## claimResponseSchema (164)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/schemas.ts#L504).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/schemas.ts#L504).
 
 ```typescript
 z
@@ -2593,7 +2593,7 @@ z
 
 ## executeRequestSchema (165)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/schemas.ts#L525).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/schemas.ts#L525).
 
 ```typescript
 z
@@ -2607,7 +2607,7 @@ z
 
 ## executionSchema (166)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/schemas.ts#L543).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/schemas.ts#L543).
 
 ```typescript
 z
@@ -2622,7 +2622,7 @@ z
 
 ## tokens (167)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/schemas.ts#L561).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/schemas.ts#L561).
 
 ```typescript
 z.number().int().min(0).max(10_000_000)
@@ -2630,7 +2630,7 @@ z.number().int().min(0).max(10_000_000)
 
 ## modelName (168)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/schemas.ts#L562).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/schemas.ts#L562).
 
 ```typescript
 z.string().regex(/^[a-zA-Z0-9._:/-]{1,160}$/)
@@ -2638,7 +2638,7 @@ z.string().regex(/^[a-zA-Z0-9._:/-]{1,160}$/)
 
 ## reservationRequestSchema (169)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/schemas.ts#L563).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/schemas.ts#L563).
 
 ```typescript
 z
@@ -2656,7 +2656,7 @@ z
 
 ## reservationSchema (170)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/schemas.ts#L587).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/schemas.ts#L587).
 
 ```typescript
 z.discriminatedUnion('decision', [
@@ -2676,7 +2676,7 @@ z.discriminatedUnion('decision', [
 
 ## settlementRequestSchema (171)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/schemas.ts#L609).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/schemas.ts#L609).
 
 ```typescript
 z
@@ -2692,7 +2692,7 @@ z
 
 ## heartbeatRequestSchema (172)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/schemas.ts#L632).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/schemas.ts#L632).
 
 ```typescript
 z
@@ -2702,7 +2702,7 @@ z
 
 ## heartbeatSchema (173)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/schemas.ts#L645).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/schemas.ts#L645).
 
 ```typescript
 z
@@ -2712,7 +2712,7 @@ z
 
 ## checkpointBinding (174)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/schemas.ts#L659).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/schemas.ts#L659).
 
 ```typescript
 z
@@ -2730,7 +2730,7 @@ z
 
 ## checkpointVersion (175)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/schemas.ts#L670).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/schemas.ts#L670).
 
 ```typescript
 z.number().int().min(1).max(1_000_000)
@@ -2738,7 +2738,7 @@ z.number().int().min(1).max(1_000_000)
 
 ## checkpointBody (176)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/schemas.ts#L671).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/schemas.ts#L671).
 
 ```typescript
 z.string().min(2)
@@ -2746,7 +2746,7 @@ z.string().min(2)
 
 ## checkpointSaveSchema (177)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/schemas.ts#L673).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/schemas.ts#L673).
 
 ```typescript
 z
@@ -2764,7 +2764,7 @@ z
 
 ## checkpointLoadSchema (178)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/schemas.ts#L696).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/schemas.ts#L696).
 
 ```typescript
 z
@@ -2774,7 +2774,7 @@ z
 
 ## checkpointAckSchema (179)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/schemas.ts#L709).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/schemas.ts#L709).
 
 ```typescript
 z.object({ runId: uuid, version: checkpointVersion }).strict()
@@ -2782,7 +2782,7 @@ z.object({ runId: uuid, version: checkpointVersion }).strict()
 
 ## modelCredentialRequestSchema (180)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/schemas.ts#L737).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/schemas.ts#L737).
 
 ```typescript
 z
@@ -2796,7 +2796,7 @@ z
 
 ## modelCredentialSchema (181)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/schemas.ts#L754).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/schemas.ts#L754).
 
 ```typescript
 z
@@ -2809,7 +2809,7 @@ z
 
 ## artifactUploadDescriptorSchema (182)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/schemas.ts#L776).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/schemas.ts#L776).
 
 ```typescript
 z
@@ -2826,7 +2826,7 @@ z
 
 ## directArtifactDescriptorSchema (183)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/schemas.ts#L788).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/schemas.ts#L788).
 
 ```typescript
 artifactUploadDescriptorSchema
@@ -2839,7 +2839,7 @@ artifactUploadDescriptorSchema
 
 ## uploadAuthorizationSchema (184)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/schemas.ts#L795).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/schemas.ts#L795).
 
 ```typescript
 z
@@ -2855,7 +2855,7 @@ z
 
 ## artifactUploadRequestSchema (185)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/schemas.ts#L819).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/schemas.ts#L819).
 
 ```typescript
 z
@@ -2870,7 +2870,7 @@ z
 
 ## artifactUploadSchema (186)
 
-[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/9e7ec4eba0eeddb0fdb86c18740a1c1a610146a4/packages/contracts/src/runtime/v1/schemas.ts#L837).
+[Source](https://github.com/Agents-Foundry/employee-agent-platform/blob/d2bc8d7fa3fc185cc4f487bdaa1f11611844763f/packages/contracts/src/runtime/v1/schemas.ts#L837).
 
 ```typescript
 z
